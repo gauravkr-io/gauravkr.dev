@@ -1,0 +1,56 @@
+{
+  "education": [
+    {
+      "degree": "Bachelor of Engineering, Computer Science",
+      "institution": "Shivajirao Kadam Institute of Technology & Management",
+      "location": "Indore, India",
+      "year": "2020"
+    },
+    {
+      "degree": "Software Engineering Program",
+      "institution": "Airtribe",
+      "location": "Backend, system design, DSA and applied AI engineering",
+      "year": "2026 – Present"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Salesforce B2C Commerce Certified Developer",
+      "issuer": "Salesforce",
+      "year": "2023",
+      "note": "Platform certification covering SFRA, jobs, and the commerce API surface."
+    },
+    {
+      "name": "Full-Stack Java Developer",
+      "issuer": "Simplilearn",
+      "year": null,
+      "note": "Java, Spring and relational persistence across the full request path."
+    },
+    {
+      "name": "GATE 2021 Qualified",
+      "issuer": "IIT / IISc",
+      "year": "2021",
+      "note": "National postgraduate engineering entrance examination in computer science."
+    }
+  ],
+  "awards": [
+    {
+      "name": "Sparks Award",
+      "issuer": "Valtech",
+      "year": null,
+      "note": "Recognised for mentoring and delivery excellence."
+    },
+    {
+      "name": "CLIMB HIGH Award",
+      "issuer": "Merkle",
+      "year": null,
+      "note": "Recognised for the impact of the cart revamp."
+    },
+    {
+      "name": "Marketplace & Seasonal Template Delivery",
+      "issuer": "Merkle",
+      "year": null,
+      "note": "Recognised for marketplace and seasonal template development."
+    }
+  ]
+}

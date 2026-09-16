@@ -1,0 +1,83 @@
+{
+  "course": {
+    "slug": "system-design-for-working-engineers",
+    "title": "System Design for Working Engineers",
+    "subtitle": "HLD and LLD you can defend",
+    "summary": "Capacity estimation, service boundaries, storage choices and consistency trade-offs, taught as decisions with costs rather than as diagrams to memorise.",
+    "overview": [
+      "System design gets taught as a gallery of reference architectures to reproduce on a whiteboard. That works until an interviewer, or a production incident, asks why.",
+      "This course treats design as a sequence of decisions, each with a cost and a set of conditions under which it is wrong. You will finish able to justify a design rather than recite one."
+    ],
+    "difficulty": "Intermediate to Advanced",
+    "topic": "System Design",
+    "moduleCount": 8,
+    "lessonCount": 38,
+    "duration": "11 hours",
+    "technologies": ["System Design", "Caching", "CDNs", "Sharding", "Replication", "Queues & Streams", "Load Balancing", "Microservices"],
+    "coverImage": "/assets/images/courses/system-design-for-working-engineers.svg",
+    "status": "In development",
+    "visible": true,
+    "whatYouWillLearn": [
+      "Turn a vague requirement into numbers you can design against",
+      "Estimate capacity, storage and bandwidth without hand waving",
+      "Choose between SQL and NoSQL based on access patterns",
+      "Design caching with an invalidation story that holds",
+      "Draw service boundaries along data ownership",
+      "Reason about CAP trade-offs in concrete terms",
+      "Plan a migration that can ship in phases and roll back"
+    ],
+    "curriculum": [
+      {
+        "module": "01",
+        "title": "Requirements and estimation",
+        "lessons": ["Functional and non-functional requirements", "Traffic shape and growth", "Capacity estimation from first principles", "Latency budgets"]
+      },
+      {
+        "module": "02",
+        "title": "Storage decisions",
+        "lessons": ["Access patterns drive the choice", "Relational modelling and indexing", "Document and key-value stores", "Replication and read scaling", "Sharding and consistent hashing"]
+      },
+      {
+        "module": "03",
+        "title": "Caching and CDNs",
+        "lessons": ["What is safe to cache and for how long", "Cache keys and the dimensions that matter", "Invalidation strategies", "Stampedes and how to avoid them"]
+      },
+      {
+        "module": "04",
+        "title": "Service boundaries",
+        "lessons": ["Domain seams and data ownership", "Modular monolith before microservices", "Synchronous against asynchronous coupling", "Contract design and versioning"]
+      },
+      {
+        "module": "05",
+        "title": "Messaging and streams",
+        "lessons": ["Queues, topics and delivery guarantees", "Idempotent consumers", "Event-driven patterns and their cost", "WebSockets and real-time paths"]
+      },
+      {
+        "module": "06",
+        "title": "Consistency and availability",
+        "lessons": ["CAP in practical terms", "Eventual consistency users can live with", "Distributed transactions and why to avoid them", "Compensating actions"]
+      },
+      {
+        "module": "07",
+        "title": "Resilience and operations",
+        "lessons": ["Circuit breakers, timeouts and bulkheads", "Load balancing strategies", "Observability as a design input", "Incident response"]
+      },
+      {
+        "module": "08",
+        "title": "Putting it together",
+        "lessons": ["Designing a commerce checkout path", "Designing a feed or catalogue service", "Phased migration planning", "Defending a design under questioning"]
+      }
+    ],
+    "audience": [
+      "Engineers with two or more years of experience preparing for senior interviews",
+      "Backend developers who are being asked to design rather than only implement",
+      "Anyone who has inherited a system and needs a framework for changing it safely"
+    ],
+    "prerequisites": [
+      "Experience building or maintaining a backend service",
+      "Working knowledge of databases and HTTP",
+      "No specific language required"
+    ],
+    "relatedCourses": ["java-backend-spring-boot", "sfcc-backend-engineering"]
+  }
+}

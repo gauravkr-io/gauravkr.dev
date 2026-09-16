@@ -1,0 +1,83 @@
+{
+  "experience": [
+    {
+      "slug": "litmus7",
+      "company": "Litmus7",
+      "role": "Senior Engineer, SFCC",
+      "period": "Jan 2025 – Present",
+      "startDate": "2025-01",
+      "endDate": null,
+      "current": true,
+      "location": "Bangalore, India",
+      "logo": null,
+      "summary": "Senior individual contributor owning technical design across the discovery-to-cart journey, plus the API layer behind a retail mobile app.",
+      "highlights": [
+        "Architected and led the end-to-end PLP/PDP redesign, restructuring navigation and information architecture across the discovery-to-cart journey and cutting cart abandonment by 18%.",
+        "Designed and built OCAPI/SCAPI middleware services running in a cloud environment to power a Middle East lifestyle retail group's mobile app, turning cross-functional requirements into scalable API contracts.",
+        "Own technical design decisions and sprint planning as a senior IC, mentor junior engineers, and run agile scrums to improve delivery velocity.",
+        "Partner with product and architecture stakeholders to evaluate trade-offs early, which reduced rework across mobile and web integration points."
+      ],
+      "technologies": ["SFCC", "SFRA", "OCAPI", "SCAPI", "Node.js", "JavaScript", "REST APIs"],
+      "metric": { "value": "18%", "label": "lower cart abandonment" }
+    },
+    {
+      "slug": "valtech",
+      "company": "Valtech",
+      "role": "Senior Software Developer, SFCC",
+      "period": "Mar 2024 – Dec 2024",
+      "startDate": "2024-03",
+      "endDate": "2024-12",
+      "current": false,
+      "location": "Bangalore, India",
+      "logo": null,
+      "summary": "Backend lead on a headless commerce migration for a global luxury fashion house, centred on checkout and payments.",
+      "highlights": [
+        "Led backend development for a luxury fashion retailer's migration from ATG to SFCC Headless on Node.js, redesigning checkout backend logic and improving checkout conversion by 20%.",
+        "Built and optimised payment-instrument and order-placement logic against third-party providers, aligning technical design with partner requirements.",
+        "Authored job scripts for order exports, OMS processing and payment settlements, and maintained the documentation that kept agile delivery predictable.",
+        "Integrated fraud detection and transaction verification providers, using asynchronous processing in Node.js to keep checkout latency low."
+      ],
+      "technologies": ["SFCC Headless", "Node.js", "OCAPI", "Payments", "OMS", "REST APIs"],
+      "metric": { "value": "20%", "label": "higher checkout conversion" }
+    },
+    {
+      "slug": "merkle-dentsu",
+      "company": "Merkle (Dentsu)",
+      "role": "SFCC Associate Developer",
+      "period": "Dec 2021 – Mar 2024",
+      "startDate": "2021-12",
+      "endDate": "2024-03",
+      "current": false,
+      "location": "Bangalore, India",
+      "logo": null,
+      "summary": "Cart, checkout and fulfilment engineering for a US specialty retailer, plus a marketplace storefront built from the ground up.",
+      "highlights": [
+        "Re-architected a US specialty retailer's cart with custom plugins and tuned configuration, improving cart-to-checkout conversion by 28%.",
+        "Designed and shipped multi-shipment, in-store pickup and same-day delivery capabilities, and integrated PayPal and Klarna payment flows end to end.",
+        "Built a custom marketplace PLP/PDP for a client from the ground up, owning technical design, documentation and cross-functional delivery.",
+        "Developed automated test suites and administration scripts that raised release reliability and caught regressions earlier.",
+        "Diagnosed production bugs, drove targeted performance work, and stood up monitoring to track system health over time."
+      ],
+      "technologies": ["SFCC", "SFRA", "JavaScript", "PayPal", "Klarna", "Automated Testing"],
+      "metric": { "value": "28%", "label": "better cart-to-checkout" }
+    },
+    {
+      "slug": "katsam-group",
+      "company": "Katsam Group",
+      "role": "Full Stack Developer, Intern",
+      "period": "Aug 2020 – Nov 2021",
+      "startDate": "2020-08",
+      "endDate": "2021-11",
+      "current": false,
+      "location": "India",
+      "logo": null,
+      "summary": "First commercial engineering role, covering storefront backend work and a full Java system delivered end to end.",
+      "highlights": [
+        "Built backend logic for PLP, PDP and cart on the SFRA framework as part of full-stack e-commerce feature delivery.",
+        "Developed a Java and Hibernate academic management system end to end, from requirements gathering through deployment."
+      ],
+      "technologies": ["SFRA", "JavaScript", "Java", "Hibernate", "MySQL"],
+      "metric": null
+    }
+  ]
+}

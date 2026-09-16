@@ -1,0 +1,72 @@
+{
+  "course": {
+    "slug": "sfcc-backend-engineering",
+    "title": "SFCC Backend Engineering",
+    "subtitle": "Commerce Cloud past the tutorials",
+    "summary": "Build the parts of a Salesforce Commerce Cloud storefront that carry money. Cart, checkout, payments, jobs and the OCAPI/SCAPI surface.",
+    "overview": [
+      "Most SFCC learning material stops at rendering a product page. The work that actually gets you hired starts after that, in the cart, the checkout and the integrations that connect a storefront to payments, fraud checks and order management.",
+      "This course covers that second half. It follows the same path I have shipped on client projects, which means the failure cases are included rather than skipped."
+    ],
+    "difficulty": "Intermediate",
+    "topic": "E-Commerce",
+    "moduleCount": 6,
+    "lessonCount": 34,
+    "duration": "9 hours",
+    "technologies": ["SFCC", "SFRA", "SGJC", "OCAPI", "SCAPI", "JavaScript", "Node.js"],
+    "coverImage": "/assets/images/courses/sfcc-backend-engineering.svg",
+    "status": "In development",
+    "visible": true,
+    "whatYouWillLearn": [
+      "Structure cartridges and controllers so platform upgrades stay cheap",
+      "Extend cart and checkout behaviour through hooks rather than overrides",
+      "Design OCAPI and SCAPI contracts that a mobile client can build against",
+      "Integrate payment and fraud providers with sane failure behaviour",
+      "Write jobs for order export, OMS handoff and settlement that fail loudly",
+      "Profile and fix the storefront paths that cost conversion"
+    ],
+    "curriculum": [
+      {
+        "module": "01",
+        "title": "Platform foundations",
+        "lessons": ["Cartridge structure and the path", "Controllers, models and forms", "Hooks and where logic belongs", "Working with Business Manager configuration"]
+      },
+      {
+        "module": "02",
+        "title": "Discovery: PLP and PDP",
+        "lessons": ["Catalogue and category modelling", "Search refinements and sorting", "Variation and inventory display", "Performance limits of discovery pages"]
+      },
+      {
+        "module": "03",
+        "title": "Cart architecture",
+        "lessons": ["Basket model and line items", "Promotions and price adjustments", "Multi-shipment and pickup options", "Custom plugins without fighting the platform"]
+      },
+      {
+        "module": "04",
+        "title": "Checkout and payments",
+        "lessons": ["Checkout stages and validation", "Payment instruments and authorisation", "Fraud verification off the user path", "Idempotency and safe retries", "Order placement and failure recovery"]
+      },
+      {
+        "module": "05",
+        "title": "OCAPI and SCAPI",
+        "lessons": ["Choosing between the two surfaces", "Shopper authorisation flows", "Extending responses with custom attributes", "Designing a middleware layer for mobile"]
+      },
+      {
+        "module": "06",
+        "title": "Jobs, monitoring and delivery",
+        "lessons": ["Order export and OMS integration", "Settlement and reconciliation jobs", "Logging and alerting that gets noticed", "Release practice for seasonal traffic"]
+      }
+    ],
+    "audience": [
+      "SFCC developers who have shipped storefront features and want the backend depth",
+      "Backend engineers moving onto a commerce platform for the first time",
+      "Full-stack developers who own checkout and want to stop being afraid of it"
+    ],
+    "prerequisites": [
+      "Comfortable with JavaScript, including asynchronous code",
+      "Some exposure to SFRA or another commerce platform",
+      "Basic understanding of REST APIs"
+    ],
+    "relatedCourses": ["java-backend-spring-boot", "system-design-for-working-engineers"]
+  }
+}

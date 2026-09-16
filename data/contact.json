@@ -1,0 +1,99 @@
+{
+  "contact": {
+    "eyebrow": "Contact",
+    "headline": "Have an interesting problem to solve?",
+    "intro": "Let's build something meaningful.",
+    "supporting": "Whether it is a commerce platform that needs work, a backend that needs designing, or a role you think fits, send the details and I will reply within two working days.",
+    "responseTime": "Typically replies within two working days",
+    "methods": [
+      {
+        "key": "email",
+        "label": "Email",
+        "value": "gauravkr0897@gmail.com",
+        "href": "mailto:gauravkr0897@gmail.com",
+        "note": "Best for project briefs and role enquiries",
+        "icon": "mail"
+      },
+      {
+        "key": "linkedin",
+        "label": "LinkedIn",
+        "value": "linkedin.com/in/gauravkr-io",
+        "href": "https://linkedin.com/in/gauravkr-io",
+        "note": "Professional background and recommendations",
+        "icon": "linkedin"
+      },
+      {
+        "key": "github",
+        "label": "GitHub",
+        "value": "github.com/gauravkr-io",
+        "href": "https://github.com/gauravkr-io",
+        "note": "Code and side projects",
+        "icon": "github"
+      },
+      {
+        "key": "phone",
+        "label": "Phone",
+        "value": "+91-989-307-2789",
+        "href": "tel:+919893072789",
+        "note": "Bangalore, India (IST)",
+        "icon": "phone"
+      }
+    ],
+    "form": {
+      "title": "Send a message",
+      "note": "This form is not connected to a backend yet. Submitting it opens your email client with the details filled in.",
+      "submitLabel": "Send message",
+      "successMessage": "Your email client should now be open with the message ready to send.",
+      "fields": [
+        {
+          "name": "name",
+          "label": "Your name",
+          "type": "text",
+          "required": true,
+          "placeholder": "Jane Sharma",
+          "autocomplete": "name",
+          "errorMessage": "Please enter your name."
+        },
+        {
+          "name": "email",
+          "label": "Email address",
+          "type": "email",
+          "required": true,
+          "placeholder": "jane@company.com",
+          "autocomplete": "email",
+          "errorMessage": "Please enter a valid email address."
+        },
+        {
+          "name": "subject",
+          "label": "What is this about",
+          "type": "select",
+          "required": true,
+          "autocomplete": "off",
+          "errorMessage": "Please choose a topic.",
+          "options": [
+            "A role or hiring enquiry",
+            "E-commerce or SFCC project",
+            "Backend or architecture work",
+            "Speaking, writing or courses",
+            "Something else"
+          ]
+        },
+        {
+          "name": "message",
+          "label": "Message",
+          "type": "textarea",
+          "required": true,
+          "rows": 6,
+          "placeholder": "A short description of the problem, the timeline and anything I should know up front.",
+          "autocomplete": "off",
+          "errorMessage": "Please include a short message."
+        }
+      ]
+    },
+    "resumeCta": {
+      "title": "Reviewing for a role",
+      "description": "The résumé has employers, dates, certifications and the full skills list on one page.",
+      "label": "Download Résumé"
+    }
+  }
+}

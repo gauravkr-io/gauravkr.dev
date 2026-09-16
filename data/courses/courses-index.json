@@ -1,0 +1,79 @@
+{
+  "coursesMeta": {
+    "eyebrow": "Courses",
+    "headline": "Teaching the systems I actually build",
+    "intro": "Practical courses drawn from production work rather than from tutorials. Each one is built around the decisions engineers get asked to make, not around syntax.",
+    "notice": "These courses are in development. Join the list and I will send the details when each one opens."
+  },
+  "topics": ["All", "E-Commerce", "Backend", "System Design", "Interview Prep"],
+  "courses": [
+    {
+      "slug": "sfcc-backend-engineering",
+      "title": "SFCC Backend Engineering",
+      "subtitle": "Commerce Cloud past the tutorials",
+      "summary": "Build the parts of a Salesforce Commerce Cloud storefront that carry money. Cart, checkout, payments, jobs and the OCAPI/SCAPI surface.",
+      "difficulty": "Intermediate",
+      "topic": "E-Commerce",
+      "moduleCount": 6,
+      "lessonCount": 34,
+      "duration": "9 hours",
+      "technologies": ["SFCC", "SFRA", "OCAPI", "SCAPI", "JavaScript", "Node.js"],
+      "coverImage": "/assets/images/courses/sfcc-backend-engineering.svg",
+      "status": "In development",
+      "featured": true,
+      "visible": true,
+      "order": 1
+    },
+    {
+      "slug": "java-backend-spring-boot",
+      "title": "Java Backend with Spring Boot",
+      "subtitle": "From domain model to deployed service",
+      "summary": "Design the domain first, then build a Spring Boot service around it, with persistence, auth, tests and failure handling decided before the first endpoint.",
+      "difficulty": "Beginner to Intermediate",
+      "topic": "Backend",
+      "moduleCount": 7,
+      "lessonCount": 41,
+      "duration": "12 hours",
+      "technologies": ["Java", "Spring Boot", "JPA/Hibernate", "MySQL", "JWT & OAuth2", "JUnit & Mockito"],
+      "coverImage": "/assets/images/courses/java-backend-spring-boot.svg",
+      "status": "In development",
+      "featured": true,
+      "visible": true,
+      "order": 2
+    },
+    {
+      "slug": "system-design-for-working-engineers",
+      "title": "System Design for Working Engineers",
+      "subtitle": "HLD and LLD you can defend",
+      "summary": "Capacity estimation, service boundaries, storage choices and consistency trade-offs, taught as decisions with costs rather than as diagrams to memorise.",
+      "difficulty": "Intermediate to Advanced",
+      "topic": "System Design",
+      "moduleCount": 8,
+      "lessonCount": 38,
+      "duration": "11 hours",
+      "technologies": ["System Design", "Caching", "Sharding", "Queues", "Load Balancing", "Microservices"],
+      "coverImage": "/assets/images/courses/system-design-for-working-engineers.svg",
+      "status": "In development",
+      "featured": true,
+      "visible": true,
+      "order": 3
+    },
+    {
+      "slug": "dsa-patterns-that-transfer",
+      "title": "DSA Patterns That Transfer",
+      "subtitle": "Recognise the shape, not the question",
+      "summary": "The recurring patterns behind interview problems and real work, covering linear structures, recursion, trees, graphs and dynamic programming.",
+      "difficulty": "Beginner to Intermediate",
+      "topic": "Interview Prep",
+      "moduleCount": 5,
+      "lessonCount": 45,
+      "duration": "10 hours",
+      "technologies": ["Java", "Algorithms", "Data Structures", "Complexity Analysis"],
+      "coverImage": "/assets/images/courses/dsa-patterns-that-transfer.svg",
+      "status": "In development",
+      "featured": false,
+      "visible": true,
+      "order": 4
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "about": {
+    "eyebrow": "About",
+    "headline": "Five years turning commerce requirements into systems that hold",
+    "intro": [
+      "I am Gaurav Kumar, an E-Commerce Specialist and Software Engineer based in Bangalore. For the last five years I have worked almost entirely inside Salesforce Commerce Cloud, on the parts of a storefront where mistakes are expensive: product discovery, cart, checkout, payments and order flow.",
+      "That work taught me something narrow but useful. A commerce platform is not really a website. It is a distributed system with a shopping interface attached, and most of the hard problems live in the integrations, the API contracts and the paths users hit under load.",
+      "Alongside the e-commerce work I build backend and distributed systems in Java and Spring Boot, and I design for scale rather than for demos. E-commerce is the specialisation. Backend and systems engineering is the range around it."
+    ],
+    "portraitCaption": "Bangalore, India",
+    "capabilities": [
+      {
+        "key": "build",
+        "label": "Build",
+        "title": "Backend systems, APIs and integrations",
+        "description": "Services, middleware and commerce APIs that other teams can build against without reading the source.",
+        "icon": "build"
+      },
+      {
+        "key": "architect",
+        "label": "Architect",
+        "title": "Scalable systems and technical architecture",
+        "description": "Domain modelling, service boundaries and data design decided before the first endpoint is written.",
+        "icon": "architect"
+      },
+      {
+        "key": "optimize",
+        "label": "Optimize",
+        "title": "Performance, reliability and conversion",
+        "description": "Profiling real traffic, fixing the paths that actually cost money, and proving the change with numbers.",
+        "icon": "optimize"
+      },
+      {
+        "key": "create",
+        "label": "Create",
+        "title": "Technical content, courses and engineering knowledge",
+        "description": "Writing and teaching the backend and commerce topics I work with, so the knowledge outlives the project.",
+        "icon": "create"
+      }
+    ],
+    "journey": [
+      {
+        "year": "2020",
+        "title": "Started in full-stack e-commerce",
+        "description": "Joined Katsam Group as an intern and shipped backend logic for PLP, PDP and cart on SFRA, while building a Java and Hibernate system end to end."
+      },
+      {
+        "year": "2021",
+        "title": "Moved into cart and checkout ownership",
+        "description": "Joined Merkle (Dentsu) and took on cart architecture, fulfilment options and payment integrations for a US specialty retailer."
+      },
+      {
+        "year": "2024",
+        "title": "Led a headless migration",
+        "description": "At Valtech, led backend development moving a global luxury retailer from ATG to SFCC Headless on Node.js, with checkout as the critical path."
+      },
+      {
+        "year": "2025",
+        "title": "Senior IC on discovery and API architecture",
+        "description": "At Litmus7, architected the PLP/PDP redesign and built the OCAPI/SCAPI middleware powering a retail group's mobile app."
+      },
+      {
+        "year": "2026",
+        "title": "Broadened into backend systems at scale",
+        "description": "Added deep Java, Spring Boot, system design and applied AI engineering capability through a structured software engineering program, aimed at larger-scale SDE work."
+      }
+    ],
+    "philosophy": {
+      "eyebrow": "Engineering Philosophy",
+      "headline": "How I approach the work",
+      "principles": [
+        {
+          "number": "01",
+          "title": "Understand the constraint before the code",
+          "description": "Most bad architecture is a correct solution to the wrong problem. I spend the first part of any project finding the real constraint, whether that is latency, a partner API, a migration window or a business rule nobody wrote down."
+        },
+        {
+          "number": "02",
+          "title": "Measure, then optimise",
+          "description": "Performance work without a baseline is guesswork. I profile the actual path, fix what the numbers point at, and verify the result against the same measurement."
+        },
+        {
+          "number": "03",
+          "title": "Boring architecture scales further",
+          "description": "Clear service boundaries, predictable data models and well-versioned contracts outlast clever abstractions. I optimise for the engineer who picks this up in two years."
+        },
+        {
+          "number": "04",
+          "title": "Own the path end to end",
+          "description": "A checkout is not done when the endpoint returns 200. It is done when payments settle, orders export, failures are visible and someone on call can act on them."
+        },
+        {
+          "number": "05",
+          "title": "Write it down",
+          "description": "Design docs, API contracts and runbooks are part of the deliverable. Documentation is what lets a team move fast without depending on one person's memory."
+        }
+      ]
+    },
+    "beyondEngineering": {
+      "visible": true,
+      "eyebrow": "Beyond the roadmap",
+      "headline": "What I do when I am not shipping",
+      "items": [
+        {
+          "title": "Mentoring engineers",
+          "description": "Reviewing design decisions with junior engineers and running the scrum ceremonies that keep a team honest about scope."
+        },
+        {
+          "title": "Writing about systems",
+          "description": "Turning the problems I hit at work into technical writing on backend engineering, commerce architecture and system design."
+        },
+        {
+          "title": "Studying the fundamentals",
+          "description": "Working through distributed systems, concurrency and algorithm patterns deliberately rather than only when an interview demands it."
+        }
+      ]
+    },
+    "resumeCta": {
+      "title": "Prefer the one-page version",
+      "description": "The résumé covers employers, dates, certifications and the full skills list.",
+      "label": "Download Résumé"
+    }
+  }
+}

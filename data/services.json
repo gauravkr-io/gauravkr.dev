@@ -1,0 +1,321 @@
+{
+  "servicesMeta": {
+    "eyebrow": "Services",
+    "headline": "Engineering help, scoped to the problem",
+    "intro": "Every engagement starts the same way. Find the real constraint, design against it, build it properly, then prove the result with numbers. Below is the work I take on, led by the e-commerce specialisation that has taken up most of the last five years."
+  },
+  "services": [
+    {
+      "slug": "e-commerce-engineering",
+      "title": "E-Commerce Engineering",
+      "tagline": "The specialisation",
+      "shortDescription": "Salesforce Commerce Cloud storefronts and the APIs behind them, from product discovery through payment settlement.",
+      "visible": true,
+      "featured": true,
+      "order": 1,
+      "icon": "commerce",
+      "image": "/assets/images/services/e-commerce-engineering.svg",
+      "problem": "Commerce platforms fail quietly. Cart abandonment creeps up, checkout errors get absorbed as support tickets, and nobody can point to the line of code responsible.",
+      "solution": "I work inside SFCC the way it is actually built, across SFRA controllers, cartridges, jobs and the OCAPI/SCAPI surface, and treat the discovery-to-payment journey as one system rather than a set of pages.",
+      "technologies": ["SFCC", "SFRA", "SGJC", "OCAPI", "SCAPI", "Node.js", "JavaScript", "REST APIs", "GraphQL"],
+      "problemsSolved": [
+        "Cart and checkout flows that lose users at a step nobody has instrumented.",
+        "Product listing and detail pages that degrade as catalogue size grows.",
+        "Payment and fraud integrations that fail in ways the storefront cannot recover from.",
+        "Fulfilment complexity such as multi-shipment, in-store pickup and same-day delivery.",
+        "Order export, OMS handoff and settlement jobs that break silently overnight."
+      ],
+      "engineeringApproach": [
+        {
+          "title": "Map the journey against real data",
+          "description": "Before changing anything, I trace the discovery-to-cart path and find where users and requests actually drop. The redesign follows the data, not an opinion about layout."
+        },
+        {
+          "title": "Design the contract first",
+          "description": "Storefront and middleware get a versioned API contract up front, so the mobile app, web front end and partner integrations can move independently."
+        },
+        {
+          "title": "Build on platform grain",
+          "description": "Cartridges, hooks and jobs are written the way SFCC expects, which keeps upgrades cheap and keeps custom code out of the platform's way."
+        },
+        {
+          "title": "Prove the change",
+          "description": "Conversion, abandonment and latency are measured before and after. Work that cannot be measured does not get called a success."
+        }
+      ],
+      "architectureConsiderations": [
+        "Headless and hybrid storefronts have different failure modes. The choice gets made against the client's roadmap, not fashion.",
+        "OCAPI and SCAPI overlap but are not interchangeable. Picking the wrong one costs a migration later.",
+        "Checkout must degrade safely when a payment or fraud provider is slow or down.",
+        "Catalogue and inventory feeds define the real performance ceiling for discovery pages."
+      ],
+      "deliverables": [
+        "Storefront and middleware implementation",
+        "Versioned API contracts and documentation",
+        "Payment, fraud and OMS integrations",
+        "Performance and conversion measurement"
+      ],
+      "proofMetric": { "value": "18%", "label": "lower cart abandonment after a PLP/PDP redesign" }
+    },
+    {
+      "slug": "backend-engineering",
+      "title": "Backend Engineering",
+      "tagline": "Services and APIs",
+      "shortDescription": "Java and Spring Boot services, Node.js middleware, and REST or GraphQL APIs designed to be built against.",
+      "visible": true,
+      "featured": true,
+      "order": 2,
+      "icon": "backend",
+      "image": "/assets/images/services/backend-engineering.svg",
+      "problem": "Backends get built endpoint by endpoint until the data model no longer matches the domain, and every new feature needs a workaround.",
+      "solution": "I model the domain first, set service boundaries deliberately, and build APIs with versioning, auth and failure behaviour decided before the first handler is written.",
+      "technologies": ["Java", "Spring Boot", "JPA/Hibernate", "Node.js", "REST APIs", "GraphQL", "MySQL", "MongoDB", "JWT & OAuth2", "JUnit & Mockito"],
+      "problemsSolved": [
+        "APIs whose contracts change under their consumers.",
+        "Data models that fight the domain instead of describing it.",
+        "Authentication and role-based access bolted on after launch.",
+        "Services with no test coverage on the paths that carry money.",
+        "Slow endpoints where nobody has separated database time from application time."
+      ],
+      "engineeringApproach": [
+        {
+          "title": "Model the domain before the endpoints",
+          "description": "Entities, relationships and invariants get written down first. The API then exposes that model rather than inventing a second one."
+        },
+        {
+          "title": "Decide the contract and its versioning",
+          "description": "Request and response shapes, error semantics and deprecation policy are part of the design, not something discovered in integration testing."
+        },
+        {
+          "title": "Make failure explicit",
+          "description": "Timeouts, retries, idempotency and circuit breaking are designed in. A dependency being down should be a handled case, not an outage."
+        },
+        {
+          "title": "Test the paths that matter",
+          "description": "Unit tests for logic and integration tests for the flows that touch persistence, payments or external partners."
+        }
+      ],
+      "architectureConsiderations": [
+        "Relational or document storage is chosen against the access pattern, not by preference.",
+        "Service boundaries follow the domain. Splitting too early costs more than a well-structured monolith.",
+        "Caching needs an invalidation story before it gets added, otherwise it trades correctness for speed.",
+        "Auth and RBAC belong in the design phase because retrofitting them touches every endpoint."
+      ],
+      "deliverables": [
+        "Domain and data model",
+        "Service implementation with tests",
+        "API documentation and contracts",
+        "Auth, RBAC and error handling"
+      ],
+      "proofMetric": null
+    },
+    {
+      "slug": "system-architecture",
+      "title": "System Architecture",
+      "tagline": "Design before build",
+      "shortDescription": "High and low level design, service boundaries, data modelling and the trade-off decisions that are expensive to reverse.",
+      "visible": true,
+      "featured": true,
+      "order": 3,
+      "icon": "architecture",
+      "image": "/assets/images/services/system-architecture.svg",
+      "problem": "The costly decisions get made early, often implicitly, and by the time the cost shows up the system has been built on top of them.",
+      "solution": "I produce the design work that makes those decisions explicit: capacity estimates, boundaries, data flow, consistency trade-offs and a migration path that a team can actually execute.",
+      "technologies": ["System Design (HLD & LLD)", "Domain Modelling", "Design Patterns", "Microservices", "Caching", "Queues & Streams", "SQL/NoSQL Replication", "Circuit Breakers"],
+      "problemsSolved": [
+        "Monoliths that need splitting without a plan for the data.",
+        "Platform migrations where the cutover risk has never been written down.",
+        "Systems that work at current load with no estimate of where they break.",
+        "Teams disagreeing about service ownership because boundaries were never defined.",
+        "Consistency requirements that were assumed rather than agreed."
+      ],
+      "engineeringApproach": [
+        {
+          "title": "Requirements and capacity first",
+          "description": "Traffic shape, growth, read and write ratios and latency budgets get estimated before any diagram is drawn."
+        },
+        {
+          "title": "Model the domain, then cut the boundaries",
+          "description": "Services are separated along domain seams where data ownership is clean, rather than along team structure or convenience."
+        },
+        {
+          "title": "Name the trade-offs out loud",
+          "description": "Consistency against availability, sharding strategy, cache invalidation and coupling all get stated with their cost, so the decision is the client's to make."
+        },
+        {
+          "title": "Write an executable migration path",
+          "description": "A design that cannot be shipped incrementally is not finished. Each phase gets a rollback story."
+        }
+      ],
+      "architectureConsiderations": [
+        "Consistent hashing and sharding decisions are effectively permanent once data volume grows.",
+        "Every network hop added between services is a new failure mode and a new latency budget.",
+        "Read-heavy and write-heavy paths usually want different storage strategies.",
+        "Incident response and observability are architecture, not operations afterthoughts."
+      ],
+      "deliverables": [
+        "HLD and LLD documents",
+        "Capacity and scaling estimates",
+        "Service and data boundary definitions",
+        "Phased migration plan"
+      ],
+      "proofMetric": null
+    },
+    {
+      "slug": "performance-engineering",
+      "title": "Performance Engineering",
+      "tagline": "Measured, not guessed",
+      "shortDescription": "Profiling, caching strategy and targeted optimisation on the paths that carry revenue.",
+      "visible": true,
+      "featured": true,
+      "order": 4,
+      "icon": "performance",
+      "image": "/assets/images/services/performance-engineering.svg",
+      "problem": "Performance work often starts with a hunch, changes ten things at once, and finishes with no evidence it helped.",
+      "solution": "I establish a baseline, profile the real request path, fix what the profile points at, and verify against the same measurement.",
+      "technologies": ["Profiling", "JVM Memory Management", "Concurrency", "Caching", "CDNs", "Load Balancing", "Query Optimisation", "Monitoring"],
+      "problemsSolved": [
+        "Checkout and cart latency that costs conversion at peak traffic.",
+        "Database queries that were fine at launch and are not fine now.",
+        "Memory pressure and garbage collection pauses in JVM services.",
+        "Thread contention and shared-state bugs that only appear under load.",
+        "Caching added without an invalidation strategy, producing stale data."
+      ],
+      "engineeringApproach": [
+        {
+          "title": "Establish a baseline worth comparing against",
+          "description": "Real traffic, realistic data volume and percentile latency rather than averages. An average hides the users who leave."
+        },
+        {
+          "title": "Profile before changing anything",
+          "description": "Application time, database time and network time get separated, so effort goes where the time actually is."
+        },
+        {
+          "title": "Change one thing at a time",
+          "description": "Each optimisation is measured on its own. Bundled changes make it impossible to know what worked."
+        },
+        {
+          "title": "Leave monitoring behind",
+          "description": "The work is not finished until regressions will be caught by instrumentation rather than by a customer."
+        }
+      ],
+      "architectureConsiderations": [
+        "A cache is a correctness decision before it is a speed decision.",
+        "Async processing moves latency out of the user path but adds delivery guarantees to think about.",
+        "Percentile latency matters more than mean for anything user-facing.",
+        "Optimising a path that carries two percent of traffic is a waste of a sprint."
+      ],
+      "deliverables": [
+        "Baseline and profiling report",
+        "Prioritised optimisation plan",
+        "Implemented fixes with before and after numbers",
+        "Monitoring and alerting"
+      ],
+      "proofMetric": { "value": "20%", "label": "higher checkout conversion after backend redesign" }
+    },
+    {
+      "slug": "integrations",
+      "title": "API Development & Integrations",
+      "tagline": "Systems that talk",
+      "shortDescription": "Payments, fraud, OMS, mobile middleware and partner APIs, integrated with failure behaviour designed in.",
+      "visible": true,
+      "featured": true,
+      "order": 5,
+      "icon": "integrations",
+      "image": "/assets/images/services/integrations.svg",
+      "problem": "Integrations are where systems break, because the other side has its own uptime, its own rate limits and its own idea of what an error means.",
+      "solution": "I design integrations defensively, with explicit contracts, idempotency, retry policy and a defined behaviour for every way the partner can fail.",
+      "technologies": ["OCAPI", "SCAPI", "REST APIs", "GraphQL", "Node.js", "Java", "Webhooks", "Async Processing", "JWT & OAuth2"],
+      "problemsSolved": [
+        "Payment and fraud providers that time out mid-checkout.",
+        "Mobile apps needing a stable API layer over a commerce platform.",
+        "Order export and OMS handoff that fails without anyone noticing.",
+        "Duplicate charges or duplicate orders from naive retry logic.",
+        "Partner APIs with rate limits that the integration ignores."
+      ],
+      "engineeringApproach": [
+        {
+          "title": "Agree the contract with both sides",
+          "description": "Payload shape, authentication, error codes and rate limits get documented before implementation, which removes most integration-phase surprises."
+        },
+        {
+          "title": "Make every write idempotent",
+          "description": "Anything that creates an order or moves money is safe to retry. That single decision prevents an entire category of incident."
+        },
+        {
+          "title": "Move slow work off the user path",
+          "description": "Fraud checks, exports and settlements run asynchronously so a slow partner does not become a slow checkout."
+        },
+        {
+          "title": "Instrument the seam",
+          "description": "Every integration gets logging, alerting and a replay path, because the failures that matter happen at three in the morning."
+        }
+      ],
+      "architectureConsiderations": [
+        "Synchronous calls to a partner put their uptime inside your uptime.",
+        "Retries without idempotency keys create duplicates rather than resilience.",
+        "Webhook receivers need to be idempotent and to verify signatures.",
+        "Versioning matters most where you do not control the consumer."
+      ],
+      "deliverables": [
+        "Integration design and contract documentation",
+        "Implementation with retry and idempotency",
+        "Async processing and job scripts",
+        "Logging, alerting and replay tooling"
+      ],
+      "proofMetric": null
+    },
+    {
+      "slug": "ai-engineering",
+      "title": "AI Engineering",
+      "tagline": "Applied, not experimental",
+      "shortDescription": "Retrieval, structured outputs, function calling and the guardrails that make an LLM feature safe to ship.",
+      "visible": true,
+      "featured": true,
+      "order": 6,
+      "icon": "ai",
+      "image": "/assets/images/services/ai-engineering.svg",
+      "problem": "Most LLM features demo well and fail in production, because nothing was built to evaluate them, constrain them or defend them against hostile input.",
+      "solution": "I treat an AI feature as a system with a contract. Structured outputs, retrieval that can be inspected, evaluations that catch regressions, and guardrails against prompt injection.",
+      "technologies": ["Prompting & Structured Outputs", "Embeddings", "Hybrid Search", "Function Calling", "Agent State (MCP)", "Evals", "Guardrails", "Prompt-Injection Defense"],
+      "problemsSolved": [
+        "Model output that cannot be parsed reliably by downstream code.",
+        "Retrieval that returns plausible but wrong context.",
+        "No way to tell whether a prompt change made quality better or worse.",
+        "Agent tooling with no boundary on what it is allowed to do.",
+        "User-supplied content being treated as instructions by the model."
+      ],
+      "engineeringApproach": [
+        {
+          "title": "Define the output contract",
+          "description": "Structured outputs and schema validation first, so downstream code has something dependable to consume."
+        },
+        {
+          "title": "Make retrieval inspectable",
+          "description": "Hybrid search over embeddings plus keyword matching, with the retrieved context logged so a bad answer can be traced to its source."
+        },
+        {
+          "title": "Build evals before tuning",
+          "description": "A prompt change without an evaluation set is a guess. The eval suite comes first and runs on every change."
+        },
+        {
+          "title": "Treat external text as hostile",
+          "description": "Content pulled from users, documents or the web is data, never instructions. Guardrails and injection defence are part of the design."
+        }
+      ],
+      "architectureConsiderations": [
+        "Latency and cost per call shape the architecture as much as quality does.",
+        "Retrieval quality usually matters more than model choice.",
+        "Agent state and tool permissions need explicit boundaries.",
+        "Every model-facing feature needs a deterministic fallback."
+      ],
+      "deliverables": [
+        "Feature design and output contract",
+        "Retrieval and indexing pipeline",
+        "Evaluation suite",
+        "Guardrails and injection defence"
+      ],
+      "proofMetric": null
+    }
+  ]
+}

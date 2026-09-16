@@ -1,0 +1,58 @@
+{
+  "technologies": [
+    {
+      "category": "E-Commerce",
+      "description": "The core specialisation. Five years of building and scaling Salesforce Commerce Cloud storefronts and the APIs behind them.",
+      "items": [
+        { "name": "SFCC",       "logo": "/assets/images/technologies/salesforce.svg", "note": "SFRA and SGJC" },
+        { "name": "SFRA",       "logo": null,                                         "note": "Storefront Reference Architecture" },
+        { "name": "OCAPI",      "logo": null,                                         "note": "Open Commerce API" },
+        { "name": "SCAPI",      "logo": null,                                         "note": "Salesforce Commerce API" },
+        { "name": "REST APIs",  "logo": null,                                         "note": "Contract design and versioning" },
+        { "name": "GraphQL",    "logo": "/assets/images/technologies/graphql.svg",     "note": "Schema-first data access" }
+      ]
+    },
+    {
+      "category": "Languages & Runtime",
+      "description": "Day-to-day working languages across storefront, middleware and backend services.",
+      "items": [
+        { "name": "Java",       "logo": "/assets/images/technologies/java.svg",       "note": "JVM internals and memory model" },
+        { "name": "JavaScript", "logo": "/assets/images/technologies/javascript.svg", "note": "ES2015 and later" },
+        { "name": "Node.js",    "logo": "/assets/images/technologies/nodejs.svg",     "note": "Async services and middleware" },
+        { "name": "jQuery",     "logo": "/assets/images/technologies/jquery.svg",     "note": "Legacy storefront layers" }
+      ]
+    },
+    {
+      "category": "Backend & Frameworks",
+      "description": "Service-side engineering, from dependency injection and persistence through to auth and access control.",
+      "items": [
+        { "name": "Spring Boot",  "logo": "/assets/images/technologies/spring-boot.svg", "note": "DI and application wiring" },
+        { "name": "JPA/Hibernate","logo": "/assets/images/technologies/hibernate.svg",   "note": "Relational modelling" },
+        { "name": "JWT & OAuth2", "logo": "/assets/images/technologies/jwt.svg",         "note": "Auth and RBAC" },
+        { "name": "Microservices","logo": null,                                          "note": "Service boundaries" },
+        { "name": "Concurrency",  "logo": null,                                          "note": "Threading and safe shared state" },
+        { "name": "Caching",      "logo": null,                                          "note": "Read paths and invalidation" }
+      ]
+    },
+    {
+      "category": "Data & Storage",
+      "description": "Relational and document stores, chosen against the access pattern rather than by habit.",
+      "items": [
+        { "name": "MySQL",   "logo": "/assets/images/technologies/mysql.svg",   "note": "Schema design and indexing" },
+        { "name": "MongoDB", "logo": "/assets/images/technologies/mongodb.svg", "note": "Document modelling" }
+      ]
+    },
+    {
+      "category": "Architecture & Practice",
+      "description": "How the work gets designed, verified and shipped.",
+      "items": [
+        { "name": "System Design",  "logo": null,                                    "note": "HLD and LLD" },
+        { "name": "Design Patterns","logo": null,                                    "note": "Applied, not academic" },
+        { "name": "JUnit & Mockito","logo": "/assets/images/technologies/junit.svg",  "note": "Unit and integration tests" },
+        { "name": "Git",            "logo": "/assets/images/technologies/git.svg",    "note": "Trunk and release branching" },
+        { "name": "Agile/Scrum",    "logo": null,                                    "note": "Sprint planning and delivery" },
+        { "name": "DSA",            "logo": null,                                    "note": "Graphs, trees and DP" }
+      ]
+    }
+  ]
+}

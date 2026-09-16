@@ -1,0 +1,82 @@
+{
+  "blogsMeta": {
+    "eyebrow": "Writing",
+    "headline": "Notes from inside real systems",
+    "intro": "Things I have had to work out on production systems, written down while the detail is still fresh. Mostly commerce architecture, backend engineering and the trade-offs that only show up under load."
+  },
+  "categories": ["All", "E-Commerce", "Backend", "System Design", "Performance", "AI Engineering"],
+  "posts": [
+    {
+      "slug": "idempotency-keys-checkout",
+      "title": "Your checkout needs idempotency keys",
+      "summary": "Retries without idempotency do not make a payment flow resilient. They make it charge people twice. Here is the design that actually holds.",
+      "category": "E-Commerce",
+      "tags": ["Checkout", "Payments", "APIs", "Reliability"],
+      "date": "2026-08-24",
+      "readingTime": "7 min read",
+      "coverImage": "/assets/images/blogs/idempotency-keys-checkout.svg",
+      "featured": true,
+      "visible": true
+    },
+    {
+      "slug": "ocapi-vs-scapi",
+      "title": "OCAPI or SCAPI: choosing without regretting it later",
+      "summary": "The two Salesforce Commerce APIs overlap enough to look interchangeable and differ enough to make the wrong pick a migration. A practical way to decide.",
+      "category": "E-Commerce",
+      "tags": ["SFCC", "OCAPI", "SCAPI", "Architecture"],
+      "date": "2026-07-30",
+      "readingTime": "8 min read",
+      "coverImage": "/assets/images/blogs/ocapi-vs-scapi.svg",
+      "featured": true,
+      "visible": true
+    },
+    {
+      "slug": "cache-invalidation-correctness",
+      "title": "Cache invalidation is a correctness problem",
+      "summary": "Teams add caching to fix latency and quietly accept a class of bugs they never wrote down. Invalidation deserves the same rigour as the query it replaces.",
+      "category": "System Design",
+      "tags": ["Caching", "Consistency", "System Design"],
+      "date": "2026-07-08",
+      "readingTime": "6 min read",
+      "coverImage": "/assets/images/blogs/cache-invalidation-correctness.svg",
+      "featured": true,
+      "visible": true
+    },
+    {
+      "slug": "jvm-heap-dump-walkthrough",
+      "title": "Reading a JVM heap dump without panicking",
+      "summary": "A service is using four gigabytes and nobody knows why. A repeatable process for getting from that sentence to the offending line of code.",
+      "category": "Performance",
+      "tags": ["Java", "JVM", "Profiling", "Memory"],
+      "date": "2026-06-16",
+      "readingTime": "9 min read",
+      "coverImage": "/assets/images/blogs/jvm-heap-dump-walkthrough.svg",
+      "featured": false,
+      "visible": true
+    },
+    {
+      "slug": "structured-outputs-llm-features",
+      "title": "Structured outputs are most of the work",
+      "summary": "The difference between an LLM demo and an LLM feature is almost entirely in the contract between the model and the code that consumes it.",
+      "category": "AI Engineering",
+      "tags": ["LLM", "Structured Outputs", "Evals", "Guardrails"],
+      "date": "2026-05-28",
+      "readingTime": "7 min read",
+      "coverImage": "/assets/images/blogs/structured-outputs-llm-features.svg",
+      "featured": false,
+      "visible": true
+    },
+    {
+      "slug": "service-boundaries-domain-seams",
+      "title": "Cut services along domain seams, not team charts",
+      "summary": "Most painful microservice migrations split the system where the org chart was, not where the data ownership was. The difference shows up in every transaction afterwards.",
+      "category": "Backend",
+      "tags": ["Microservices", "Domain Modelling", "Architecture"],
+      "date": "2026-04-19",
+      "readingTime": "6 min read",
+      "coverImage": "/assets/images/blogs/service-boundaries-domain-seams.svg",
+      "featured": false,
+      "visible": true
+    }
+  ]
+}

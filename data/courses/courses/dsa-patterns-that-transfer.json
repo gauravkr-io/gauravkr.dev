@@ -1,0 +1,68 @@
+{
+  "course": {
+    "slug": "dsa-patterns-that-transfer",
+    "title": "DSA Patterns That Transfer",
+    "subtitle": "Recognise the shape, not the question",
+    "summary": "The recurring patterns behind interview problems and real work, covering linear structures, recursion, trees, graphs and dynamic programming.",
+    "overview": [
+      "Grinding hundreds of problems teaches you hundreds of problems. Learning the twenty or so patterns underneath them teaches you the next problem you have not seen.",
+      "This course is organised by pattern rather than by data structure, because that is how problems present themselves in an interview and in a profiler trace."
+    ],
+    "difficulty": "Beginner to Intermediate",
+    "topic": "Interview Prep",
+    "moduleCount": 5,
+    "lessonCount": 45,
+    "duration": "10 hours",
+    "technologies": ["Java", "Algorithms", "Data Structures", "Complexity Analysis"],
+    "coverImage": "/assets/images/courses/dsa-patterns-that-transfer.svg",
+    "status": "In development",
+    "visible": true,
+    "whatYouWillLearn": [
+      "Identify which pattern a problem belongs to before writing code",
+      "Analyse time and space complexity without memorising tables",
+      "Apply two pointers, sliding window and prefix sums confidently",
+      "Work through recursion and backtracking systematically",
+      "Handle tree and graph traversal problems by shape",
+      "Move from recursive brute force to dynamic programming step by step",
+      "Communicate your reasoning the way interviewers expect"
+    ],
+    "curriculum": [
+      {
+        "module": "01",
+        "title": "Foundations",
+        "lessons": ["Complexity analysis that stays useful", "Arrays, strings and the hidden costs", "Hashing and when it fails", "Sorting as a preprocessing step"]
+      },
+      {
+        "module": "02",
+        "title": "Linear patterns",
+        "lessons": ["Two pointers", "Sliding window", "Prefix sums and difference arrays", "Monotonic stack", "Interval problems"]
+      },
+      {
+        "module": "03",
+        "title": "Recursion and trees",
+        "lessons": ["Thinking recursively", "Backtracking and pruning", "Binary tree traversal patterns", "Binary search trees", "Heaps and top-k problems"]
+      },
+      {
+        "module": "04",
+        "title": "Graph patterns",
+        "lessons": ["Representation choices", "BFS and shortest paths", "DFS, cycles and components", "Topological ordering", "Union find"]
+      },
+      {
+        "module": "05",
+        "title": "Dynamic programming",
+        "lessons": ["From brute force to memoisation", "One-dimensional state", "Two-dimensional state", "Knapsack family", "Recognising DP under pressure"]
+      }
+    ],
+    "audience": [
+      "Engineers preparing for product company interviews",
+      "Self-taught developers filling gaps in fundamentals",
+      "Anyone who has solved many problems and still feels unprepared for new ones"
+    ],
+    "prerequisites": [
+      "Comfortable writing code in Java or a similar language",
+      "Basic familiarity with arrays, maps and recursion",
+      "No prior competitive programming experience"
+    ],
+    "relatedCourses": ["java-backend-spring-boot", "system-design-for-working-engineers"]
+  }
+}

@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Light theme
+   A warm paper ground with cool ink type and a single copper accent. The
+   accent is reserved for interactive state and emphasis, never for filling
+   large areas. Primary buttons use ink rather than accent so the accent keeps
+   its meaning.
+
+   Contrast against --bg #FAF9F7:
+     --text-strong      17.1:1
+     --text             12.2:1
+     --text-secondary    7.6:1
+     --text-muted        4.9:1
+     --accent-strong     6.1:1
+   ========================================================================== */
+
+:root,
+[data-theme="light"] {
+  /* Brand scales, kept whole so both themes draw from the same hue families */
+  --ink-50: #F5F7FA;
+  --ink-100: #E8EDF4;
+  --ink-200: #D2DAE6;
+  --ink-300: #AEBACB;
+  --ink-400: #8493AA;
+  --ink-500: #6B7483;
+  --ink-600: #4A5361;
+  --ink-700: #333E52;
+  --ink-800: #222B3B;
+  --ink-900: #12161D;
+  --ink-950: #0B0F15;
+
+  --amber-50: #FEF6EC;
+  --amber-100: #FBE8CE;
+  --amber-200: #F6D09D;
+  --amber-300: #EFB468;
+  --amber-400: #E79B3D;
+  --amber-500: #D4821F;
+  --amber-600: #B26717;
+  --amber-700: #92520F;
+  --amber-800: #6B3D15;
+  --amber-900: #4A2B12;
+
+  /* Surfaces */
+  --bg: #FAF9F7;
+  --bg-subtle: #F2F0EC;
+  --surface: #FFFFFF;
+  --surface-raised: #FFFFFF;
+  --surface-sunken: #F4F2EE;
+  --surface-inverse: #12161D;
+
+  /* Lines */
+  --border: #E4E1DA;
+  --border-strong: #C9C4B9;
+  --grid-line: rgba(18, 22, 29, 0.055);
+
+  /* Type */
+  --text-strong: #12161D;
+  --text: #2A303B;
+  --text-secondary: #4A5361;
+  --text-muted: #6B7483;
+  --text-inverse: #F5F7FA;
+
+  /* Accent */
+  --accent: #B26717;
+  --accent-strong: #92520F;
+  --accent-soft: #F6D09D;
+  --accent-wash: rgba(178, 103, 23, 0.07);
+  --accent-border: rgba(178, 103, 23, 0.32);
+  --accent-contrast: #FFFFFF;
+  --accent-glow: rgba(178, 103, 23, 0.16);
+
+  /* Buttons */
+  --btn-primary-bg: #12161D;
+  --btn-primary-bg-hover: #2A303B;
+  --btn-primary-fg: #FAF9F7;
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgba(18, 22, 29, 0.05), 0 2px 8px rgba(18, 22, 29, 0.04);
+  --shadow-md: 0 4px 12px rgba(18, 22, 29, 0.07), 0 12px 28px rgba(18, 22, 29, 0.06);
+  --shadow-lg: 0 10px 24px rgba(18, 22, 29, 0.09), 0 24px 56px rgba(18, 22, 29, 0.09);
+
+  /* Chrome */
+  --header-bg: rgba(250, 249, 247, 0.82);
+  --header-border: rgba(18, 22, 29, 0.08);
+  --overlay: rgba(18, 22, 29, 0.42);
+
+  /* Status */
+  --success: #2F6B4F;
+  --danger: #A33A2C;
+}

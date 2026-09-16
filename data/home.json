@@ -1,0 +1,66 @@
+{
+  "home": {
+    "hero": {
+      "name": "GAURAV KUMAR",
+      "role": "E-Commerce Specialist & Software Engineer",
+      "tagline": "Engineering Digital Experiences That Scale.",
+      "supporting": "E-Commerce Specialist and Software Engineer, focused on Salesforce Commerce Cloud (SFCC), OCAPI/SCAPI, and scalable backend architecture.",
+      "keywords": ["E-Commerce (SFCC)", "OCAPI/SCAPI", "Backend", "Architecture", "Performance"],
+      "primaryCta": { "label": "Explore My Work", "href": "#selected-work" },
+      "secondaryCta": { "label": "Let's Connect", "href": "/pages/contact.html" },
+      "stats": [
+        { "value": "5+",  "label": "Years in e-commerce engineering" },
+        { "value": "20%", "label": "Checkout conversion lift delivered" },
+        { "value": "4",   "label": "Global retail brands supported" }
+      ],
+      "availabilityNote": "Available for SDE roles and selected consulting"
+    },
+    "capabilities": {
+      "eyebrow": "What I Do",
+      "headline": "Design, build, integrate, optimise, deliver",
+      "intro": "Four things describe most of my work. They are not separate services so much as four stages of getting a system into production and keeping it there."
+    },
+    "selectedWork": {
+      "eyebrow": "Selected Work",
+      "headline": "Real systems. Real engineering. Real impact.",
+      "intro": "Client names are withheld under confidentiality. The systems, the scope and the measured results are exactly as they were.",
+      "cta": { "label": "Start a conversation", "href": "/pages/contact.html" }
+    },
+    "services": {
+      "eyebrow": "Services",
+      "headline": "How I can help",
+      "intro": "Engagements scoped to the problem, led by the e-commerce specialisation and supported by backend and systems engineering.",
+      "cta": { "label": "View all services", "href": "/pages/services.html" }
+    },
+    "philosophy": {
+      "eyebrow": "Engineering Philosophy",
+      "headline": "Opinions earned on production systems",
+      "intro": "Five principles that decide how I approach a problem before any code gets written."
+    },
+    "blogs": {
+      "eyebrow": "Writing",
+      "headline": "Notes from inside real systems",
+      "intro": "Problems I have had to solve, written down while the detail is still fresh.",
+      "cta": { "label": "Read all posts", "href": "/pages/blogs.html" }
+    },
+    "courses": {
+      "eyebrow": "Courses",
+      "headline": "Teaching the systems I build",
+      "intro": "Practical courses drawn from production work. Currently in development.",
+      "cta": { "label": "Browse courses", "href": "/pages/courses.html" }
+    },
+    "aboutPreview": {
+      "eyebrow": "About",
+      "headline": "Five years on the expensive parts of commerce",
+      "intro": "I work on product discovery, cart, checkout, payments and order flow, where mistakes show up directly in revenue. Alongside that I build backend systems in Java and Spring Boot, and design for scale rather than for demos.",
+      "cta": { "label": "More about me", "href": "/pages/about.html" }
+    },
+    "contactCta": {
+      "eyebrow": "Get in touch",
+      "headline": "Have an interesting problem to solve?",
+      "intro": "Let's build something meaningful.",
+      "primaryCta": { "label": "Start a conversation", "href": "/pages/contact.html" },
+      "secondaryCta": { "label": "Download Résumé", "href": "/resume/Gaurav_Kumar_Resume.pdf" }
+    }
+  }
+}

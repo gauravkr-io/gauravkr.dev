@@ -1,0 +1,109 @@
+{
+  "projectsMeta": {
+    "eyebrow": "Selected Work",
+    "headline": "Real systems. Real engineering. Real impact.",
+    "intro": "Client names are withheld under the confidentiality terms of each engagement. The systems, the scope and the measured results are described exactly as they were."
+  },
+  "projects": [
+    {
+      "slug": "headless-commerce-migration",
+      "title": "Headless Commerce Migration",
+      "client": "A global luxury fashion house",
+      "industry": "Luxury retail",
+      "year": "2024",
+      "employer": "Valtech",
+      "role": "Backend lead",
+      "visible": true,
+      "featured": true,
+      "order": 1,
+      "image": "/assets/images/projects/headless-commerce-migration.svg",
+      "context": "A legacy ATG platform was holding back release velocity and could not support the front-end experience the brand wanted.",
+      "problem": "Checkout was the highest-risk part of the migration. It carried payment integrations, fraud verification and order placement, and any regression would be measured directly in lost revenue.",
+      "solution": "Led backend development for the move to SFCC Headless on Node.js, redesigning checkout backend logic rather than porting it. Payment-instrument and order-placement logic were rebuilt against third-party providers, and fraud verification moved to asynchronous processing so a slow partner could not slow the user down.",
+      "contribution": [
+        "Owned the checkout backend design across the migration",
+        "Rebuilt payment-instrument and order-placement logic",
+        "Moved fraud and verification calls off the synchronous user path",
+        "Authored order export, OMS and settlement job scripts"
+      ],
+      "technologies": ["SFCC Headless", "Node.js", "OCAPI", "REST APIs", "Payments", "OMS", "Async Processing"],
+      "impact": { "value": "20%", "label": "higher checkout conversion" },
+      "secondaryImpact": "Checkout latency held steady despite added fraud verification."
+    },
+    {
+      "slug": "discovery-to-cart-redesign",
+      "title": "Discovery-to-Cart Redesign",
+      "client": "A multi-brand retail group",
+      "industry": "Retail",
+      "year": "2025",
+      "employer": "Litmus7",
+      "role": "Architect and senior IC",
+      "visible": true,
+      "featured": true,
+      "order": 2,
+      "image": "/assets/images/projects/discovery-to-cart-redesign.svg",
+      "context": "Product listing and detail pages had grown organically across brands, and the path from browsing to cart had accumulated friction nobody had measured end to end.",
+      "problem": "Cart abandonment was rising, but the causes were spread across navigation, information architecture and page behaviour rather than sitting in one broken component.",
+      "solution": "Architected and led an end-to-end PLP and PDP redesign, restructuring navigation and information architecture across the whole discovery-to-cart journey. The work was scoped against measured drop-off rather than design preference, and shipped incrementally so each change could be attributed.",
+      "contribution": [
+        "Architected the PLP and PDP redesign end to end",
+        "Restructured navigation and information architecture",
+        "Set the technical design direction as senior IC on the team",
+        "Shipped incrementally so impact could be attributed per change"
+      ],
+      "technologies": ["SFCC", "SFRA", "JavaScript", "Performance Profiling", "A/B Measurement"],
+      "impact": { "value": "18%", "label": "lower cart abandonment" },
+      "secondaryImpact": "Information architecture now shared across brands in the group."
+    },
+    {
+      "slug": "cart-and-checkout-revamp",
+      "title": "Cart & Checkout Revamp",
+      "client": "A US specialty retailer",
+      "industry": "Specialty retail",
+      "year": "2022",
+      "employer": "Merkle (Dentsu)",
+      "role": "Developer",
+      "visible": true,
+      "featured": true,
+      "order": 3,
+      "image": "/assets/images/projects/cart-and-checkout-revamp.svg",
+      "context": "The cart had been extended repeatedly over several seasons and had become the slowest and least predictable part of the storefront.",
+      "problem": "Fulfilment complexity was the real driver. Multi-shipment, in-store pickup and same-day delivery all had to coexist in one cart without confusing the shopper or the order management system.",
+      "solution": "Re-architected the cart with custom plugins and tuned platform configuration, then designed and shipped multi-shipment, in-store pickup and same-day delivery as first-class capabilities. PayPal and Klarna were integrated end to end, and automated test suites were added to protect the flow through seasonal releases.",
+      "contribution": [
+        "Re-architected the cart with custom SFCC plugins",
+        "Shipped multi-shipment, in-store pickup and same-day delivery",
+        "Integrated PayPal and Klarna payment flows end to end",
+        "Built automated test suites to catch regressions before release"
+      ],
+      "technologies": ["SFCC", "SFRA", "JavaScript", "PayPal", "Klarna", "Automated Testing"],
+      "impact": { "value": "28%", "label": "better cart-to-checkout conversion" },
+      "secondaryImpact": "Recognised internally with a delivery award for the revamp."
+    },
+    {
+      "slug": "mobile-commerce-middleware",
+      "title": "Mobile Commerce Middleware",
+      "client": "A Middle East lifestyle retail group",
+      "industry": "Lifestyle retail",
+      "year": "2025",
+      "employer": "Litmus7",
+      "role": "API architect",
+      "visible": true,
+      "featured": true,
+      "order": 4,
+      "image": "/assets/images/projects/mobile-commerce-middleware.svg",
+      "context": "A native mobile app needed to read from and write to the commerce platform without being coupled to storefront release cycles.",
+      "problem": "The app team and the commerce team were on different cadences. Without a stable API layer between them, every platform change risked breaking the app.",
+      "solution": "Designed and built OCAPI and SCAPI based middleware services running in a cloud environment, translating cross-functional business requirements into versioned API contracts. The contract was agreed before implementation, which let the app and the storefront ship independently.",
+      "contribution": [
+        "Designed the API contract between app and commerce platform",
+        "Built OCAPI and SCAPI middleware services in a cloud environment",
+        "Translated cross-functional requirements into scalable contracts",
+        "Reduced rework by resolving integration trade-offs early"
+      ],
+      "technologies": ["OCAPI", "SCAPI", "Node.js", "REST APIs", "Cloud Services", "API Versioning"],
+      "impact": null,
+      "secondaryImpact": "Mobile and web release cycles decoupled behind a versioned contract."
+    }
+  ]
+}

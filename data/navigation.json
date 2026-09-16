@@ -1,0 +1,10 @@
+{
+  "navigation": [
+    { "label": "Home",     "path": "/",                     "visible": true },
+    { "label": "About",    "path": "/pages/about.html",     "visible": true },
+    { "label": "Services", "path": "/pages/services.html",  "visible": true },
+    { "label": "Blogs",    "path": "/pages/blogs.html",     "visible": true },
+    { "label": "Courses",  "path": "/pages/courses.html",   "visible": true },
+    { "label": "Contact",  "path": "/pages/contact.html",   "visible": true }
+  ]
+}

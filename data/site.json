@@ -1,0 +1,56 @@
+{
+  "site": {
+    "name": "Gaurav Kumar",
+    "brand": "GAURAV KR",
+    "brandMark": "GK",
+    "domain": "gauravkr.io",
+    "url": "https://gauravkr.io",
+    "title": "E-Commerce Specialist & Software Engineer",
+    "shortTitle": "Software Engineer",
+    "tagline": "Engineering Digital Experiences That Scale.",
+    "summary": "E-Commerce Specialist and Software Engineer, focused on Salesforce Commerce Cloud (SFCC), OCAPI/SCAPI, and scalable backend architecture.",
+    "location": "Bangalore, India",
+    "availability": "Open to SDE roles and selected consulting work",
+    "defaultTheme": "dark",
+    "resumeUrl": "/resume/Gaurav_Kumar_Resume.pdf",
+    "resumeFileName": "Gaurav_Kumar_Resume.pdf",
+    "contact": {
+      "email": "gauravkr0897@gmail.com",
+      "phone": "+91-989-307-2789",
+      "phoneHref": "tel:+919893072789"
+    },
+    "socialLinks": [
+      {
+        "label": "LinkedIn",
+        "handle": "gauravkr-io",
+        "url": "https://linkedin.com/in/gauravkr-io",
+        "icon": "/assets/images/technologies/linkedin.svg",
+        "visible": true
+      },
+      {
+        "label": "GitHub",
+        "handle": "gauravkr-io",
+        "url": "https://github.com/gauravkr-io",
+        "icon": "/assets/images/technologies/github.svg",
+        "visible": true
+      },
+      {
+        "label": "Email",
+        "handle": "gauravkr0897@gmail.com",
+        "url": "mailto:gauravkr0897@gmail.com",
+        "icon": "/assets/images/icons/mail.svg",
+        "visible": true
+      }
+    ],
+    "profileImage": {
+      "src": "/assets/images/profile/gaurav-kumar.jpg?v=2",
+      "srcset": "/assets/images/profile/gaurav-kumar-480.jpg?v=2 480w, /assets/images/profile/gaurav-kumar-720.jpg?v=2 720w, /assets/images/profile/gaurav-kumar-960.jpg?v=2 960w",
+      "alt": "Gaurav Kumar, E-Commerce Specialist and Software Engineer"
+    },
+    "identityPillars": ["Engineer", "Architect", "Builder", "Problem Solver"],
+    "footer": {
+      "note": "Designing, building and optimising commerce systems that hold up under real traffic.",
+      "copyright": "Gaurav Kumar"
+    }
+  }
+}

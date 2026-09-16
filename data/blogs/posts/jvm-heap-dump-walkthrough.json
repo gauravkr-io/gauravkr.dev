@@ -1,0 +1,95 @@
+{
+  "post": {
+    "slug": "jvm-heap-dump-walkthrough",
+    "title": "Reading a JVM heap dump without panicking",
+    "subtitle": "A service is using four gigabytes and nobody knows why. A repeatable process for getting from that sentence to the offending line.",
+    "category": "Performance",
+    "tags": ["Java", "JVM", "Profiling", "Memory"],
+    "date": "2026-06-16",
+    "readingTime": "9 min read",
+    "coverImage": "/assets/images/blogs/jvm-heap-dump-walkthrough.svg",
+    "author": { "name": "Gaurav Kumar", "role": "E-Commerce Specialist & Software Engineer" },
+    "tableOfContents": true,
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Memory investigations feel harder than they are, mostly because the first heap dump you open contains millions of objects and no obvious place to start. The process below is the one I keep coming back to, and it turns an open-ended hunt into about four concrete steps."
+      },
+      { "type": "heading", "level": 2, "text": "Confirm it is actually a leak" },
+      {
+        "type": "paragraph",
+        "text": "High memory usage is not a leak. The JVM is supposed to use the heap it was given. A leak has a specific signature, which is that live heap after a full collection grows over time and never returns to its earlier baseline."
+      },
+      {
+        "type": "paragraph",
+        "text": "Look at garbage collection logs before you look at a dump. If used heap after each full collection is flat, you have a sizing or allocation-rate question, not a leak, and a heap dump will mostly waste your afternoon."
+      },
+      {
+        "type": "code",
+        "language": "bash",
+        "code": "# GC logging, which is the cheapest diagnostic you can leave on in production\n-Xlog:gc*:file=/var/log/app/gc.log:time,uptime:filecount=5,filesize=20M\n\n# capture a dump automatically when the heap is actually exhausted\n-XX:+HeapDumpOnOutOfMemoryError\n-XX:HeapDumpPath=/var/log/app/heapdump.hprof"
+      },
+      {
+        "type": "callout",
+        "variant": "warning",
+        "title": "Taking a dump has a cost",
+        "text": "A manual heap dump pauses the application for roughly as long as it takes to write the heap to disk. On a multi-gigabyte heap that is not a quiet operation. Take it from one instance out of rotation where you can."
+      },
+      { "type": "heading", "level": 2, "text": "Sort by retained size, not shallow size" },
+      {
+        "type": "paragraph",
+        "text": "This is the single most useful habit. Shallow size is the memory an object occupies by itself, which for a collection is almost nothing. Retained size is everything that would be freed if that object were collected, which is what you actually care about."
+      },
+      {
+        "type": "paragraph",
+        "text": "Open the dump, run the dominator tree, and sort by retained heap. The answer is usually in the top five rows. A `HashMap` holding two gigabytes has a shallow size of about forty-eight bytes, so a shallow-size sort will never show it to you."
+      },
+      { "type": "heading", "level": 2, "text": "Follow the path to the GC root" },
+      {
+        "type": "paragraph",
+        "text": "Once you have the suspect, the question is not what it is but why it is still alive. Every retained object has a chain of references back to a garbage collection root, and that chain names the bug."
+      },
+      {
+        "type": "paragraph",
+        "text": "In my experience the chain usually ends in one of a small number of places."
+      },
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          "A `static` collection used as a cache with no eviction policy at all.",
+          "A `ThreadLocal` that was set and never removed, held alive by a pooled thread that outlives the request.",
+          "Listeners or callbacks registered on a long-lived object and never deregistered.",
+          "A non-static inner class quietly holding a reference to its enclosing instance.",
+          "A session or context object accumulating per-request data across requests."
+        ]
+      },
+      {
+        "type": "code",
+        "language": "java",
+        "code": "// the classic: a pooled thread keeps this alive long after the request ends\nprivate static final ThreadLocal<RequestContext> CONTEXT = new ThreadLocal<>();\n\npublic void handle(Request request) {\n    CONTEXT.set(RequestContext.from(request));\n    try {\n        process(request);\n    } finally {\n        CONTEXT.remove();  // without this, the pool leaks one context per thread\n    }\n}"
+      },
+      { "type": "heading", "level": 2, "text": "Check duplicates before you refactor" },
+      {
+        "type": "paragraph",
+        "text": "Before assuming an architectural problem, look at duplicate strings and duplicate byte arrays. It is common to find hundreds of megabytes of identical strings produced by parsing the same configuration or the same catalogue feed repeatedly."
+      },
+      {
+        "type": "paragraph",
+        "text": "That is a cheap fix. Interning at the parse boundary, or simply not re-parsing, can remove the problem without touching the design."
+      },
+      { "type": "heading", "level": 2, "text": "Verify with the same measurement" },
+      {
+        "type": "paragraph",
+        "text": "After the fix, rerun the same load against the same data volume and compare live heap after full collection against the original baseline. A memory fix verified by a different measurement than the one that found it is not verified."
+      },
+      {
+        "type": "callout",
+        "variant": "note",
+        "title": "Leave the instrumentation on",
+        "text": "GC logging and a heap-usage alert cost almost nothing to run. The point of the investigation is that the next occurrence gets caught by a graph rather than by a customer."
+      }
+    ],
+    "relatedPosts": ["cache-invalidation-correctness", "service-boundaries-domain-seams"]
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "course": {
+    "slug": "java-backend-spring-boot",
+    "title": "Java Backend with Spring Boot",
+    "subtitle": "From domain model to deployed service",
+    "summary": "Design the domain first, then build a Spring Boot service around it, with persistence, auth, tests and failure handling decided before the first endpoint.",
+    "overview": [
+      "Plenty of Spring Boot material teaches you to annotate a class and get a JSON response. Far less of it explains why the resulting application becomes hard to change after six months.",
+      "This course builds a service in the order a working engineer should build one. Domain model, then persistence, then the API, then auth, then the failure cases. The framework shows up where it helps rather than driving the design."
+    ],
+    "difficulty": "Beginner to Intermediate",
+    "topic": "Backend",
+    "moduleCount": 7,
+    "lessonCount": 41,
+    "duration": "12 hours",
+    "technologies": ["Java", "Spring Boot", "JPA/Hibernate", "MySQL", "JWT & OAuth2", "JUnit & Mockito", "REST APIs"],
+    "coverImage": "/assets/images/courses/java-backend-spring-boot.svg",
+    "status": "In development",
+    "visible": true,
+    "whatYouWillLearn": [
+      "Model a domain before writing a single endpoint",
+      "Use dependency injection deliberately instead of by reflex",
+      "Map entities with JPA without letting the ORM design your schema",
+      "Build REST APIs with versioning and error semantics decided up front",
+      "Add JWT authentication and role-based access without touching every controller",
+      "Write unit and integration tests that catch real regressions",
+      "Handle timeouts, retries and idempotency on write paths"
+    ],
+    "curriculum": [
+      {
+        "module": "01",
+        "title": "Java that matters for backend work",
+        "lessons": ["OOP and SOLID in practice", "Collections and when each one is wrong", "Exceptions and error design", "JVM memory model basics"]
+      },
+      {
+        "module": "02",
+        "title": "Domain modelling first",
+        "lessons": ["Finding entities and value objects", "Invariants and where to enforce them", "Aggregates and transaction boundaries", "Turning requirements into a model"]
+      },
+      {
+        "module": "03",
+        "title": "Spring Boot fundamentals",
+        "lessons": ["Dependency injection and bean scope", "Configuration and profiles", "Application layering", "Wiring without over-abstracting"]
+      },
+      {
+        "module": "04",
+        "title": "Persistence with JPA",
+        "lessons": ["Entity mapping and relationships", "Repositories and query design", "Transactions and propagation", "The N+1 problem and how to see it", "Schema migration discipline"]
+      },
+      {
+        "module": "05",
+        "title": "API design",
+        "lessons": ["Resource modelling and naming", "Request validation", "Error responses and status codes", "Versioning and deprecation", "Documenting a contract"]
+      },
+      {
+        "module": "06",
+        "title": "Security",
+        "lessons": ["Authentication with JWT", "OAuth2 flows in plain language", "Role-based access control", "Common mistakes that pass code review"]
+      },
+      {
+        "module": "07",
+        "title": "Testing and resilience",
+        "lessons": ["Unit tests with JUnit and Mockito", "Integration tests against a real database", "Timeouts, retries and circuit breakers", "Idempotency on write paths", "Logging and observability"]
+      }
+    ],
+    "audience": [
+      "Developers who know some Java and want to build production backends",
+      "Front-end or platform engineers moving into backend work",
+      "Engineers preparing for backend interviews who want depth rather than trivia"
+    ],
+    "prerequisites": [
+      "Basic Java syntax and object-oriented concepts",
+      "Familiarity with SQL",
+      "No prior Spring experience needed"
+    ],
+    "relatedCourses": ["system-design-for-working-engineers", "dsa-patterns-that-transfer"]
+  }
+}
