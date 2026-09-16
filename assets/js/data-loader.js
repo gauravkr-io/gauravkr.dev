@@ -19,7 +19,10 @@ function resolveUrl(path) {
 export async function fetchJson(path) {
   if (cache.has(path)) return cache.get(path);
 
-  const request = fetch(resolveUrl(path), { headers: { Accept: 'application/json' } })
+  const request = fetch(resolveUrl(path), {
+    headers: { Accept: 'application/json' },
+    cache: 'no-store'
+  })
     .then((response) => {
       if (!response.ok) {
         throw new Error(`Could not load ${path} (HTTP ${response.status})`);
