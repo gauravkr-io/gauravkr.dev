@@ -31,29 +31,29 @@
       "secondaryImpact": "Checkout latency held steady despite added fraud verification."
     },
     {
-      "slug": "discovery-to-cart-redesign",
-      "title": "Discovery-to-Cart Redesign",
+      "slug": "commerce-backend-architecture",
+      "title": "Commerce Backend Architecture, PLP/PDP Redesign & Payment Integrations",
       "client": "A multi-brand retail group",
       "industry": "Retail",
       "year": "2025",
       "employer": "Litmus7",
-      "role": "Architect and senior IC",
+      "role": "Senior Engineer, SFCC",
       "visible": true,
       "featured": true,
       "order": 2,
       "image": "/assets/images/projects/discovery-to-cart-redesign.svg",
-      "context": "Product listing and detail pages had grown organically across brands, and the path from browsing to cart had accumulated friction nobody had measured end to end.",
-      "problem": "Cart abandonment was rising, but the causes were spread across navigation, information architecture and page behaviour rather than sitting in one broken component.",
-      "solution": "Architected and led an end-to-end PLP and PDP redesign, restructuring navigation and information architecture across the whole discovery-to-cart journey. The work was scoped against measured drop-off rather than design preference, and shipped incrementally so each change could be attributed.",
+      "context": "The retailer needed dedicated ownership of its core commerce backend, along with a refresh of high-traffic PLP and PDP pages.",
+      "problem": "Backend architecture, payment integrations, and storefront page performance needed consistent ownership rather than being handled piecemeal.",
+      "solution": "Took ownership of backend development and architecture for the core commerce solution, implemented secure payment gateway integrations, and redesigned the PLP and PDP interfaces. Also contributed to a buy-now-pay-later proof of concept aimed at improving the checkout experience.",
       "contribution": [
-        "Architected the PLP and PDP redesign end to end",
-        "Restructured navigation and information architecture",
-        "Set the technical design direction as senior IC on the team",
-        "Shipped incrementally so impact could be attributed per change"
+        "Owned backend development and architecture for the core commerce solution",
+        "Implemented secure payment gateway integrations",
+        "Redesigned high-traffic PLP and PDP interfaces",
+        "Contributed to a buy-now-pay-later proof of concept"
       ],
-      "technologies": ["SFCC", "SFRA", "JavaScript", "Performance Profiling", "A/B Measurement"],
-      "impact": { "value": "18%", "label": "lower cart abandonment" },
-      "secondaryImpact": "Information architecture now shared across brands in the group."
+      "technologies": ["SFCC", "SFRA", "OCAPI", "SCAPI", "Node.js", "JavaScript", "REST APIs"],
+      "impact": { "value": "30%", "label": "better buy-now-pay-later experience (part of POC)" },
+      "secondaryImpact": "Redesigned PLP/PDP interfaces for high-traffic storefront pages."
     },
     {
       "slug": "cart-and-checkout-revamp",
