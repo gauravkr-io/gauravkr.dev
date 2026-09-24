@@ -3,6 +3,8 @@
     "name": "Gaurav Kumar",
     "brand": "GAURAV",
     "brandMark": "G",
+    "logoImage": "/assets/images/logos/gauravkr-dev-logo.webp",
+    "logoAnimated": "/assets/images/logos/gauravkr-dev-logo-animated.gif",
     "domain": "gauravkr.dev",
     "url": "https://gauravkr.dev",
     "title": "Senior Software Engineer & E-Commerce Specialist",

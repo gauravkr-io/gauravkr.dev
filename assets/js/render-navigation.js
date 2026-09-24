@@ -55,8 +55,7 @@ function headerMarkup(site, navigation, active) {
   return html`
     <div class="shell site-header__inner">
       <a class="brand" href="/" aria-label="${site.name}, home">
-        <span class="brand__mark" aria-hidden="true">${site.brandMark}</span>
-        <span>${site.brand}</span>
+        <img class="brand__gif" src="${site.logoAnimated}" alt="" aria-hidden="true" width="42" height="42" />
       </a>
 
       <nav class="site-nav" aria-label="Primary">
@@ -103,9 +102,8 @@ function headerMarkup(site, navigation, active) {
 function mobileNavMarkup(site, navigation, active) {
   return html`
     <div class="mobile-nav__head">
-      <a class="brand" href="/">
-        <span class="brand__mark" aria-hidden="true">${site.brandMark}</span>
-        <span>${site.brand}</span>
+      <a class="brand" href="/" aria-label="${site.name}, home">
+        <img class="brand__gif" src="${site.logoAnimated}" alt="" aria-hidden="true" width="42" height="42" />
       </a>
       <button
         class="nav-toggle"
@@ -159,9 +157,8 @@ function footerMarkup(site, navigation) {
     <div class="shell">
       <div class="site-footer__top">
         <div class="site-footer__brand">
-          <a class="brand" href="/">
-            <span class="brand__mark" aria-hidden="true">${site.brandMark}</span>
-            <span>${site.brand}</span>
+          <a class="brand" href="/" aria-label="${site.name}, home">
+            <img class="brand__gif" src="${site.logoAnimated}" alt="" aria-hidden="true" width="42" height="42" />
           </a>
           <p class="site-footer__note">${site.footer.note}</p>
           <div class="site-footer__socials">${socialLinks(site)}</div>
