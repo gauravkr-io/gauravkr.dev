@@ -2014,6 +2014,83 @@ body.is-nav-open {
   color: var(--text-muted);
 }
 
+.post-figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.post-figure img {
+  width: 100%;
+  border-radius: var(--radius-md);
+  border: var(--border-width) solid var(--border);
+}
+
+.post-figure figcaption {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: var(--border-width) solid var(--border);
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.table-wrap th,
+.table-wrap td {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  vertical-align: top;
+  border-bottom: var(--border-width) solid var(--border);
+}
+
+.table-wrap th:not(:last-child),
+.table-wrap td:not(:last-child) {
+  border-right: var(--border-width) solid var(--border);
+}
+
+.table-wrap thead th {
+  font-family: var(--font-display);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background-color: var(--surface-sunken);
+}
+
+.table-wrap tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table-wrap tbody td:first-child {
+  color: var(--text-strong);
+  font-weight: var(--weight-medium);
+}
+
+/* Mermaid diagrams stay dark in both themes, matching the code blocks */
+.mermaid-block {
+  padding: var(--space-6);
+  border-radius: var(--radius-md);
+  border: 1px solid #232C39;
+  background-color: #0F141B;
+  overflow-x: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.mermaid-block svg {
+  max-width: 100%;
+}
+
 /* Table of contents */
 .toc__list {
   display: flex;
