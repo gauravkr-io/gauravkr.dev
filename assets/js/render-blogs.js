@@ -189,6 +189,41 @@ function renderBlock(block) {
         </blockquote>
       `;
 
+    case 'image':
+      return html`
+        <figure class="post-figure">
+          <img
+            src="${block.src}"
+            alt="${block.alt ?? ''}"
+            loading="lazy"
+            decoding="async"
+          />
+          ${block.caption ? raw(html`<figcaption>${inlineMarkup(block.caption)}</figcaption>`) : ''}
+        </figure>
+      `;
+
+    case 'table': {
+      const head = block.head ?? [];
+      const rows = block.rows ?? [];
+      const headMarkup = head.length > 0
+        ? `<thead><tr>${head.map((cell) => `<th>${inlineMarkup(cell)}</th>`).join('')}</tr></thead>`
+        : '';
+      const bodyMarkup = rows
+        .map((row) => `<tr>${row.map((cell) => `<td>${inlineMarkup(cell)}</td>`).join('')}</tr>`)
+        .join('');
+      return `
+        <div class="table-wrap">
+          <table>
+            ${headMarkup}
+            <tbody>${bodyMarkup}</tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    case 'mermaid':
+      return html`<div class="mermaid-block mermaid">${block.code}</div>`;
+
     default:
       return '';
   }
@@ -238,6 +273,46 @@ function shareRow(post) {
       <span class="text-muted" data-copy-status role="status" aria-live="polite"></span>
     </div>
   `;
+}
+
+/**
+ * Mermaid diagrams are rare, so the library only loads on posts that use one.
+ * Themed to match the dark, fixed-palette code blocks rather than the toggle.
+ */
+async function initMermaid(content) {
+  const hasMermaid = (content ?? []).some((block) => block.type === 'mermaid');
+  if (!hasMermaid) return;
+
+  const { default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: 'base',
+    fontFamily: 'Inter, sans-serif',
+    themeVariables: {
+      background: '#0F141B',
+      primaryColor: '#1B2330',
+      primaryBorderColor: '#F0B76C',
+      primaryTextColor: '#D7DEE8',
+      lineColor: '#7C8798',
+      secondaryColor: '#232C39',
+      tertiaryColor: '#232C39',
+      actorBkg: '#1B2330',
+      actorBorder: '#F0B76C',
+      actorTextColor: '#D7DEE8',
+      actorLineColor: '#7C8798',
+      signalColor: '#7C8798',
+      signalTextColor: '#D7DEE8',
+      labelBoxBkgColor: '#1B2330',
+      labelBoxBorderColor: '#F0B76C',
+      labelTextColor: '#D7DEE8',
+      noteBkgColor: '#232C39',
+      noteTextColor: '#D7DEE8',
+      noteBorderColor: '#232C39'
+    }
+  });
+
+  await mermaid.run({ querySelector: '.mermaid' });
 }
 
 function initCopyLink() {
@@ -412,4 +487,5 @@ export async function initBlogPostPage() {
   refreshScrollReveal();
   initTocSpy();
   initCopyLink();
+  await initMermaid(post.content);
 }

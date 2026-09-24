@@ -7,6 +7,18 @@
   "categories": ["All", "E-Commerce", "Backend", "System Design", "Performance", "AI Engineering"],
   "posts": [
     {
+      "slug": "url-dns-internet",
+      "title": "What Really Happens When You Type a URL: How the Internet and DNS Work",
+      "summary": "You type a name, press Enter, and a page appears in under a second. Underneath: cables on the ocean floor, IP addresses, and a DNS tree that resolves a name to an address in milliseconds.",
+      "category": "System Design",
+      "tags": ["DNS", "Networking", "Internet", "System Design"],
+      "date": "2026-09-24",
+      "readingTime": "13 min read",
+      "coverImage": "/assets/images/blogs/url-dns-internet/cover.webp",
+      "featured": true,
+      "visible": true
+    },
+    {
       "slug": "idempotency-keys-checkout",
       "title": "Your checkout needs idempotency keys",
       "summary": "Retries without idempotency do not make a payment flow resilient. They make it charge people twice. Here is the design that actually holds.",
