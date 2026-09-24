@@ -73,24 +73,11 @@
   white-space: nowrap;
 }
 
-.brand__mark {
-  display: grid;
-  place-items: center;
-  width: 2.125rem;
-  height: 2.125rem;
-  border: var(--border-width) solid var(--border-strong);
-  border-radius: var(--radius-sm);
-  font-size: var(--text-xs);
-  letter-spacing: 0.04em;
-  color: var(--accent-strong);
-  background-color: var(--surface-sunken);
-  transition: border-color var(--duration-base) var(--ease-out),
-    background-color var(--duration-base) var(--ease-out);
-}
-
-.brand:hover .brand__mark {
-  border-color: var(--accent-border);
-  background-color: var(--accent-wash);
+.brand__gif {
+  display: block;
+  width: 2.625rem;
+  height: 2.625rem;
+  object-fit: contain;
 }
 
 /* Desktop navigation */
