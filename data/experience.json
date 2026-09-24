@@ -12,13 +12,13 @@
       "logo": null,
       "summary": "Senior individual contributor owning technical design across the discovery-to-cart journey, plus the API layer behind a retail mobile app.",
       "highlights": [
-        "Architected and led the end-to-end PLP/PDP redesign, restructuring navigation and information architecture across the discovery-to-cart journey and cutting cart abandonment by 18%.",
-        "Designed and built OCAPI/SCAPI middleware services running in a cloud environment to power a Middle East lifestyle retail group's mobile app, turning cross-functional requirements into scalable API contracts.",
-        "Own technical design decisions and sprint planning as a senior IC, mentor junior engineers, and run agile scrums to improve delivery velocity.",
+        "Architected and led the end-to-end PLP/PDP redesign, restructuring navigation and information architecture across the discovery-to-cart journey.",
+        "Designed and built Jobs and Services running in a sfcc environment to power a Middle East lifestyle retail group's mobile app, turning cross-functional requirements into scalable API contracts.",
+        "Own technical design decisions and sprint planning as a senior Engineer, mentor junior engineers, and run agile scrums to improve delivery velocity.",
         "Partner with product and architecture stakeholders to evaluate trade-offs early, which reduced rework across mobile and web integration points."
       ],
       "technologies": ["SFCC", "SFRA", "OCAPI", "SCAPI", "Node.js", "JavaScript", "REST APIs"],
-      "metric": { "value": "18%", "label": "lower cart abandonment" }
+      "metric": { "value": "30%", "label": "better buy-now-pay-later experience (part of POC)" }
     },
     {
       "slug": "valtech",
