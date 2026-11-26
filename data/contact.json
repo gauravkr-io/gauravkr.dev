@@ -29,14 +29,6 @@
         "href": "https://github.com/gauravkr-io",
         "note": "Code and side projects",
         "icon": "github"
-      },
-      {
-        "key": "phone",
-        "label": "Phone",
-        "value": "REDACTED",
-        "href": "REDACTED",
-        "note": "Bangalore, India (IST)",
-        "icon": "phone"
       }
     ],
     "form": {

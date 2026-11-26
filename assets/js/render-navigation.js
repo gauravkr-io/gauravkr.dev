@@ -178,7 +178,6 @@ function footerMarkup(site, navigation) {
           <h2 class="site-footer__col-title">Contact</h2>
           <ul class="site-footer__list">
             <li><a href="mailto:${site.contact.email}">${site.contact.email}</a></li>
-            <li><a href="${site.contact.phoneHref}">${site.contact.phone}</a></li>
             <li><span class="text-muted">${site.location}</span></li>
           </ul>
         </div>
