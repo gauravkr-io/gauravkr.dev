@@ -73,11 +73,12 @@
   white-space: nowrap;
 }
 
-.brand__gif {
+.brand__logo {
   display: block;
-  width: 3.5rem;
-  height: 3.5rem;
+  height: 2.5rem;
+  width: auto;
   object-fit: contain;
+  border-radius: var(--radius-md, 0.5rem);
 }
 
 /* Desktop navigation */
