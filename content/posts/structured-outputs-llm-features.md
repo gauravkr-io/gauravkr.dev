@@ -7,7 +7,7 @@ category: "AI Engineering"
 tags: ["LLM","Structured Outputs","Evals","Guardrails"]
 date: "2026-05-28"
 readingTime: "7 min read"
-coverImage: "/assets/images/blogs/structured-outputs-llm-features.svg"
+coverImage: "/assets/images/blogs/structured-outputs-llm-features.webp"
 author: "Gaurav Kumar"
 featured: false
 visible: true

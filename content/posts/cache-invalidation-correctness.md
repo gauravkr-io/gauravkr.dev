@@ -7,7 +7,7 @@ category: "System Design"
 tags: ["Caching","Consistency","System Design"]
 date: "2026-07-08"
 readingTime: "6 min read"
-coverImage: "/assets/images/blogs/cache-invalidation-correctness.svg"
+coverImage: "/assets/images/blogs/cache-invalidation-correctness.webp"
 author: "Gaurav Kumar"
 featured: true
 visible: true

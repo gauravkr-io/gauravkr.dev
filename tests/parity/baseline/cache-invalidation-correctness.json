@@ -84,5 +84,5 @@
     "Previous Reading a JVM heap dump without panicking",
     "Next OCAPI or SCAPI: choosing without regretting it later"
   ],
-  "cover": "/assets/images/blogs/cache-invalidation-correctness.svg"
+  "cover": "/assets/images/blogs/cache-invalidation-correctness.webp"
 }

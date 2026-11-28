@@ -7,7 +7,7 @@ category: "E-Commerce"
 tags: ["Checkout","Payments","APIs","Reliability"]
 date: "2026-08-24"
 readingTime: "7 min read"
-coverImage: "/assets/images/blogs/idempotency-keys-checkout.svg"
+coverImage: "/assets/images/blogs/idempotency-keys-checkout.webp"
 author: "Gaurav Kumar"
 featured: true
 visible: true

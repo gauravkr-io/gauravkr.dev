@@ -7,7 +7,7 @@ category: "E-Commerce"
 tags: ["SFCC","OCAPI","SCAPI","Architecture"]
 date: "2026-07-30"
 readingTime: "8 min read"
-coverImage: "/assets/images/blogs/ocapi-vs-scapi.svg"
+coverImage: "/assets/images/blogs/ocapi-vs-scapi.webp"
 author: "Gaurav Kumar"
 featured: true
 visible: true

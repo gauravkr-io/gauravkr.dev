@@ -7,7 +7,7 @@ category: "Performance"
 tags: ["Java","JVM","Profiling","Memory"]
 date: "2026-06-16"
 readingTime: "9 min read"
-coverImage: "/assets/images/blogs/jvm-heap-dump-walkthrough.svg"
+coverImage: "/assets/images/blogs/jvm-heap-dump-walkthrough.webp"
 author: "Gaurav Kumar"
 featured: false
 visible: true

@@ -14,7 +14,7 @@
     "lessonCount": 45,
     "duration": "10 hours",
     "technologies": ["Java", "Algorithms", "Data Structures", "Complexity Analysis"],
-    "coverImage": "/assets/images/courses/dsa-patterns-that-transfer.svg",
+    "coverImage": "/assets/images/courses/dsa-patterns-that-transfer.webp",
     "status": "In development",
     "visible": true,
     "whatYouWillLearn": [

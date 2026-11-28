@@ -14,7 +14,7 @@
     "lessonCount": 34,
     "duration": "9 hours",
     "technologies": ["SFCC", "SFRA", "SGJC", "OCAPI", "SCAPI", "JavaScript", "Node.js"],
-    "coverImage": "/assets/images/courses/sfcc-backend-engineering.svg",
+    "coverImage": "/assets/images/courses/sfcc-backend-engineering.webp",
     "status": "In development",
     "visible": true,
     "whatYouWillLearn": [

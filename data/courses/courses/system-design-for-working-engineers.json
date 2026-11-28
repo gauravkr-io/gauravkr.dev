@@ -14,7 +14,7 @@
     "lessonCount": 38,
     "duration": "11 hours",
     "technologies": ["System Design", "Caching", "CDNs", "Sharding", "Replication", "Queues & Streams", "Load Balancing", "Microservices"],
-    "coverImage": "/assets/images/courses/system-design-for-working-engineers.svg",
+    "coverImage": "/assets/images/courses/system-design-for-working-engineers.webp",
     "status": "In development",
     "visible": true,
     "whatYouWillLearn": [

@@ -95,5 +95,5 @@
     "Previous Structured outputs are most of the work",
     "Next Cache invalidation is a correctness problem"
   ],
-  "cover": "/assets/images/blogs/jvm-heap-dump-walkthrough.svg"
+  "cover": "/assets/images/blogs/jvm-heap-dump-walkthrough.webp"
 }

@@ -7,7 +7,7 @@ category: "Backend"
 tags: ["Microservices","Domain Modelling","Architecture"]
 date: "2026-04-19"
 readingTime: "6 min read"
-coverImage: "/assets/images/blogs/service-boundaries-domain-seams.svg"
+coverImage: "/assets/images/blogs/service-boundaries-domain-seams.webp"
 author: "Gaurav Kumar"
 featured: false
 visible: true

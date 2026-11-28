@@ -94,5 +94,5 @@
     "Previous Cache invalidation is a correctness problem",
     "Next Your checkout needs idempotency keys"
   ],
-  "cover": "/assets/images/blogs/ocapi-vs-scapi.svg"
+  "cover": "/assets/images/blogs/ocapi-vs-scapi.webp"
 }

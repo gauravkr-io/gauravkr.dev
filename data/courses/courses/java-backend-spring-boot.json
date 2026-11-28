@@ -14,7 +14,7 @@
     "lessonCount": 41,
     "duration": "12 hours",
     "technologies": ["Java", "Spring Boot", "JPA/Hibernate", "MySQL", "JWT & OAuth2", "JUnit & Mockito", "REST APIs"],
-    "coverImage": "/assets/images/courses/java-backend-spring-boot.svg",
+    "coverImage": "/assets/images/courses/java-backend-spring-boot.webp",
     "status": "In development",
     "visible": true,
     "whatYouWillLearn": [
