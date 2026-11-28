@@ -8,9 +8,17 @@
     "node": ">=20"
   },
   "scripts": {
-    "dev": "node scripts/preview.mjs . 8000",
+    "dev": "node scripts/dev.mjs 8000",
     "build": "node scripts/build.mjs",
     "validate": "node scripts/validate.mjs",
-    "preview": "node scripts/build.mjs && node scripts/preview.mjs dist 8000"
+    "preview": "node scripts/build.mjs && node scripts/preview.mjs dist 8000",
+    "parity": "node scripts/parity.mjs"
+  },
+  "devDependencies": {
+    "cheerio": "^1.2.0",
+    "gray-matter": "^4.0.3",
+    "markdown-it": "^15.0.3",
+    "markdown-it-container": "^4.0.0",
+    "sharp": "^0.35.5"
   }
 }

@@ -135,11 +135,6 @@ export async function getPostsIndex() {
   return { meta: payload.blogsMeta, categories: payload.categories ?? [], posts };
 }
 
-export async function getPost(slug) {
-  const { post } = await fetchJson(`blogs/posts/${slug}.json`);
-  return post;
-}
-
 /* -------------------------------------------------------------------------
    Videos
    ------------------------------------------------------------------------- */

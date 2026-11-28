@@ -1,0 +1,273 @@
+{
+  "documentTitle": "What Really Happens When You Type a URL: How the Internet and DNS Work | Gaurav Kumar",
+  "eyebrow": "System Design",
+  "title": "What Really Happens When You Type a URL: How the Internet and DNS Work",
+  "subtitle": "You type a name, press Enter, and a page appears in under a second. Underneath: cables on the ocean floor, IP addresses, and a DNS tree that resolves a name to an address in milliseconds.",
+  "breadcrumb": [
+    "Home",
+    "Blogs",
+    "System Design"
+  ],
+  "byline": [
+    "Gaurav Kumar",
+    "24 September 2026",
+    "13 min read"
+  ],
+  "article": "You type www.example.com, press Enter, and a page appears in well under a second. It feels like magic, but it is a chain of very concrete steps: a name gets turned into a number, a signal crosses cables that may run along the ocean floor, and a machine somewhere in the world sends back files.This post walks through that chain from the ground up. We start with the physical Internet, cross the oceans, and then spend most of our time on DNS, the system that turns names into addresses.By the end you will be able to answer three questions:What is the Internet, physically?How does your browser find the server behind a name?Why is that lookup so fast, even at global scale?1. The Internet is just wiresStrip away the jargon and the Internet is a giant network of cables connecting computers. A laptop in Bangalore can talk to a server in Seattle because an unbroken physical path of copper, glass fibre and short radio links joins them. Nothing floats in \"the cloud\". The cloud is other people's computers, connected by very long wires.Every glowing line in the map below is a cable. The routes are illustrative, but the scale is real. Submarine cable routes, illustrative. Every line is a physical link, not a metaphor. Clients and serversIn any conversation on the Internet, a computer plays one of two roles. RoleWhat it doesExamples ClientAsks for dataYour laptop, your phone, your browserServerStores data and serves it on request, online 24/7The machines behind google.com or example.com A useful picture: a server is a library that never closes. You can walk in at 3 a.m. and ask for a specific book, which here is a web page, and someone hands you the files.IP addresses: postal codes for computersEvery device on the Internet has an IP address. Data is always delivered to an IP address, never to a name.IPv4 looks like 93.184.216.34: four numbers from 0 to 255, about 4.3 billion possible addresses.IPv6 looks like 2606:2800:220:1:248:1893:25c8:1946: vastly more addresses, adopted because IPv4 ran out.Names like example.com exist only because humans are bad at remembering numbers.Your ISP: the on-rampYour Internet Service Provider is the company you pay for access: Jio, Airtel or ACT in India, Comcast or AT&T in the US, BT in the UK. The ISP connects your home network to the wider Internet. It also usually runs the DNS resolver your devices use by default, which will matter shortly.2. Crossing the oceansIf the Internet is wires, what about the oceans? They are crossed by fibre-optic cables lying on the seabed. Satellites play only a small supporting role: FCC data cited by TeleGeography puts them at just 0.37% of US international capacity. How a cable gets from one continent to another, end to end. How a cable gets from one continent to anotherCable-laying ship. Specialised vessels carry thousands of kilometres of cable.Deployment. The ship pays the cable out slowly as it moves along a surveyed route.Deep sea. On the ocean floor, often thousands of metres down, the cable simply rests on the seabed.Shallow water. Near the coast it is buried 1–3 m under the seabed to protect it from anchors and trawlers.Inside the cable. Hair-thin glass fibres sit at the centre, surrounded by a gel-filled tube, a copper conductor that powers repeaters along the route, steel wire armour and a polyethylene sheath. In the deep ocean the whole cable is about as wide as a garden hose.Landing station. The cable comes ashore at a landing station, where it connects to land networks and data centres.The numbers, as of 2026 FactFigure Cables tracked, active and planned600+Cable length in service1.5 million+ kmFibre pairs in one cable8–24One wavelength of laser light, across an oceanabout 0.8–1.2 Tb/sOne fibre pair, all wavelengths combinedhigh tens of Tb/s, e.g. 27 Tb/s on Asia Link CableOne whole cable: MAREA (US–Spain)224 Tb/sOne whole cable: Asia Link Cable, landed May 2026325+ Tb/s design capacityCable faults per yearabout 200, two-thirds caused by fishing and ship anchorsDesign life25 years Sources: TeleGeography, Hengtong, Submarine Networks. A common myth, corrected You may have heard that each fibre carries \"400 gigabytes per second\". That figure is outdated. A single modern fibre pair carries around 20–27 terabits per second, which is roughly 2,500–3,400 gigabytes per second, and one cable holds up to 24 pairs. How capacity stacks upHeadline \"Tbps\" numbers are easy to misread, because capacity comes in three layers:Wavelength: one colour of laser light, carrying up to about 1 Tb/s over ocean distances.Fibre pair: dozens of wavelengths share one pair of fibres, one for each direction.Cable: up to 24 fibre pairs bundled together. Press releases almost always quote this whole-cable figure.Closer to homeMumbai and Chennai are India's main cable landing hubs. Google has also broken ground on a US$15 billion AI hub in Visakhapatnam that includes a new international subsea cable gateway, per Submarine Networks. Open submarinecablemap.com and click on Mumbai or Chennai to see every cable that lands there.3. What happens when you type www.example.comHere is the key idea of this whole post: the browser cannot reach a server by name. It needs an IP address first. Getting that address is DNS's job. Your computer, the ISP, the DNS server and the web server, drawn as a chain of requests. Think of it like dining out. DNS is the directory that tells you where the restaurant is. The web server is the waiter who brings your dish. You look up the address first, then you go there.One detail the illustration simplifies: the page does not travel through the DNS server. DNS hands the IP back to your browser, and your browser then talks to the web server directly.Two trips, four stagessequenceDiagram participant B as Browser participant R as DNS Resolver participant W as Web Server B->>R: What is the IP of www.example.com? R-->>B: 93.184.216.34 B->>W: Connect, then HTTP GET / W-->>B: HTML, CSS, JS, imagesFind. DNS turns www.example.com into an IP address.Connect. The browser opens a TCP connection to that IP. For HTTPS it also performs a TLS handshake to set up encryption.Request. The browser sends an HTTP request, for example GET /.Render. The server replies with HTML. The HTML pulls in CSS, JavaScript and images, and the browser draws the page.A note on example.comexample.com is a domain reserved for documentation, which is why it appears in so many tutorials. The IP 93.184.216.34 is its long-standing historical address. Its hosting has changed over time, so if you look it up today you may see different IPs. That is DNS doing exactly its job: the name stayed the same while the address underneath it moved.4. How DNS finds the IPDNS (Domain Name System) converts a domain name into an IP address so the browser can connect to the server. It is often called the phone book of the Internet, but it is not one book. It is millions of small ones, organised as a tree. The resolution flow, and the tree behind it: root, TLD, authoritative. The resolution flow, step by stepYou type www.example.com.Local caches are checked. The browser and operating system look for a saved answer. If they have one, we are done.The recursive resolver takes over. On a miss, your device asks a recursive resolver, usually run by your ISP or a public service like Google (8.8.8.8) or Cloudflare (1.1.1.1).Root server. The resolver asks a root server. The root replies: \"I don't know the IP, but here are the servers for .com.\"TLD server. The resolver asks a .com server. It replies: \"Here are the authoritative servers for example.com.\"Authoritative server. The resolver asks example.com's own server, which replies with the IP address.Answer and cache. The resolver returns the IP to your browser and saves it for next time. Your browser connects directly to the web server.flowchart LR A[Browser] --> B[Local caches] B -- miss --> C[Recursive resolver] C --> D[Root server] C --> E[.com TLD server] C --> F[Authoritative server] F -. IP address .-> C C -. IP address .-> A A ==> G[Web server]The resolver does all the walking. Your browser asks one question and gets one answer back.Who does what ServerWhat it knowsWhat it returnsWho runs it Recursive resolverNothing permanently. It caches answersThe final IP, to your deviceYour ISP, Google, Cloudflare, Quad9Root serverWhere every TLD's servers areA referral to the TLD servers12 independent organisationsTLD serverWhich authoritative servers handle each domain under itA referral to the authoritative serversThe registry, e.g. Verisign for .comAuthoritative serverThe actual records for a domainThe final answerThe domain owner or their DNS host Key insight The actual IP is returned by the authoritative name server. Root and TLD servers never return a website's IP. They only point the resolver to the next place to ask. Why a tree and not one big table?A single global table mapping every name to every IP would be enormous, would change constantly, and would be a single point of failure. The hierarchy splits the work: each registry manages its own TLD, and each domain owner manages their own records. No one machine has to know everything.What \"13 root servers\" really meansYou will often read that the Internet has 13 root servers. More precisely, it has 13 root server identities, named a.root-servers.net to m.root-servers.net, run by 12 independent organisations. The number 13 dates back to the 512-byte limit on DNS responses in the original 1987 specification.Behind each letter is a fleet of machines sharing the same IP address through a technique called anycast. As of August 2026 there were 2,003 root server instances worldwide, together answering about 1.6 million queries per second (Make Tech Easier, citing root-servers.org).Recursive vs iterative queriesYour device sends a recursive query: \"Get me the final answer.\" The resolver then makes iterative queries: each server it asks gives a referral, and the resolver follows it until it reaches the authoritative answer.5. Anatomy of a domainRead a domain name from right to left. The most general part is on the right, the most specific on the left, which mirrors the order DNS resolves it. PartIn www.example.comWhat it means Rootthe invisible trailing dot: www.example.com.The top of the DNS treeTLD (top-level domain).comThe part after the final dotDomainexample.comThe name someone registers and ownsSubdomainwww.example.comA name the owner creates under their domain An owner can create as many subdomains as they like without registering anything new: blog.example.com, api.example.com, shop.example.com. Watch out The TLD is only the part after the last dot. And www is not special. It is just a subdomain that became a popular convention. Types of TLDGeneric TLDs: .com, .org, .net, .dev, .live, and many more.Country-code TLDs: .in for India, .uk for the United Kingdom, .jp for Japan.Second-level country domains: some countries add another layer, such as .co.in or .co.uk.6. Public vs private DNSNot every name is meant for the whole Internet. Public DNSPrivate DNS PurposeInternet-facing namesInternal services and infrastructureExamplewww.example.compayments.svc.cluster.localWho can resolve itAnyone on the InternetOnly machines inside the networkLookup pathRoot → TLD → AuthoritativeUsually an internal DNS server answers directlyTypical toolsCloudflare DNS, Route 53 public zonesRoute 53 private zones, Kubernetes CoreDNS, Active Directory A familiar example for developers: inside a Kubernetes cluster, one microservice can call http://payments and the cluster's DNS resolves that to the right pod IP. That name means nothing on the public Internet, and it never touches a root server.7. Why DNS is so fast: caching, TTL and scaleIf every lookup walked root → TLD → authoritative, browsing would feel sluggish. It doesn't, for two reasons: answers are cached at many levels, and the infrastructure is replicated all over the world.Caching at every levelA lookup checks these places in order, and the first one with an answer wins:Browser cache. In Chrome you can inspect it at chrome://net-internals/#dns.Hosts file on your disk.Operating system cache.Home router cache.Recursive resolver cache at your ISP or public resolver, shared by thousands of users.The full DNS walk, only when every cache above has missed.In practice, most lookups never reach a root server. A cached answer comes back in a few milliseconds or less. A full walk can take tens to hundreds of milliseconds.Hosts file vs DNS cacheThese two are often confused, but they are different things. Hosts fileDNS cache What it isA plain text file on diskEntries held in memoryHow long it lastsUntil someone edits itUntil the TTL expires or the device restartsWho fills itYou or an administrator, by handFilled automatically from DNS answersWhere it lives/etc/hosts on macOS and Linux, and C:\\\\Windows\\\\System32\\\\drivers\\\\etc\\\\hosts on WindowsBrowser, OS, router, resolverTypical usePointing a name at a local or test serverSpeeding up repeat lookups TTL: how long an answer stays freshEvery DNS record carries a TTL (time to live), set in seconds by the domain owner. It tells every cache how long it may keep the answer before asking again. TTLExampleTrade-off Long3600 (1 hour)Fewer lookups and faster browsing, but changes spread slowlyShort60 (1 minute)Changes spread quickly, but caches ask more often This is why a DNS change is said to \"propagate\". Old answers live on in caches around the world until their TTL runs out. A practical tip: lower a record's TTL a day before migrating a server, then raise it again once the move is done. Key insight TTL controls how long caches keep a DNS answer before refreshing it. Built for global scaleRoot servers, TLD servers and big public resolvers are never single machines. They use anycast: the same IP address is announced from many locations at once, and the network routes each query to the nearest one. If one site goes down, traffic simply flows to the next closest. One IP does not mean one server.Lookup is not searchTyping a domain in the address bar is a lookup: DNS turns a known name into an IP. Typing words that are not a domain sends them to a search engine instead, which uses its own index of pages, not DNS. The two only look similar because they share the same box in your browser.8. Try it yourselfYou can watch everything in this post happen on your own machine. nslookup works on Windows, macOS and Linux. dig is built into macOS and Linux. On Windows, use WSL or an online dig tool.Find the IP behind a name bash nslookup www.example.com No terminal? The website nslookup.io does the same in your browser.Watch the whole DNS walk, root to answer bash dig +trace www.example.com The output shows the root servers first, then the .com servers, then example.com's authoritative servers, and finally the IP. It is the hierarchy from section 4, live.See the TTL counting down bash dig www.example.com Run it twice, a few seconds apart. The number next to the record gets smaller. That is the cache timer running.Ask different resolvers the same question bash nslookup www.example.com 8.8.8.8 nslookup www.example.com 1.1.1.1 Google and Cloudflare give you the same answer, because both end up asking the same authoritative server.Explore the cables under the sea. Open submarinecablemap.com and click any coastal city to see which cables land there and where they go.9. Key takeawaysThe Internet is physical. It is cables and computers, including 1.5 million+ km of cable on the ocean floor.Computers talk by IP address. Names exist only for humans.DNS turns names into IPs by walking a tree: root → TLD → authoritative. Only the authoritative server returns the actual IP.Caching and TTL keep DNS fast. Most lookups never leave your machine, router or resolver.Anycast keeps DNS resilient. One IP address can stand for thousands of machines around the world.Frequently asked questionsCan I just type the IP address instead of the name? Sometimes. But many websites share one IP behind a CDN or load balancer, and HTTPS certificates are issued for names, so an IP alone often fails or shows a warning.What happens if DNS goes down? Names you visited recently keep working until their cached TTL expires. New lookups fail, so websites appear \"down\" even though their servers are perfectly fine.Who owns the Internet? No single party. Cables are owned by telecom operators and large tech companies, domains by registries and the people who register them, and the root servers by 12 separate organisations.Is DNS encrypted? Classic DNS travels as plain text. DNS over HTTPS (DoH) and DNS over TLS (DoT) encrypt it, and most modern browsers support DoH.Is my phone's mobile data wireless all the way? Only as far as the nearest cell tower. From there, your data travels over fibre cables on land and under the sea.Do sharks bite undersea cables? Very rarely. Most faults are caused by fishing gear and ship anchors. Traffic reroutes over other cables while the damaged one is repaired.Does Google Search use DNS to find pages? No. Search engines use their own index of the web. DNS only turns a name you already know into an IP address.SourcesTeleGeography, Submarine Cable FAQs: cable count and length, MAREA capacity, fault causes, satellite share, design life.Hengtong, Submarine Cable Capacity in 2026: What's Real?, April 2026: capacity per wavelength, per fibre pair and per cable.Submarine Networks, World Telecommunication Day 2026 Special Issue, May 2026: Asia Link Cable, Visakhapatnam cable gateway.Make Tech Easier, The 13 root server clusters, August 2026: root server instance count, query volume, origin of the number 13.",
+  "headings": [
+    {
+      "level": "H2",
+      "id": "1-the-internet-is-just-wires",
+      "text": "1. The Internet is just wires"
+    },
+    {
+      "level": "H3",
+      "id": "clients-and-servers",
+      "text": "Clients and servers"
+    },
+    {
+      "level": "H3",
+      "id": "ip-addresses-postal-codes-for-computers",
+      "text": "IP addresses: postal codes for computers"
+    },
+    {
+      "level": "H3",
+      "id": "your-isp-the-on-ramp",
+      "text": "Your ISP: the on-ramp"
+    },
+    {
+      "level": "H2",
+      "id": "2-crossing-the-oceans",
+      "text": "2. Crossing the oceans"
+    },
+    {
+      "level": "H3",
+      "id": "how-a-cable-gets-from-one-continent-to-another",
+      "text": "How a cable gets from one continent to another"
+    },
+    {
+      "level": "H3",
+      "id": "the-numbers-as-of-2026",
+      "text": "The numbers, as of 2026"
+    },
+    {
+      "level": "H3",
+      "id": "how-capacity-stacks-up",
+      "text": "How capacity stacks up"
+    },
+    {
+      "level": "H3",
+      "id": "closer-to-home",
+      "text": "Closer to home"
+    },
+    {
+      "level": "H2",
+      "id": "3-what-happens-when-you-type-wwwexamplecom",
+      "text": "3. What happens when you type www.example.com"
+    },
+    {
+      "level": "H3",
+      "id": "two-trips-four-stages",
+      "text": "Two trips, four stages"
+    },
+    {
+      "level": "H3",
+      "id": "a-note-on-examplecom",
+      "text": "A note on example.com"
+    },
+    {
+      "level": "H2",
+      "id": "4-how-dns-finds-the-ip",
+      "text": "4. How DNS finds the IP"
+    },
+    {
+      "level": "H3",
+      "id": "the-resolution-flow-step-by-step",
+      "text": "The resolution flow, step by step"
+    },
+    {
+      "level": "H3",
+      "id": "who-does-what",
+      "text": "Who does what"
+    },
+    {
+      "level": "H3",
+      "id": "why-a-tree-and-not-one-big-table",
+      "text": "Why a tree and not one big table?"
+    },
+    {
+      "level": "H3",
+      "id": "what-13-root-servers-really-means",
+      "text": "What \"13 root servers\" really means"
+    },
+    {
+      "level": "H3",
+      "id": "recursive-vs-iterative-queries",
+      "text": "Recursive vs iterative queries"
+    },
+    {
+      "level": "H2",
+      "id": "5-anatomy-of-a-domain",
+      "text": "5. Anatomy of a domain"
+    },
+    {
+      "level": "H3",
+      "id": "types-of-tld",
+      "text": "Types of TLD"
+    },
+    {
+      "level": "H2",
+      "id": "6-public-vs-private-dns",
+      "text": "6. Public vs private DNS"
+    },
+    {
+      "level": "H2",
+      "id": "7-why-dns-is-so-fast-caching-ttl-and-scale",
+      "text": "7. Why DNS is so fast: caching, TTL and scale"
+    },
+    {
+      "level": "H3",
+      "id": "caching-at-every-level",
+      "text": "Caching at every level"
+    },
+    {
+      "level": "H3",
+      "id": "hosts-file-vs-dns-cache",
+      "text": "Hosts file vs DNS cache"
+    },
+    {
+      "level": "H3",
+      "id": "ttl-how-long-an-answer-stays-fresh",
+      "text": "TTL: how long an answer stays fresh"
+    },
+    {
+      "level": "H3",
+      "id": "built-for-global-scale",
+      "text": "Built for global scale"
+    },
+    {
+      "level": "H3",
+      "id": "lookup-is-not-search",
+      "text": "Lookup is not search"
+    },
+    {
+      "level": "H2",
+      "id": "8-try-it-yourself",
+      "text": "8. Try it yourself"
+    },
+    {
+      "level": "H2",
+      "id": "9-key-takeaways",
+      "text": "9. Key takeaways"
+    },
+    {
+      "level": "H2",
+      "id": "frequently-asked-questions",
+      "text": "Frequently asked questions"
+    },
+    {
+      "level": "H2",
+      "id": "sources",
+      "text": "Sources"
+    }
+  ],
+  "counts": {
+    "paragraphs": 53,
+    "lists": 10,
+    "codeBlocks": 4,
+    "callouts": 4,
+    "warningCallouts": 1,
+    "figures": 4,
+    "tables": 7,
+    "mermaid": 2,
+    "listItems": 43,
+    "tableCells": 109
+  },
+  "codeLangs": [
+    "bash",
+    "bash",
+    "bash",
+    "bash"
+  ],
+  "images": [
+    {
+      "src": "/assets/images/blogs/url-dns-internet/cover.webp",
+      "alt": "A world map showing glowing submarine cable routes connecting every continent"
+    },
+    {
+      "src": "/assets/images/blogs/url-dns-internet/cable-laying-process.webp",
+      "alt": "Six-panel illustration of how a submarine cable is laid: ship, deployment, seabed, burial, cross-section and landing station"
+    },
+    {
+      "src": "/assets/images/blogs/url-dns-internet/dns-restaurant-analogy.webp",
+      "alt": "Illustrated analogy of your computer asking an ISP, which asks a DNS server, which points to a web server that serves the page like a waiter serving a dish"
+    },
+    {
+      "src": "/assets/images/blogs/url-dns-internet/dns-hierarchy.webp",
+      "alt": "Diagram of the DNS resolution flow from browser to ISP resolver to root, TLD and authoritative servers, plus the DNS hierarchy tree"
+    }
+  ],
+  "captions": [
+    "Submarine cable routes, illustrative. Every line is a physical link, not a metaphor.",
+    "How a cable gets from one continent to another, end to end.",
+    "Your computer, the ISP, the DNS server and the web server, drawn as a chain of requests.",
+    "The resolution flow, and the tree behind it: root, TLD, authoritative."
+  ],
+  "tags": [
+    "DNS",
+    "Networking",
+    "Internet",
+    "System Design"
+  ],
+  "toc": [
+    {
+      "href": "#1-the-internet-is-just-wires",
+      "text": "1. The Internet is just wires"
+    },
+    {
+      "href": "#2-crossing-the-oceans",
+      "text": "2. Crossing the oceans"
+    },
+    {
+      "href": "#3-what-happens-when-you-type-wwwexamplecom",
+      "text": "3. What happens when you type www.example.com"
+    },
+    {
+      "href": "#4-how-dns-finds-the-ip",
+      "text": "4. How DNS finds the IP"
+    },
+    {
+      "href": "#5-anatomy-of-a-domain",
+      "text": "5. Anatomy of a domain"
+    },
+    {
+      "href": "#6-public-vs-private-dns",
+      "text": "6. Public vs private DNS"
+    },
+    {
+      "href": "#7-why-dns-is-so-fast-caching-ttl-and-scale",
+      "text": "7. Why DNS is so fast: caching, TTL and scale"
+    },
+    {
+      "href": "#8-try-it-yourself",
+      "text": "8. Try it yourself"
+    },
+    {
+      "href": "#9-key-takeaways",
+      "text": "9. Key takeaways"
+    },
+    {
+      "href": "#frequently-asked-questions",
+      "text": "Frequently asked questions"
+    },
+    {
+      "href": "#sources",
+      "text": "Sources"
+    }
+  ],
+  "related": [],
+  "postNav": [
+    "Previous Your checkout needs idempotency keys"
+  ],
+  "cover": "/assets/images/blogs/url-dns-internet/cover.webp"
+}

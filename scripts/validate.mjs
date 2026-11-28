@@ -9,6 +9,7 @@ import { readdir, readFile } from 'node:fs/promises';
 import { resolve, dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { exists, internalTargetExists } from './lib/paths.mjs';
+import { loadPosts } from './lib/posts.mjs';
 
 const defaultRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -164,6 +165,98 @@ async function validateNavigation(root, errors) {
 }
 
 
+async function validateSite(root, errors) {
+  const file = 'data/site.json';
+  const data = await readJson(root, file, errors);
+  if (!data) return;
+  const site = data.site;
+  if (!site || typeof site !== 'object') {
+    errors.push(`${file}: "site" object is required`);
+    return;
+  }
+  for (const field of ['name', 'domain', 'title', 'summary', 'location', 'tagline']) need(errors, file, 'site', site, field, 'string');
+  if (need(errors, file, 'site', site, 'url', 'string')) {
+    if (!/^https:\/\/[^/\s]+$/.test(site.url)) errors.push(`${file}: site: "url" must be an https address with no trailing slash, for example https://gauravkr.dev`);
+    else if (typeof site.domain === 'string' && new URL(site.url).hostname !== site.domain) errors.push(`${file}: site: "url" (${site.url}) and "domain" (${site.domain}) do not match`);
+  }
+  if (need(errors, file, 'site', site, 'resumeUrl', 'string') && !(await exists(join(root, site.resumeUrl)))) {
+    errors.push(`${file}: site: resumeUrl file is missing: ${site.resumeUrl}`);
+  }
+  if (need(errors, file, 'site', site.contact ?? {}, 'email', 'string') && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(site.contact.email)) {
+    errors.push(`${file}: site.contact: "email" does not look like an email address: ${site.contact.email}`);
+  }
+  for (const [i, link] of (site.socialLinks ?? []).entries()) {
+    const label = `socialLinks[${i}]${link?.label ? ` "${link.label}"` : ''}`;
+    need(errors, file, label, link, 'label', 'string');
+    if (need(errors, file, label, link, 'url', 'string') && !/^(https:\/\/|mailto:)/.test(link.url)) {
+      errors.push(`${file}: ${label}: url "${link.url}" must start with https:// or mailto:`);
+    }
+    checkEntryBasics(errors, file, label, link);
+  }
+  const analytics = site.analytics;
+  if (analytics !== undefined) {
+    if (typeof analytics !== 'object' || typeof analytics.enabled !== 'boolean') {
+      errors.push(`${file}: site.analytics: "enabled" must be true or false`);
+    } else {
+      const token = analytics.token ?? '';
+      if (token !== '' && !/^[a-f0-9]{32}$/.test(token)) {
+        errors.push(`${file}: site.analytics: token must be the 32 character code from Cloudflare Web Analytics (letters a to f and digits), found ${JSON.stringify(token)}`);
+      }
+      if (analytics.enabled && token === '') {
+        errors.push(`${file}: site.analytics: analytics is switched on but "token" is empty. Add the token from the Cloudflare dashboard, or set "enabled" to false`);
+      }
+    }
+  }
+  for (const field of ['logoImage', 'logoWordmark']) {
+    if (typeof site[field] === 'string' && !(await exists(join(root, site[field])))) errors.push(`${file}: site: ${field} file is missing: ${site[field]}`);
+  }
+  const photo = site.profileImage?.src?.split('?')[0];
+  if (photo && !(await exists(join(root, photo)))) errors.push(`${file}: site.profileImage: file is missing: ${site.profileImage.src}`);
+}
+
+async function validateBlogMeta(root, errors) {
+  const file = 'data/blogs/blogs-meta.json';
+  const data = await readJson(root, file, errors);
+  if (!data) return;
+  for (const field of ['eyebrow', 'headline', 'intro']) need(errors, file, 'blogsMeta', data.blogsMeta ?? {}, field, 'string');
+  const list = data.categories;
+  if (!Array.isArray(list) || list.length < 2 || list[0] !== 'All') {
+    errors.push(`${file}: "categories" must be a list that starts with "All" followed by at least one category`);
+  } else if (new Set(list).size !== list.length) {
+    errors.push(`${file}: "categories" lists the same name twice`);
+  }
+}
+
+/** Any string in a data file that looks like a path on this site must point at something real. */
+const SITE_PATH = /^\/[A-Za-z0-9._\-/]+(?:\?[^\s]*)?(?:#[^\s]*)?$/;
+
+function* strings(value, path = '') {
+  if (typeof value === 'string') yield [path, value];
+  else if (Array.isArray(value)) for (const [i, item] of value.entries()) yield* strings(item, `${path}[${i}]`);
+  else if (value && typeof value === 'object') for (const [key, item] of Object.entries(value)) yield* strings(item, path ? `${path}.${key}` : key);
+}
+
+async function validateSitePaths(root, errors, skip) {
+  for (const full of await walk(join(root, 'data'))) {
+    const rel = relative(root, full);
+    if (skip.has(rel)) continue;
+    let data;
+    try {
+      data = JSON.parse(await readFile(full, 'utf8'));
+    } catch {
+      continue;
+    }
+    const reported = new Set();
+    for (const [path, value] of strings(data)) {
+      if (!SITE_PATH.test(value) || reported.has(value)) continue;
+      if (!(await internalTargetExists(root, value))) {
+        reported.add(value);
+        errors.push(`${rel}: ${path}: "${value}" points to a file or page that does not exist`);
+      }
+    }
+  }
+}
+
 export async function validate(root = defaultRoot) {
   const errors = [];
 
@@ -180,6 +273,11 @@ export async function validate(root = defaultRoot) {
   if (!broken.has('data/videos.json')) await validateVideos(root, errors);
   if (!broken.has('data/links.json')) await validateLinks(root, errors);
   if (!broken.has('data/navigation.json')) await validateNavigation(root, errors);
+  if (!broken.has('data/site.json')) await validateSite(root, errors);
+  if (!broken.has('data/blogs/blogs-meta.json')) await validateBlogMeta(root, errors);
+  errors.push(...(await loadPosts(root)).errors);
+  // Files already checked in detail above are skipped here so one problem is reported once.
+  await validateSitePaths(root, errors, new Set(['data/links.json', 'data/navigation.json', ...broken]));
 
   return errors;
 }

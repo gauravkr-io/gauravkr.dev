@@ -1,0 +1,3 @@
+# Old post links used a query string, which Cloudflare redirects cannot match.
+# /pages/blog-post.html?slug=... is handled by a small script on that page.
+/blogs /pages/blogs.html 302

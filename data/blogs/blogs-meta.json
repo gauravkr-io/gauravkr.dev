@@ -1,0 +1,15 @@
+{
+  "blogsMeta": {
+    "eyebrow": "Writing",
+    "headline": "Notes from inside real systems",
+    "intro": "Things I have had to work out on production systems, written down while the detail is still fresh. Mostly commerce architecture, backend engineering and the trade-offs that only show up under load."
+  },
+  "categories": [
+    "All",
+    "E-Commerce",
+    "Backend",
+    "System Design",
+    "Performance",
+    "AI Engineering"
+  ]
+}
