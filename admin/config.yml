@@ -209,6 +209,13 @@ collections:
                 fields:
                   - { label: Note, name: note, widget: text }
                   - { label: Copyright name, name: copyright, widget: string }
+              - label: Visitor analytics
+                name: analytics
+                widget: object
+                fields:
+                  - { label: Switch on, name: enabled, widget: boolean, default: false, hint: 'Needs the token below. Leave off until you have it.' }
+                  - { label: Provider, name: provider, widget: string, default: cloudflare-web-analytics }
+                  - { label: Token, name: token, widget: string, required: false, pattern: ['^([a-f0-9]{32})?$', 'The 32 character code from Cloudflare Web Analytics, or leave empty.'], hint: 'Cloudflare dashboard, Web Analytics, your site, then copy the token. It is a public site code, not a password.' }
 
       - name: navigation
         label: Navigation (turn pages on or off)

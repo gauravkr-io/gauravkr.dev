@@ -52,6 +52,11 @@
     "footer": {
       "note": "Designing, building and optimising commerce systems that hold up under real traffic.",
       "copyright": "Gaurav Kumar"
+    },
+    "analytics": {
+      "enabled": false,
+      "provider": "cloudflare-web-analytics",
+      "token": ""
     }
   }
 }

@@ -10,6 +10,7 @@ import { onReady, $ } from './utils.js';
 import { initThemeToggle } from './theme-toggle.js';
 import { renderChrome } from './render-navigation.js';
 import { initScrollReveal, initPageTransitions, refreshScrollReveal } from './scroll-animations.js';
+import { initAnalytics } from './analytics.js';
 
 const PAGE_CONTROLLERS = {
   home: () => import('./render-home.js').then((module) => module.initHomePage()),
@@ -67,6 +68,8 @@ async function start() {
   initScrollReveal();
   refreshScrollReveal();
 
+  // Last, so a slow or blocked analytics request can never delay the page.
+  initAnalytics().catch(() => {});
 }
 
 onReady(start);
