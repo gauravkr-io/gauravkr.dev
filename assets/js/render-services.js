@@ -215,7 +215,7 @@ export async function initServiceDetailPage() {
   }
 
   setDocumentMeta({
-    title: `${service.title} — Gaurav Kumar`,
+    title: `${service.title} | Gaurav Kumar`,
     description: service.shortDescription,
     image: service.image
   });

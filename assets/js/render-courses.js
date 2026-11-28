@@ -283,7 +283,7 @@ export async function initCourseDetailPage() {
   }
 
   setDocumentMeta({
-    title: `${course.title} — Gaurav Kumar`,
+    title: `${course.title} | Gaurav Kumar`,
     description: course.summary,
     image: course.coverImage
   });

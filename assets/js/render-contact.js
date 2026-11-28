@@ -185,7 +185,7 @@ function initFormBehaviour(contact, site) {
     }
 
     const data = new FormData(form);
-    const subject = `${data.get('subject')} — ${data.get('name')}`;
+    const subject = `${data.get('subject')} | ${data.get('name')}`;
     const body = [
       `Name: ${data.get('name')}`,
       `Email: ${data.get('email')}`,
