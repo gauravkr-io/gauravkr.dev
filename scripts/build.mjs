@@ -6,7 +6,7 @@
  * needs to see without running any script: one page per post, link preview
  * images, the post index, and the sitemap, feed and robots files.
  */
-import { cp, rm, mkdir, writeFile, readFile, readdir } from 'node:fs/promises';
+import { cp, rm, rename, mkdir, writeFile, readFile, readdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { existsSync } from 'node:fs';
 import { resolve, dirname, join, relative } from 'node:path';
@@ -101,7 +101,48 @@ async function readJson(rel) {
   return JSON.parse(await readFile(join(root, rel), 'utf8'));
 }
 
+/**
+ * Moves a finished build into dist/. The old dist/ is renamed aside first, then
+ * the new one is renamed in. If another build lands in between, try again, so
+ * whichever build finishes last wins and dist/ is always a complete build.
+ */
+async function swapIntoPlace(out) {
+  const aside = [];
+  try {
+    for (let attempt = 0; attempt < 25; attempt += 1) {
+      const old = resolve(root, `.dist-old-${process.pid}-${attempt}`);
+      try {
+        await rename(dist, old);
+        aside.push(old);
+      } catch (error) {
+        if (error.code !== 'ENOENT') throw error;
+      }
+      try {
+        await rename(out, dist);
+        return;
+      } catch (error) {
+        if (error.code !== 'ENOTEMPTY' && error.code !== 'EEXIST') throw error;
+      }
+    }
+    throw new Error('Could not move the finished build into dist/ because other builds kept replacing it.');
+  } finally {
+    for (const old of aside) await rm(old, { recursive: true, force: true });
+  }
+}
+
 export async function build({ now = new Date() } = {}) {
+  const out = resolve(root, `.dist-build-${process.pid}-${Date.now()}`);
+  try {
+    return await buildInto(out, { now });
+  } finally {
+    await rm(out, { recursive: true, force: true });
+  }
+}
+
+// Each build works in its own staging folder and swaps it into dist/ at the end,
+// so a second build running at the same time (such as the dev watcher) cannot
+// delete files out from under this one.
+async function buildInto(out, { now }) {
   const problems = await validate(root);
   if (problems.length) throw new BuildError(problems);
 
@@ -110,11 +151,10 @@ export async function build({ now = new Date() } = {}) {
   const meta = await readJson('data/blogs/blogs-meta.json');
   const { posts, published } = await loadPosts(root, { now });
 
-  await rm(dist, { recursive: true, force: true });
-  await mkdir(dist, { recursive: true });
+  await mkdir(out, { recursive: true });
   for (const entry of COPY) {
     const from = resolve(root, entry);
-    if (existsSync(from)) await cp(from, resolve(dist, entry), { recursive: true });
+    if (existsSync(from)) await cp(from, resolve(out, entry), { recursive: true });
   }
 
   // The post index the blog list and the homepage read at runtime.
@@ -134,23 +174,25 @@ export async function build({ now = new Date() } = {}) {
       visible: true
     }))
   };
-  await mkdir(join(dist, 'data/blogs'), { recursive: true });
-  await writeFile(join(dist, 'data/blogs/posts-index.json'), JSON.stringify(index, null, 2) + '\n');
+  await mkdir(join(out, 'data/blogs'), { recursive: true });
+  await writeFile(join(out, 'data/blogs/posts-index.json'), JSON.stringify(index, null, 2) + '\n');
 
   // One static page and one preview image per published post.
   const template = await readFile(join(root, 'templates/post.html'), 'utf8');
   for (const post of published) {
-    const dir = join(dist, 'blogs', post.slug);
+    const dir = join(out, 'blogs', post.slug);
     await mkdir(dir, { recursive: true });
     await writeFile(join(dir, 'index.html'), renderPostPage(template, post, site, published));
-    await buildOgImage(root, dist, post);
+    await buildOgImage(root, out, post);
   }
 
-  await writeFile(join(dist, 'sitemap.xml'), buildSitemap(site, published, navigation));
-  await writeFile(join(dist, 'rss.xml'), buildRss(site, published));
-  await writeFile(join(dist, 'robots.txt'), buildRobots(site));
+  await writeFile(join(out, 'sitemap.xml'), buildSitemap(site, published, navigation));
+  await writeFile(join(out, 'rss.xml'), buildRss(site, published));
+  await writeFile(join(out, 'robots.txt'), buildRobots(site));
 
-  const assetVersion = await versionAssets(dist);
+  const assetVersion = await versionAssets(out);
+
+  await swapIntoPlace(out);
 
   return {
     dist,
