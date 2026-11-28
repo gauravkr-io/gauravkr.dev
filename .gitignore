@@ -14,3 +14,7 @@ node_modules/
 Thumbs.db
 
 .claude/
+
+node_modules/
+dist/
+client-names.local.txt

@@ -1,0 +1,16 @@
+{
+  "name": "gauravkr-dev",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Personal site for Gaurav Kumar. Static output, built from content files.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node scripts/preview.mjs . 8000",
+    "build": "node scripts/build.mjs",
+    "validate": "node scripts/validate.mjs",
+    "preview": "node scripts/build.mjs && node scripts/preview.mjs dist 8000"
+  }
+}

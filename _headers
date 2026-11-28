@@ -1,0 +1,16 @@
+/data/*
+  Cache-Control: public, max-age=60, must-revalidate
+
+# Stylesheets and scripts keep the same file names between deploys, so they are
+# checked on every visit. The server answers "unchanged" for files that are,
+# which is cheap, and a deploy shows up straight away. A year of caching on
+# these names would leave returning visitors on old code.
+/assets/css/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/js/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Images change rarely and a stale one is harmless.
+/assets/images/*
+  Cache-Control: public, max-age=86400
