@@ -10,7 +10,7 @@
       "degree": "Software Engineering Program",
       "institution": "Airtribe",
       "location": "Backend, system design, DSA and applied AI engineering",
-      "year": "2026 – Present"
+      "year": "2026"
     }
   ],
   "certifications": [
@@ -27,9 +27,9 @@
       "note": "Java, Spring and relational persistence across the full request path."
     },
     {
-      "name": "GATE 2021 Qualified",
+      "name": "GATE Qualified",
       "issuer": "IIT / IISc",
-      "year": "2021",
+      "year": null,
       "note": "National postgraduate engineering entrance examination in computer science."
     }
   ],

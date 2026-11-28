@@ -179,6 +179,7 @@ collections:
               - { label: Default theme, name: defaultTheme, widget: select, options: [dark, light] }
               - { label: Resume file, name: resumeUrl, widget: string, hint: 'For example /resume/Gaurav_Kumar_Resume.pdf' }
               - { label: Resume download name, name: resumeFileName, widget: string }
+              - { label: Resume button label, name: resumeLabel, widget: string, hint: 'The word on the Resume button in the header.' }
               - label: Contact
                 name: contact
                 widget: object

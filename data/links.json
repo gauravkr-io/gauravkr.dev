@@ -1,7 +1,7 @@
 {
   "linksMeta": {
     "title": "Links",
-    "description": "Where to find Gaurav Kumar online: writing, videos, courses, résumé and contact."
+    "description": "Where to find Gaurav Kumar online: writing, videos, courses, resume and contact."
   },
   "groups": [
     {
@@ -75,7 +75,7 @@
       "order": 3,
       "links": [
         {
-          "label": "Download résumé",
+          "label": "Download Resume",
           "description": "PDF, one page",
           "url": "/resume/Gaurav_Kumar_Resume.pdf",
           "icon": "download",

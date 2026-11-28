@@ -247,7 +247,7 @@ export async function initAboutPage() {
       headline: 'Have an interesting problem to solve?',
       intro: "Let's build something meaningful.",
       primaryCta: { label: 'Start a conversation', href: '/pages/contact.html' },
-      secondaryCta: { label: 'Download Résumé', href: site.resumeUrl }
+      secondaryCta: { label: 'Download Resume', href: site.resumeUrl }
     })
   );
 

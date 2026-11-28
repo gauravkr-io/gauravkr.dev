@@ -94,7 +94,7 @@ function headerMarkup(site, navigation, active) {
       <div class="site-header__actions">
         <a class="btn btn--secondary btn--sm site-header__resume" href="${site.resumeUrl}" download>
           ${iconRaw('download', { size: 16 })}
-          <span>${site.resumeLabel ?? 'Résumé'}</span>
+          <span>${site.resumeLabel ?? 'Resume'}</span>
         </a>
         <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
           ${raw(icon('sun', { size: 18, className: 'theme-toggle__icon theme-toggle__icon--sun' }))}
@@ -155,7 +155,7 @@ function mobileNavMarkup(site, navigation, active) {
     <div class="mobile-nav__foot">
       <a class="btn btn--primary btn--block" href="${site.resumeUrl}" download>
         ${iconRaw('download', { size: 16 })}
-        <span>Download Résumé</span>
+        <span>Download Resume</span>
       </a>
       <div class="cluster">${socialLinks(site)}</div>
     </div>
@@ -199,7 +199,7 @@ function footerMarkup(site, navigation) {
         </div>
 
         <div>
-          <h2 class="site-footer__col-title">Résumé</h2>
+          <h2 class="site-footer__col-title">Resume</h2>
           <ul class="site-footer__list">
             <li>
               <a href="${site.resumeUrl}" download>
