@@ -19,8 +19,10 @@ function techCard(tech) {
   const classes = ['tech-float', tech.layout === 'stacked' ? 'tech-float--stacked' : ''].join(' ').trim();
   return html`
     <li class="${classes}" style="--tech-color:${tech.color}">
-      <span class="tech-float__icon icon-mask" role="img" aria-label="${tech.name}"
-        style="-webkit-mask-image:url('${tech.logo}');mask-image:url('${tech.logo}')"></span>
+      ${tech.fullColor
+        ? html`<img class="tech-float__image tech-float__image--${tech.size ?? 'wide'}" src="${tech.logo}" alt="${tech.name}" loading="lazy">`
+        : html`<span class="tech-float__icon icon-mask" role="img" aria-label="${tech.name}"
+        style="-webkit-mask-image:url('${tech.logo}');mask-image:url('${tech.logo}')"></span>`}
       ${tech.showName === false ? '' : html`<span class="tech-float__name ${tech.name.includes(' ') ? 'tech-float__name--wrap' : ''}">${tech.name}</span>`}
     </li>
   `;

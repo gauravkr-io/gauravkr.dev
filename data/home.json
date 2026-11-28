@@ -2,9 +2,9 @@
   "home": {
     "hero": {
       "name": "GAURAV KUMAR",
-      "role": "E-Commerce Specialist & Software Engineer",
-      "tagline": "Engineering Digital Experiences That Scale.",
-      "supporting": "E-Commerce Specialist and Software Engineer, focused on Salesforce Commerce Cloud (SFCC), OCAPI/SCAPI, and scalable backend architecture.",
+      "role": "Senior Software Engineer, E-Commerce Platforms (SFCC)",
+      "tagline": "Engineering E-Commerce Built for Scale, Sharpened by AI.",
+      "supporting": "Backend engineer for high-traffic commerce, from cart and checkout to payments, fraud checks and OCAPI/SCAPI middleware. 5+ years on Salesforce Commerce Cloud, now growing into headless commerce and AI backend engineering.",
       "keywords": [
         "E-Commerce (SFCC)",
         "OCAPI/SCAPI",
@@ -23,24 +23,30 @@
       "stats": [
         {
           "value": "5+",
-          "label": "Years in e-commerce engineering"
+          "label": "Years building e-commerce platforms on Salesforce Commerce Cloud"
         },
         {
-          "value": "4",
-          "label": "Payment and BNPL integrations delivered"
+          "value": "10+",
+          "label": "Payment, BNPL and fraud-prevention integrations shipped"
         },
         {
-          "value": "6+",
-          "label": "Global retail brands supported"
+          "value": "5+",
+          "label": "PLP, PDP and cart redesigns delivered"
+        },
+        {
+          "value": "20+",
+          "label": "PDP, PLP, Cart and Checkout features shipped, including multiple shipments in one basket"
         }
       ],
       "availabilityNote": "Available for SDE roles and selected consulting",
       "floatingTech": [
         {
-          "name": "Salesforce",
-          "logo": "/assets/images/technologies/salesforce.svg",
+          "name": "Salesforce Commerce Cloud",
+          "logo": "/assets/images/technologies/sfcc-commerce-cloud.png",
           "color": "#00A1E0",
-          "side": "left"
+          "side": "left",
+          "showName": false,
+          "fullColor": true
         },
         {
           "name": "Node.js",
@@ -57,10 +63,11 @@
         },
         {
           "name": "Java",
-          "logo": "/assets/images/technologies/java.svg",
+          "logo": "/assets/images/technologies/java-logo.png",
           "color": "#E76F00",
           "side": "right",
-          "layout": "stacked"
+          "layout": "stacked",
+          "fullColor": true
         },
         {
           "name": "Spring Boot",
@@ -79,6 +86,31 @@
           "logo": "/assets/images/technologies/payments.svg",
           "color": "#4F5FE8",
           "side": "right"
+        },
+        {
+          "name": "AI / LLMs",
+          "logo": "/assets/images/technologies/ai-llms.svg",
+          "color": "#8B5CF6",
+          "side": "right",
+          "fullColor": true,
+          "size": "icon"
+        },
+        {
+          "name": "MySQL",
+          "logo": "/assets/images/technologies/mysql-logo.png",
+          "color": "#00758F",
+          "side": "left",
+          "showName": false,
+          "fullColor": true,
+          "size": "wide"
+        },
+        {
+          "name": "MongoDB",
+          "logo": "/assets/images/technologies/mongodb-logo.svg",
+          "color": "#47A248",
+          "side": "left",
+          "fullColor": true,
+          "size": "tall"
         }
       ]
     },
