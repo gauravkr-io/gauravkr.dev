@@ -167,7 +167,9 @@ collections:
               - { label: Brand mark letter, name: brandMark, widget: string }
               - { label: Logo tile, name: logoImage, widget: image, media_folder: /assets/images/logos, public_folder: /assets/images/logos }
               - { label: Logo mark for the light theme, name: logoMarkLight, widget: image, media_folder: /assets/images/logos, public_folder: /assets/images/logos }
+              - { label: Logo mark for the dark theme, name: logoMarkDark, widget: image, media_folder: /assets/images/logos, public_folder: /assets/images/logos }
               - { label: Logo wordmark, name: logoWordmark, widget: image, media_folder: /assets/images/logos, public_folder: /assets/images/logos }
+              - { label: Text under the logo, name: brandTagline, widget: string, required: false, hint: 'Shown in small text beneath the logo in the header, the menu and the footer. Leave empty for none.' }
               - { label: Domain, name: domain, widget: string, hint: 'For example gauravkr.dev' }
               - { label: Site address, name: url, widget: string, pattern: ['^https://[^/\s]+$', 'An https address with no slash at the end.'], hint: 'Used in the sitemap, the feed and link previews.' }
               - { label: Job title, name: title, widget: string }

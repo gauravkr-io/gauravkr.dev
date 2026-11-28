@@ -175,6 +175,7 @@ async function validateSite(root, errors) {
     return;
   }
   for (const field of ['name', 'domain', 'title', 'summary', 'location', 'tagline']) need(errors, file, 'site', site, field, 'string');
+  if (site.brandTagline !== undefined) need(errors, file, 'site', site, 'brandTagline', 'string');
   if (need(errors, file, 'site', site, 'url', 'string')) {
     if (!/^https:\/\/[^/\s]+$/.test(site.url)) errors.push(`${file}: site: "url" must be an https address with no trailing slash, for example https://gauravkr.dev`);
     else if (typeof site.domain === 'string' && new URL(site.url).hostname !== site.domain) errors.push(`${file}: site: "url" (${site.url}) and "domain" (${site.domain}) do not match`);
@@ -207,7 +208,7 @@ async function validateSite(root, errors) {
       }
     }
   }
-  for (const field of ['logoImage', 'logoWordmark']) {
+  for (const field of ['logoImage', 'logoMarkLight', 'logoMarkDark', 'logoWordmark']) {
     if (typeof site[field] === 'string' && !(await exists(join(root, site[field])))) errors.push(`${file}: site: ${field} file is missing: ${site[field]}`);
   }
   const photo = site.profileImage?.src?.split('?')[0];

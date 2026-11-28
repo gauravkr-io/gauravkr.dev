@@ -935,3 +935,67 @@
 .site-header__resume svg {
   flex: none;
 }
+
+/* --------------------------------------------------------------------------
+   Logo with text under it: the mark sits centred above a short line of text
+   -------------------------------------------------------------------------- */
+
+.brand {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+}
+
+.brand__logos {
+  display: inline-flex;
+  align-items: center;
+}
+
+.brand__tagline {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  color: var(--hg-chip);
+  white-space: nowrap;
+}
+
+.site-header .brand {
+  gap: 0.15rem;
+}
+
+/* The extra line must not make the pill noticeably taller on small screens */
+@media (max-width: 63.99rem) {
+  .site-header__inner {
+    padding-block: 0.3rem;
+  }
+
+  .site-header .brand {
+    padding-block: 0;
+  }
+
+  .brand__tagline {
+    line-height: 1.1;
+  }
+}
+
+@media (min-width: 64rem) {
+  .site-header .brand {
+    gap: calc(3 * var(--u));
+  }
+
+  .brand__tagline {
+    font-size: max(0.625rem, calc(11 * var(--u)));
+  }
+}
+
+/* One mark per theme, at the same size. The dark mark is hidden on light and shown on dark. */
+[data-theme="light"] .brand__logo--mark-dark {
+  display: none;
+}
+
+[data-theme="dark"] .brand__logo--mark-dark {
+  display: block;
+}
+

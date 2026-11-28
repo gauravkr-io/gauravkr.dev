@@ -32,17 +32,22 @@ function maskIcon(path, label) {
   );
 }
 
-/** Logo tile plus the domain as text, with the TLD picked out in the accent. */
+/**
+ * The logo with a short line of text under it. The text comes from site.brandTagline.
+ * Each theme shows the same mark at the same size. The square tile is only the
+ * fallback for the dark theme when no dark mark is set.
+ */
 function brandMark(site) {
-  const cut = site.domain.lastIndexOf('.');
-  const name = cut > 0 ? site.domain.slice(0, cut) : site.domain;
-  const tld = cut > 0 ? site.domain.slice(cut) : '';
   return html`
-    <img class="brand__logo brand__logo--tile" src="${site.logoImage}" alt="" aria-hidden="true" width="512" height="512" />
-    ${site.logoMarkLight
-      ? html`<img class="brand__logo brand__logo--mark" src="${site.logoMarkLight}" alt="" aria-hidden="true" width="419" height="278" />`
-      : ''}
-    <span class="brand__text">${name}<span class="brand__tld">${tld}</span></span>
+    <span class="brand__logos">
+      ${site.logoMarkDark
+        ? html`<img class="brand__logo brand__logo--mark brand__logo--mark-dark" src="${site.logoMarkDark}" alt="" aria-hidden="true" width="419" height="278" />`
+        : html`<img class="brand__logo brand__logo--tile" src="${site.logoImage}" alt="" aria-hidden="true" width="512" height="512" />`}
+      ${site.logoMarkLight
+        ? html`<img class="brand__logo brand__logo--mark brand__logo--mark-light" src="${site.logoMarkLight}" alt="" aria-hidden="true" width="419" height="278" />`
+        : ''}
+    </span>
+    ${site.brandTagline ? html`<span class="brand__tagline">${site.brandTagline}</span>` : ''}
   `;
 }
 
