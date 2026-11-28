@@ -1,0 +1,10 @@
+{
+  "videosMeta": {
+    "eyebrow": "Videos",
+    "headline": "Walkthroughs and talks",
+    "intro": "Short walkthroughs of the systems and ideas I write about. A video loads only when you press play.",
+    "playLabel": "Play video",
+    "emptyMessage": "The first videos are on their way."
+  },
+  "videos": []
+}

@@ -141,6 +141,38 @@ export async function getPost(slug) {
 }
 
 /* -------------------------------------------------------------------------
+   Videos
+   ------------------------------------------------------------------------- */
+
+/** A YouTube video id is exactly eleven letters, digits, hyphens or underscores. */
+export const YOUTUBE_ID = /^[A-Za-z0-9_-]{11}$/;
+
+export async function getVideos() {
+  const payload = await fetchJson('videos.json');
+  const videos = visibleEntries(payload.videos)
+    .filter((video) => {
+      const valid = YOUTUBE_ID.test(video.youtubeId ?? '');
+      if (!valid) console.warn(`[videos] skipped "${video.title}": invalid YouTube id`);
+      return valid;
+    })
+    // Within the same order value, newest first.
+    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0) || String(b.date).localeCompare(String(a.date)));
+  return { meta: payload.videosMeta, videos };
+}
+
+/* -------------------------------------------------------------------------
+   Links
+   ------------------------------------------------------------------------- */
+
+export async function getLinks() {
+  const payload = await fetchJson('links.json');
+  const groups = visibleEntries(payload.groups)
+    .map((group) => ({ ...group, links: visibleEntries(group.links) }))
+    .filter((group) => group.links.length > 0);
+  return { meta: payload.linksMeta, groups };
+}
+
+/* -------------------------------------------------------------------------
    Courses
    ------------------------------------------------------------------------- */
 

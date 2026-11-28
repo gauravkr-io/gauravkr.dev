@@ -20,7 +20,9 @@ const PAGE_CONTROLLERS = {
   'blog-post': () => import('./render-blogs.js').then((module) => module.initBlogPostPage()),
   courses: () => import('./render-courses.js').then((module) => module.initCoursesPage()),
   'course-detail': () => import('./render-courses.js').then((module) => module.initCourseDetailPage()),
-  contact: () => import('./render-contact.js').then((module) => module.initContactPage())
+  contact: () => import('./render-contact.js').then((module) => module.initContactPage()),
+  videos: () => import('./render-videos.js').then((module) => module.initVideosPage()),
+  links: () => import('./render-links.js').then((module) => module.initLinksPage())
 };
 
 /**
@@ -52,7 +54,8 @@ async function start() {
   initPageTransitions();
 
   try {
-    await renderChrome();
+    // The links page is a bare landing page, so it skips the header and footer.
+    if (document.body.dataset.chrome !== 'none') await renderChrome();
 
     const page = document.body.dataset.page;
     const controller = PAGE_CONTROLLERS[page];
@@ -63,6 +66,7 @@ async function start() {
 
   initScrollReveal();
   refreshScrollReveal();
+
 }
 
 onReady(start);

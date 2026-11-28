@@ -1,0 +1,96 @@
+{
+  "linksMeta": {
+    "title": "Links",
+    "description": "Where to find Gaurav Kumar online: writing, videos, courses, résumé and contact."
+  },
+  "groups": [
+    {
+      "id": "connect",
+      "title": "Connect",
+      "visible": true,
+      "order": 1,
+      "links": [
+        {
+          "label": "LinkedIn",
+          "description": "Professional profile and updates",
+          "url": "https://linkedin.com/in/gauravkr-io",
+          "icon": "/assets/images/technologies/linkedin.svg",
+          "visible": true,
+          "order": 1
+        },
+        {
+          "label": "GitHub",
+          "description": "Code and open projects",
+          "url": "https://github.com/gauravkr-io",
+          "icon": "/assets/images/technologies/github.svg",
+          "visible": true,
+          "order": 2
+        },
+        {
+          "label": "Email",
+          "description": "Send me the details",
+          "url": "mailto:gauravkr0897@gmail.com",
+          "icon": "mail",
+          "visible": true,
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": "explore",
+      "title": "Read and watch",
+      "visible": true,
+      "order": 2,
+      "links": [
+        {
+          "label": "Blog",
+          "description": "Notes from inside real systems",
+          "url": "/pages/blogs.html",
+          "icon": "create",
+          "visible": true,
+          "order": 1
+        },
+        {
+          "label": "Videos",
+          "description": "Walkthroughs and talks",
+          "url": "/pages/videos.html",
+          "icon": "arrowUpRight",
+          "visible": false,
+          "order": 2
+        },
+        {
+          "label": "Courses",
+          "description": "Practical courses, in development",
+          "url": "/pages/courses.html",
+          "icon": "layers",
+          "visible": true,
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": "more",
+      "title": "Work with me",
+      "visible": true,
+      "order": 3,
+      "links": [
+        {
+          "label": "Download résumé",
+          "description": "PDF, one page",
+          "url": "/resume/Gaurav_Kumar_Resume.pdf",
+          "icon": "download",
+          "visible": true,
+          "order": 1
+        },
+        {
+          "label": "Start a conversation",
+          "description": "Roles and consulting",
+          "url": "/pages/contact.html",
+          "icon": "arrowRight",
+          "visible": true,
+          "order": 2
+        }
+      ]
+    }
+  ]
+}
