@@ -1,0 +1,240 @@
+# Browser editor for gauravkr.dev, served at /admin
+#
+# Edits are saved as commits to the repository, and Cloudflare rebuilds the
+# site from them. Sign-in goes through your own Cloudflare Worker. No secret
+# lives in this file or anywhere in the repository. Setup steps are in
+# ai-context/editor-setup.md.
+
+backend:
+  name: github
+  repo: gauravkr-io/gauravkr.dev
+  branch: main
+  # Replace with the address of your deployed sign-in Worker (no trailing slash).
+  base_url: https://sveltia-cms-auth.REPLACE-WITH-YOUR-SUBDOMAIN.workers.dev
+  commit_messages:
+    create: 'Add {{collection}} "{{slug}}"'
+    update: 'Update {{collection}} "{{slug}}"'
+    delete: 'Remove {{collection}} "{{slug}}"'
+    uploadMedia: 'Add image "{{path}}"'
+    deleteMedia: 'Remove image "{{path}}"'
+
+site_url: https://gauravkr.dev
+display_url: https://gauravkr.dev
+logo_url: https://gauravkr.dev/assets/images/icons/favicon.png
+locale: en
+publish_mode: simple
+
+media_folder: assets/images
+public_folder: /assets/images
+
+collections:
+  # ---------------------------------------------------------------- Blog posts
+  - name: posts
+    label: Blog posts
+    label_singular: Blog post
+    folder: content/posts
+    extension: md
+    format: frontmatter
+    create: true
+    # The file name is the web address: /blogs/<file name>/
+    slug: '{{slug}}'
+    summary: '{{title}} ({{date}})'
+    sortable_fields: [date, title]
+    view_filters:
+      - { label: Drafts, field: draft, pattern: true }
+      - { label: Hidden, field: visible, pattern: false }
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Subtitle, name: subtitle, widget: string, required: false, hint: 'One line under the title on the post page.' }
+      - { label: Summary, name: summary, widget: text, hint: 'Shown on cards, in link previews and in the RSS feed. One or two sentences.' }
+      - label: Category
+        name: category
+        widget: select
+        options: [E-Commerce, Backend, System Design, Performance, AI Engineering]
+        hint: 'Must match a category in Site settings, Blog page text. Add new ones there first.'
+      - { label: Tags, name: tags, widget: list, hint: 'At least one.' }
+      - { label: Date, name: date, widget: datetime, date_format: 'YYYY-MM-DD', time_format: false, format: 'YYYY-MM-DD', picker_utc: true, hint: 'A date in the future keeps the post off the live site until that day.' }
+      - { label: Cover image, name: coverImage, widget: image, media_folder: /assets/images/blogs, public_folder: /assets/images/blogs }
+      - { label: Reading time, name: readingTime, widget: string, required: false, hint: 'Leave empty to work it out from the word count. Example: 7 min read' }
+      - { label: Author, name: author, widget: string, default: Gaurav Kumar }
+      - { label: Featured, name: featured, widget: boolean, default: false }
+      - { label: Visible, name: visible, widget: boolean, default: true }
+      - { label: Draft, name: draft, widget: boolean, default: true, hint: 'Turn this off to publish. A draft never appears on the live site.' }
+      - label: Related posts
+        name: relatedPosts
+        widget: relation
+        collection: posts
+        search_fields: [title]
+        value_field: '{{slug}}'
+        display_fields: [title]
+        multiple: true
+        required: false
+      - { label: Show table of contents, name: toc, widget: boolean, default: true, required: false }
+      - label: Body
+        name: body
+        widget: markdown
+        hint: 'Start headings at ##. Callouts: a line ":::note Title" or ":::warning Title", your text, then a line ":::". Diagrams: a code block marked mermaid. Pull quote: finish with a line "-- Name".'
+
+  # -------------------------------------------------------------------- Videos
+  - name: videos
+    label: Videos
+    files:
+      - name: videos
+        label: Videos page
+        file: data/videos.json
+        format: json
+        fields:
+          - label: Page text
+            name: videosMeta
+            widget: object
+            fields:
+              - { label: Small heading, name: eyebrow, widget: string }
+              - { label: Headline, name: headline, widget: string }
+              - { label: Introduction, name: intro, widget: text }
+              - { label: Play button label, name: playLabel, widget: string }
+              - { label: Message when there are no videos, name: emptyMessage, widget: string }
+          - label: Videos
+            name: videos
+            widget: list
+            label_singular: video
+            summary: '{{fields.title}}'
+            fields:
+              - { label: Title, name: title, widget: string }
+              - label: YouTube ID
+                name: youtubeId
+                widget: string
+                pattern: ['^[A-Za-z0-9_-]{11}$', 'Use the 11 character ID from the link, for example dQw4w9WgXcQ. Not the whole address.']
+                hint: 'In youtube.com/watch?v=ABC123def45 the ID is ABC123def45.'
+              - { label: Description, name: description, widget: text }
+              - { label: Tags, name: tags, widget: list, default: [] }
+              - { label: Date, name: date, widget: datetime, date_format: 'YYYY-MM-DD', time_format: false, format: 'YYYY-MM-DD', picker_utc: true }
+              - { label: Visible, name: visible, widget: boolean, default: true }
+              - { label: Order, name: order, widget: number, value_type: int, default: 1, hint: 'Lower numbers first. Videos with the same number show newest first.' }
+
+  # --------------------------------------------------------------------- Links
+  - name: links
+    label: Links page
+    files:
+      - name: links
+        label: Links page (the page for your social bio)
+        file: data/links.json
+        format: json
+        fields:
+          - label: Page text
+            name: linksMeta
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+          - label: Groups
+            name: groups
+            widget: list
+            label_singular: group
+            summary: '{{fields.title}}'
+            fields:
+              - { label: Group ID, name: id, widget: string, pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', 'Lower-case words joined by hyphens.'], hint: 'Used internally. Keep it short and never repeat it.' }
+              - { label: Heading, name: title, widget: string }
+              - { label: Visible, name: visible, widget: boolean, default: true }
+              - { label: Order, name: order, widget: number, value_type: int, default: 1 }
+              - label: Links
+                name: links
+                widget: list
+                label_singular: link
+                summary: '{{fields.label}}'
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - { label: Short description, name: description, widget: string, required: false }
+                  - { label: Address, name: url, widget: string, pattern: ['^(https?://|mailto:|/)', 'Start with https://, mailto: or / for a page on this site.'], hint: 'A page on this site starts with /, for example /pages/blogs.html' }
+                  - { label: Icon, name: icon, widget: string, required: false, hint: 'An icon name such as mail, download, create, layers, arrowRight, or an image path such as /assets/images/technologies/github.svg' }
+                  - { label: Visible, name: visible, widget: boolean, default: true }
+                  - { label: Order, name: order, widget: number, value_type: int, default: 1 }
+
+  # ------------------------------------------------------------ Site settings
+  - name: settings
+    label: Site settings
+    files:
+      - name: site
+        label: Site details
+        file: data/site.json
+        format: json
+        fields:
+          - label: Site
+            name: site
+            widget: object
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Brand word, name: brand, widget: string }
+              - { label: Brand mark letter, name: brandMark, widget: string }
+              - { label: Logo tile, name: logoImage, widget: image, media_folder: /assets/images/logos, public_folder: /assets/images/logos }
+              - { label: Logo mark for the light theme, name: logoMarkLight, widget: image, media_folder: /assets/images/logos, public_folder: /assets/images/logos }
+              - { label: Logo wordmark, name: logoWordmark, widget: image, media_folder: /assets/images/logos, public_folder: /assets/images/logos }
+              - { label: Domain, name: domain, widget: string, hint: 'For example gauravkr.dev' }
+              - { label: Site address, name: url, widget: string, pattern: ['^https://[^/\s]+$', 'An https address with no slash at the end.'], hint: 'Used in the sitemap, the feed and link previews.' }
+              - { label: Job title, name: title, widget: string }
+              - { label: Short job title, name: shortTitle, widget: string }
+              - { label: Tagline, name: tagline, widget: string }
+              - { label: Summary, name: summary, widget: text }
+              - { label: Location, name: location, widget: string }
+              - { label: Availability, name: availability, widget: string }
+              - { label: Default theme, name: defaultTheme, widget: select, options: [dark, light] }
+              - { label: Resume file, name: resumeUrl, widget: string, hint: 'For example /resume/Gaurav_Kumar_Resume.pdf' }
+              - { label: Resume download name, name: resumeFileName, widget: string }
+              - label: Contact
+                name: contact
+                widget: object
+                fields:
+                  - { label: Email, name: email, widget: string }
+              - label: Social links
+                name: socialLinks
+                widget: list
+                label_singular: link
+                summary: '{{fields.label}}'
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - { label: Handle, name: handle, widget: string }
+                  - { label: Address, name: url, widget: string }
+                  - { label: Icon, name: icon, widget: string }
+                  - { label: Visible, name: visible, widget: boolean, default: true }
+              - label: Profile photo
+                name: profileImage
+                widget: object
+                fields:
+                  - { label: Main image, name: src, widget: string }
+                  - { label: Sizes, name: srcset, widget: text }
+                  - { label: Description for screen readers, name: alt, widget: string }
+              - { label: Identity words, name: identityPillars, widget: list }
+              - label: Footer
+                name: footer
+                widget: object
+                fields:
+                  - { label: Note, name: note, widget: text }
+                  - { label: Copyright name, name: copyright, widget: string }
+
+      - name: navigation
+        label: Navigation (turn pages on or off)
+        file: data/navigation.json
+        format: json
+        fields:
+          - label: Menu items
+            name: navigation
+            widget: list
+            label_singular: item
+            summary: '{{fields.label}}'
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: Page, name: path, widget: string, hint: 'For example /pages/videos.html' }
+              - { label: Visible, name: visible, widget: boolean, default: true }
+
+      - name: blogs
+        label: Blog page text and categories
+        file: data/blogs/blogs-meta.json
+        format: json
+        fields:
+          - label: Page text
+            name: blogsMeta
+            widget: object
+            fields:
+              - { label: Small heading, name: eyebrow, widget: string }
+              - { label: Headline, name: headline, widget: string }
+              - { label: Introduction, name: intro, widget: text }
+          - { label: Categories, name: categories, widget: list, hint: 'Keep "All" first. A post can only use a category listed here.' }

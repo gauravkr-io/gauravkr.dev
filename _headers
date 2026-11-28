@@ -14,3 +14,8 @@
 # Images change rarely and a stale one is harmless.
 /assets/images/*
   Cache-Control: public, max-age=86400
+
+/admin/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
+  Referrer-Policy: same-origin

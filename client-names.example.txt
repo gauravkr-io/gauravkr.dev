@@ -1,0 +1,8 @@
+# Names that must never appear on the site, one per line.
+#
+# Copy this file to client-names.local.txt and list the end clients and
+# project names you must not publish. The local file is ignored by git, so the
+# names themselves never enter the repository. Matching is case-insensitive and
+# whole-word. Lines that start with # are comments.
+#
+# Employer names are fine to publish and do not belong here.
