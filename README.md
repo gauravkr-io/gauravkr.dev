@@ -1,6 +1,6 @@
 # Gaurav Kumar, personal website
 
-Personal site for Gaurav Kumar, an E-Commerce Specialist and Software Engineer working on
+Personal site for Gaurav Kumar, a Senior Software Engineer building e-commerce platforms on
 Salesforce Commerce Cloud and backend systems. The site serves three audiences at once: hiring
 teams at product companies, prospective consulting clients, and developers reading the technical
 writing.

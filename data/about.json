@@ -3,7 +3,7 @@
     "eyebrow": "About",
     "headline": "Five years turning commerce requirements into systems that hold",
     "intro": [
-      "I am Gaurav Kumar, an E-Commerce Specialist and Software Engineer based in Bangalore. For the last five years I have worked almost entirely inside Salesforce Commerce Cloud, on the parts of a storefront where mistakes are expensive: product discovery, cart, checkout, payments and order flow.",
+      "I am Gaurav Kumar, a Senior Software Engineer based in Bangalore, specialising in e-commerce platforms. For the last five years I have worked almost entirely inside Salesforce Commerce Cloud, on the parts of a storefront where mistakes are expensive: product discovery, cart, checkout, payments and order flow.",
       "That work taught me something narrow but useful. A commerce platform is not really a website. It is a distributed system with a shopping interface attached, and most of the hard problems live in the integrations, the API contracts and the paths users hit under load.",
       "Alongside the e-commerce work I build backend and distributed systems in Java and Spring Boot, and I design for scale rather than for demos. E-commerce is the specialisation. Backend and systems engineering is the range around it."
     ],

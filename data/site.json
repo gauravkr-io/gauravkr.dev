@@ -10,7 +10,7 @@
     "brandTagline": "Learn.Build.Scale",
     "domain": "gauravkr.dev",
     "url": "https://gauravkr.dev",
-    "title": "Senior Software Engineer & E-Commerce Specialist",
+    "title": "Senior Software Engineer, E-Commerce Platforms (SFCC)",
     "shortTitle": "Software Engineer",
     "tagline": "Engineering E-Commerce Built for Scale, Sharpened by AI.",
     "summary": "Backend engineer for high-traffic commerce, from cart and checkout to payments, fraud checks and OCAPI/SCAPI middleware. 5+ years on Salesforce Commerce Cloud, now growing into headless commerce and AI backend engineering.",
@@ -49,7 +49,7 @@
     "profileImage": {
       "src": "/assets/images/profile/gaurav-kumar.jpg?v=2",
       "srcset": "/assets/images/profile/gaurav-kumar-480.jpg?v=2 480w, /assets/images/profile/gaurav-kumar-720.jpg?v=2 720w, /assets/images/profile/gaurav-kumar-960.jpg?v=2 960w",
-      "alt": "Gaurav Kumar, E-Commerce Specialist and Software Engineer"
+      "alt": "Gaurav Kumar, Senior Software Engineer for e-commerce platforms"
     },
     "identityPillars": ["Engineer", "Architect", "Builder", "Problem Solver"],
     "footer": {

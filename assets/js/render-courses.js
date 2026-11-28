@@ -208,7 +208,7 @@ function courseAside(course, related) {
     <div class="aside-card" data-reveal>
       <p class="aside-card__title">Instructor</p>
       <p class="credential__name">Gaurav Kumar</p>
-      <p class="credential__issuer">E-Commerce Specialist &amp; Software Engineer</p>
+      <p class="credential__issuer">Senior Software Engineer, E-Commerce Platforms (SFCC)</p>
       <p class="credential__note">
         Five years building Salesforce Commerce Cloud platforms and backend systems for global
         retail brands. The course material comes from that production work.
