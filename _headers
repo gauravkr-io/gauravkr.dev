@@ -1,15 +1,15 @@
 /data/*
   Cache-Control: public, max-age=60, must-revalidate
 
-# Stylesheets and scripts keep the same file names between deploys, so they are
-# checked on every visit. The server answers "unchanged" for files that are,
-# which is cheap, and a deploy shows up straight away. A year of caching on
-# these names would leave returning visitors on old code.
+# The build adds ?v=<hash of the files> to every stylesheet and script address,
+# and fails if it finds one without it (see scripts/build.mjs). The address
+# changes whenever the code changes, so these can be cached for a year without
+# anyone ever seeing old code.
 /assets/css/*
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=31536000, immutable
 
 /assets/js/*
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=31536000, immutable
 
 # Images change rarely and a stale one is harmless.
 /assets/images/*
@@ -19,3 +19,16 @@
   X-Robots-Tag: noindex, nofollow
   Cache-Control: no-store
   Referrer-Policy: same-origin
+
+# Visiting /clear-cache/ tells the browser to drop its saved copy of the site.
+# Only the cache is cleared, so the theme choice is kept. Chrome and Edge honour
+# it. Safari and Firefox ignore it.
+/clear-cache
+  Clear-Site-Data: "cache"
+  Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow
+
+/clear-cache/*
+  Clear-Site-Data: "cache"
+  Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow

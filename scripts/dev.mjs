@@ -11,7 +11,7 @@ import { serve } from './preview.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const port = Number(process.argv[2] ?? 8000);
-const WATCHED = ['content', 'data', 'assets', 'pages', 'links', 'admin', 'templates', 'scripts', 'index.html', '_headers', '_redirects'];
+const WATCHED = ['content', 'data', 'assets', 'pages', 'links', 'clear-cache', 'admin', 'templates', 'scripts', 'index.html', '_headers', '_redirects'];
 
 let running = false;
 let queued = false;

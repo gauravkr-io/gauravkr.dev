@@ -22,6 +22,7 @@ export function buildRobots(site) {
     'Allow: /',
     'Disallow: /pages/blog-post.html',
     'Disallow: /admin/',
+    'Disallow: /clear-cache/',
     '',
     `Sitemap: ${site.url}/sitemap.xml`,
     ''

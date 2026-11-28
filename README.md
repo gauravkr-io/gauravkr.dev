@@ -159,6 +159,22 @@ Every collection supports `visible` and `order`. Setting `visible` to `false` re
 the page without deleting it. On a navigation item it removes the link from the header, the mobile
 menu and the footer.
 
+## Cache busting and clearing the cache
+
+Browsers keep copies of stylesheets and scripts, and an old copy can make a new deploy look broken.
+The build prevents this. It adds a version taken from the file contents to every stylesheet and
+script address, for example `main.js?v=3fa9c1d2e4`, in the pages and in the scripts' own imports.
+Any change to any of those files produces a new version, so a browser can never reuse an old copy,
+and the files can safely be cached for a year. The build fails if it finds an address it could not
+version. View the page source of a built page to see the versions.
+
+- **While working,** the dev server sends no-cache headers, so a normal refresh is enough. If a page
+  still looks old, do a hard refresh with Ctrl+Shift+R, or Cmd+Shift+R on a Mac.
+- **On the live site,** visiting `/clear-cache/` asks the browser to drop its saved copy of the
+  site and then sends you to the home page. Only the cache is cleared, so the theme choice is kept.
+  Chrome and Edge honour the request. Safari and Firefox ignore it, so use a hard refresh there.
+  The page is kept out of search and out of the sitemap.
+
 ## Visitor analytics
 
 Cloudflare Web Analytics is built in and switched off. To turn it on:
@@ -180,6 +196,7 @@ the path from `data/site.json`. To use a different filename, update `resumeUrl` 
 index.html        homepage shell, no content
 pages/            every other page shell, plus the old post address that forwards to the new one
 links/            the links page
+clear-cache/      the page that asks the browser to drop its saved copy
 admin/            the browser editor
 content/posts/    blog posts in Markdown
 data/             all other content as JSON
@@ -205,8 +222,8 @@ Connect the repository and use these settings.
 | Build output directory | `dist` |
 | Node version | 22, set by the `.node-version` file |
 
-No environment variables or secrets are needed for the site. `_headers` sets caching and keeps
-`/admin` out of search. `_redirects` forwards `/blogs` to the blog page.
+No environment variables or secrets are needed for the site. `_headers` sets caching, makes
+`/clear-cache/` clear the browser cache, and keeps `/admin` out of search. `_redirects` forwards `/blogs` to the blog page.
 
 After the first deploy, paste a post address into LinkedIn's Post Inspector to check the preview
 card, and submit `https://gauravkr.dev/sitemap.xml` in Google Search Console.

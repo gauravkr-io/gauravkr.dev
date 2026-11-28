@@ -29,8 +29,10 @@ Run `npm run dev` to work on it and `npm run check` before you finish.
   `raw`, never a bare string that was assembled by hand.
 - **Serving.** The site needs HTTP, and posts need a build. Use `npm run dev`. Opening files from
   disk fails because `fetch` is blocked on `file://`.
-- **Caching.** CSS and JS keep their names between deploys, so they are revalidated on every visit.
-  Do not give them a long immutable cache.
+- **Caching.** The build adds `?v=<hash>` to every CSS and JS address, so `_headers` can cache them
+  for a year. Reference assets with a plain `/assets/css/...` or `/assets/js/...` path in HTML and a
+  relative path in script imports, and never use `@import` in CSS. The build fails on any reference
+  it cannot version.
 - **Locked assets.** The hero backdrop files are approved and must not be redrawn or recompressed.
 - **Client confidentiality.** End-client and project names must never appear on the site. See
   [instructions.md](instructions.md).

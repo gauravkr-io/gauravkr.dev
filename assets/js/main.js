@@ -23,7 +23,8 @@ const PAGE_CONTROLLERS = {
   'course-detail': () => import('./render-courses.js').then((module) => module.initCourseDetailPage()),
   contact: () => import('./render-contact.js').then((module) => module.initContactPage()),
   videos: () => import('./render-videos.js').then((module) => module.initVideosPage()),
-  links: () => import('./render-links.js').then((module) => module.initLinksPage())
+  links: () => import('./render-links.js').then((module) => module.initLinksPage()),
+  'clear-cache': () => import('./render-clear-cache.js').then((module) => module.initClearCachePage())
 };
 
 /**

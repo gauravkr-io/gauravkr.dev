@@ -37,6 +37,7 @@ admin/config.yml ────┘          |
    write dist/blogs/<slug>/index.html                (one static page per post)
    write dist/assets/images/og/<slug>.jpg            (1200 x 630 link preview)
    write dist/sitemap.xml, rss.xml, robots.txt
+   add ?v=<hash of the CSS and JS> to every stylesheet and script address, and fail on any left out
 ```
 
 `validate` runs first and the build stops if it finds anything. A failed rebuild in the dev server
@@ -113,6 +114,7 @@ slug shows a "Post not found" state and never redirects.
 | `render-technologies.js` | Technology stack grid |
 | `render-contact.js` | Contact page and form validation |
 | `analytics.js` | Loads the Cloudflare beacon when enabled |
+| `render-clear-cache.js` | The `/clear-cache/` page |
 | `main.js` | Bootstrap and page dispatch |
 
 ## Security in the render layer
@@ -160,8 +162,12 @@ does not know, because saving in the editor could drop it.
   would be the next step if search visibility for them matters.
 - **Posts need a build.** Adding a post means running the build, which Cloudflare does on every
   commit. The dev server rebuilds on save.
-- **Unfingerprinted asset names.** CSS and JS keep their names between deploys, so `_headers`
-  revalidates them on every visit rather than caching them for a year.
+- **Versioned, not renamed, assets.** CSS and JS keep their file names. The build adds `?v=<hash>` to
+  every reference, in the pages and in the scripts' imports, and fails if one is missed. That is what
+  makes the year-long cache in `_headers` safe. A reference built by hand at runtime would escape the
+  versioning, so do not write one.
+- **Clearing the cache by address.** `/clear-cache/` sends `Clear-Site-Data: "cache"`. Chrome and
+  Edge honour it. Safari and Firefox do not.
 - **Scheduled posts need a rebuild.** A future date takes effect on the first build on or after it.
 - **Detail pages for services and courses** still use `?slug=` and are not in the sitemap.
 - **Three CDN dependencies at runtime**, fonts, the Bootstrap grid and mermaid. All could be vendored

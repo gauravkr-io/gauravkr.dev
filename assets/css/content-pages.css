@@ -292,6 +292,41 @@ body.links-page {
   color: var(--accent-strong);
 }
 
+/* --------------------------------------------------------------------------
+   Notice card, used by the clear cache page
+   -------------------------------------------------------------------------- */
+
+.notice-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 18vh;
+  padding: 2rem 1.5rem;
+  border: var(--border-width) solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  background-color: var(--glass-bg-strong);
+  box-shadow: var(--glass-shadow), var(--glass-highlight);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+}
+
+.notice-card__title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-strong);
+}
+
+.notice-card__text {
+  color: var(--text);
+}
+
+.notice-card__note {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .video-card,
   .video-card__thumb,

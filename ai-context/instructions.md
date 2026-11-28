@@ -57,6 +57,9 @@ This applies to site copy, code comments, commit messages and these documents.
 - **Adding content is a content edit.** A post, a video or a link must never need a code change. If a
   new kind of content would, add the collection, its validation and its editor fields first.
 - **Posts are Markdown with raw HTML switched off.** Do not turn raw HTML back on.
+- **Let the build version assets.** Link stylesheets and scripts with a plain `/assets/css/...` or
+  `/assets/js/...` path, import modules with a relative path, and never use `@import` in CSS. The
+  build adds the cache busting version, and stops if it finds a reference it cannot version.
 - **Validate at build time.** New data needs a check in `scripts/validate.mjs` that names the file
   and the entry. Keep `admin/config.yml` in step, and run `npm run check:admin`.
 - **Locked assets stay untouched.** See [design.md](design.md).

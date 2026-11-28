@@ -1,0 +1,9 @@
+{
+  "clearCache": {
+    "title": "Refreshing your saved copy",
+    "body": "Your browser has been asked to drop the files it saved from this site. You will be taken back to the home page in a moment.",
+    "fallback": "If the site still looks out of date, do a hard refresh. Press Ctrl and Shift and R on Windows or Linux, or Command and Shift and R on a Mac. Safari and Firefox ignore the clearing request, so the hard refresh is the way to go there.",
+    "backLabel": "Back to the site",
+    "redirectAfterMs": 3500
+  }
+}
