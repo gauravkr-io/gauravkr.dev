@@ -9,8 +9,8 @@ Rules that apply to every change in this repository.
 add a field to the relevant JSON file first.
 
 **Never invent professional history.** Employers, titles, dates, metrics, certifications and
-technologies come from the résumé and nowhere else. Do not add a technology to the stack because
-it would look good. If it is not in the résumé, it does not go on the site.
+technologies come from the resume and nowhere else. Do not add a technology to the stack because
+it would look good. If it is not in the resume, it does not go on the site.
 
 The three metrics that are real and may be used: 18% lower cart abandonment, 20% higher checkout
 conversion, 28% better cart-to-checkout.
@@ -18,7 +18,10 @@ conversion, 28% better cart-to-checkout.
 **Never name end clients.** Employer names are fine and expected: Litmus7, Valtech, Merkle
 (Dentsu), Katsam Group. The companies those employers built for are confidential and are described
 by sector instead, for example "a global luxury fashion house" or "a US specialty retailer". This
-applies to every surface: case studies, work history, blog posts and metadata.
+applies to every surface: case studies, work history, blog posts and metadata. Project names are
+confidential too, so describe a project by what it did, not by what it was called. The names to
+block live in `client-names.local.txt`, which git ignores so the names never enter the repository.
+`npm run check:prose` reads that file.
 
 **Demo content must be honest.** The blog posts and courses shipped with the site are written as
 real, useful material rather than filler, but nothing may claim a publication history it does not
@@ -40,6 +43,8 @@ This applies to site copy, code comments, commit messages and these documents.
 
 ## Code
 
+- **The runtime stays vanilla.** A Node build step is allowed as a development tool that produces
+  static files. The browser runs plain HTML, CSS and ES modules. Do not add a framework to the pages.
 - **Build markup with the `html` template.** It escapes interpolated values by default. A helper
   that returns markup must return the result of `html` or `raw`, never a hand-assembled string,
   otherwise nesting it into another template will double-escape it.
@@ -49,6 +54,12 @@ This applies to site copy, code comments, commit messages and these documents.
   page controller.
 - **Respect the visibility contract.** New collections should support a `visible` flag and an
   `order` field, filtered through `visibleEntries` in `data-loader.js`.
+- **Adding content is a content edit.** A post, a video or a link must never need a code change. If a
+  new kind of content would, add the collection, its validation and its editor fields first.
+- **Posts are Markdown with raw HTML switched off.** Do not turn raw HTML back on.
+- **Validate at build time.** New data needs a check in `scripts/validate.mjs` that names the file
+  and the entry. Keep `admin/config.yml` in step, and run `npm run check:admin`.
+- **Locked assets stay untouched.** See [design.md](design.md).
 - **No AI attribution anywhere.** No generated-by comments, banners, metadata or commit trailers.
 - Comments explain why, not what, and only where a reader would otherwise be puzzled.
 
@@ -61,6 +72,8 @@ This applies to site copy, code comments, commit messages and these documents.
 
 ## Before calling a change done
 
+- Run `npm run check`. It validates the content, checks the prose rules and the editor config, and
+  compares every post with its baseline.
 - Check the page in both themes. Neither is an afterthought.
 - Check it at 390px wide with no horizontal scroll.
 - Check it with reduced motion enabled.
