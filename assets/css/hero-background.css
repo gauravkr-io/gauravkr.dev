@@ -1,0 +1,104 @@
+/*
+ * Hero backdrop, light theme.
+ * Colours were sampled from the approved hero mockup. The sky, haze and glow are
+ * layered gradients on the element itself. The grid and hills are pseudo-elements,
+ * and the clouds are a child element so they sit in front of the hills.
+ *
+ * Markup:
+ *   <div class="hero-backdrop"><div class="hero-backdrop__clouds"></div></div>
+ * Keep hero content in a sibling above it (position: relative, z-index: 1).
+ */
+:root {
+  --hero-sky-left: #eef1fd;
+  --hero-sky-mid: #c7d6fb;
+  --hero-sky-right: #8badf8;
+  --hero-edge-top: rgba(117, 166, 242, 0.4);
+  --hero-edge-bottom: rgba(88, 118, 214, 0.5);
+  --hero-grid-line: rgba(255, 255, 255, 0.35);
+  --hero-grid-size: 72px;
+  --hero-clouds-url: url("/assets/images/backgrounds/hero-clouds.webp");
+}
+
+.hero-backdrop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    /* sparkle dots */
+    radial-gradient(circle at 54% 33%, rgba(255, 255, 255, 0.9) 0 2px, transparent 3px),
+    radial-gradient(circle at 63% 21%, rgba(255, 255, 255, 0.8) 0 1.5px, transparent 2.5px),
+    radial-gradient(circle at 22% 49%, rgba(255, 255, 255, 0.7) 0 1.5px, transparent 2.5px),
+    /* bright haze behind the headline */
+    radial-gradient(60% 55% at 14% 52%, rgba(255, 255, 255, 0.75), transparent 70%),
+    /* glow behind the portrait frame */
+    radial-gradient(34% 52% at 76% 48%, rgba(235, 242, 255, 0.85), transparent 72%),
+    /* pale top-left corner and lavender wash across the lower middle */
+    radial-gradient(48% 30% at 0% 0%, rgba(255, 255, 255, 0.4), transparent 72%),
+    radial-gradient(48% 34% at 46% 100%, rgba(214, 208, 254, 0.9), transparent 75%),
+    radial-gradient(34% 36% at 0% 88%, rgba(150, 172, 253, 0.75), transparent 75%),
+    radial-gradient(30% 24% at 56% 72%, rgba(235, 234, 252, 0.8), transparent 75%),
+    radial-gradient(34% 26% at 88% 80%, rgba(206, 200, 253, 0.85), transparent 75%),
+    /* darker edges, top and bottom */
+    linear-gradient(to bottom, var(--hero-edge-top) 0%, transparent 28%, transparent 80%, var(--hero-edge-bottom) 100%),
+    /* sky */
+    linear-gradient(to right, var(--hero-sky-left) 0%, var(--hero-sky-mid) 48%, var(--hero-sky-right) 100%);
+}
+
+/* Faint grid, fades out toward the bottom */
+.hero-backdrop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(var(--hero-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hero-grid-line) 1px, transparent 1px);
+  background-size: var(--hero-grid-size) var(--hero-grid-size);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 45%, transparent 80%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 45%, transparent 80%);
+}
+
+/* Hills along the bottom edge with a lit ridge on the right. Extra width leaves room to drift. */
+.hero-backdrop::after {
+  content: "";
+  position: absolute;
+  left: -3%;
+  right: -3%;
+  bottom: 0;
+  height: 22%;
+  z-index: -1;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1672 207' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='1672' y2='0'%3E%3Cstop offset='.4' stop-color='%23a9b7fb' stop-opacity='0'/%3E%3Cstop offset='.65' stop-color='%237f9df0' stop-opacity='.7'/%3E%3Cstop offset='1' stop-color='%23456dcc' stop-opacity='.95'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='1672' y2='0'%3E%3Cstop offset='.3' stop-color='%238fa6f6' stop-opacity='0'/%3E%3Cstop offset='.55' stop-color='%236f8fe8' stop-opacity='.9'/%3E%3Cstop offset='1' stop-color='%23587fe0' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' x1='0' y1='1' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%236f7fe0'/%3E%3Cstop offset='1' stop-color='%23456dcc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23a)' d='M760 207 C900 175 1000 150 1100 150 C1250 150 1380 130 1500 80 C1580 100 1630 88 1672 82 L1672 207 Z'/%3E%3Cpath fill='url(%23b)' d='M640 207 C800 185 920 148 1050 146 C1150 146 1230 172 1330 190 C1450 205 1560 190 1672 175 L1672 207 Z'/%3E%3Cpath fill='url(%23c)' d='M1240 207 C1330 190 1420 150 1520 118 C1580 100 1630 88 1672 80 L1672 207 Z'/%3E%3Cpath d='M1330 190 C1420 156 1500 124 1560 106 C1600 94 1640 86 1672 80' fill='none' stroke='white' stroke-opacity='.28' stroke-width='9' stroke-linecap='round'/%3E%3Cpath d='M1330 190 C1420 156 1500 124 1560 106 C1600 94 1640 86 1672 80' fill='none' stroke='white' stroke-opacity='.9' stroke-width='2.2' stroke-linecap='round'/%3E%3Cpath d='M1470 207 C1510 168 1550 138 1596 118' fill='none' stroke='white' stroke-opacity='.5' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") center bottom / 100% 100% no-repeat;
+}
+
+/* Cloud layer, above the grid and behind the hills */
+.hero-backdrop__clouds {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -3%;
+  right: -3%;
+  z-index: -2;
+  background: var(--hero-clouds-url) center / cover no-repeat;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-backdrop__clouds {
+    animation: hero-clouds-drift 40s ease-in-out infinite alternate;
+  }
+
+  .hero-backdrop::after {
+    animation: hero-hills-drift 22s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes hero-clouds-drift {
+  from { transform: translateX(-1.5%); }
+  to { transform: translateX(1.5%); }
+}
+
+@keyframes hero-hills-drift {
+  from { transform: translateX(-1%); }
+  to { transform: translateX(1%); }
+}

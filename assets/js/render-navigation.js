@@ -19,6 +19,8 @@ const PARENT_PAGES = {
 
 function activePath() {
   const path = currentPagePath();
+  // Post pages live at /blogs/<slug>/ and share the Blogs entry.
+  if (path.startsWith('/blogs/')) return '/pages/blogs.html';
   return PARENT_PAGES[path] ?? path;
 }
 
@@ -28,6 +30,20 @@ function maskIcon(path, label) {
     `<span class="icon-mask" role="img" aria-label="${escapeHtml(label)}" ` +
       `style="-webkit-mask-image:url('${safePath}');mask-image:url('${safePath}')"></span>`
   );
+}
+
+/** Logo tile plus the domain as text, with the TLD picked out in the accent. */
+function brandMark(site) {
+  const cut = site.domain.lastIndexOf('.');
+  const name = cut > 0 ? site.domain.slice(0, cut) : site.domain;
+  const tld = cut > 0 ? site.domain.slice(cut) : '';
+  return html`
+    <img class="brand__logo brand__logo--tile" src="${site.logoImage}" alt="" aria-hidden="true" width="512" height="512" />
+    ${site.logoMarkLight
+      ? html`<img class="brand__logo brand__logo--mark" src="${site.logoMarkLight}" alt="" aria-hidden="true" width="419" height="278" />`
+      : ''}
+    <span class="brand__text">${name}<span class="brand__tld">${tld}</span></span>
+  `;
 }
 
 function socialLinks(site, extraClass = '') {
@@ -55,7 +71,7 @@ function headerMarkup(site, navigation, active) {
   return html`
     <div class="shell site-header__inner">
       <a class="brand" href="/" aria-label="${site.name}, home">
-        <img class="brand__logo" src="${site.logoWordmark}" alt="" aria-hidden="true" width="900" height="210" />
+        ${brandMark(site)}
       </a>
 
       <nav class="site-nav" aria-label="Primary">
@@ -78,7 +94,7 @@ function headerMarkup(site, navigation, active) {
       <div class="site-header__actions">
         <a class="btn btn--secondary btn--sm site-header__resume" href="${site.resumeUrl}" download>
           ${iconRaw('download', { size: 16 })}
-          <span>Résumé</span>
+          <span>${site.resumeLabel ?? 'Résumé'}</span>
         </a>
         <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
           ${raw(icon('sun', { size: 18, className: 'theme-toggle__icon theme-toggle__icon--sun' }))}
@@ -103,7 +119,7 @@ function mobileNavMarkup(site, navigation, active) {
   return html`
     <div class="mobile-nav__head">
       <a class="brand" href="/" aria-label="${site.name}, home">
-        <img class="brand__logo" src="${site.logoWordmark}" alt="" aria-hidden="true" width="900" height="210" />
+        ${brandMark(site)}
       </a>
       <button
         class="nav-toggle"
@@ -158,7 +174,7 @@ function footerMarkup(site, navigation) {
       <div class="site-footer__top">
         <div class="site-footer__brand">
           <a class="brand" href="/" aria-label="${site.name}, home">
-            <img class="brand__logo" src="${site.logoWordmark}" alt="" aria-hidden="true" width="900" height="210" />
+            ${brandMark(site)}
           </a>
           <p class="site-footer__note">${site.footer.note}</p>
           <div class="site-footer__socials">${socialLinks(site)}</div>

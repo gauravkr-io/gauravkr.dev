@@ -1,0 +1,547 @@
+/* ==========================================================================
+   Glass layer
+   Loads after styles.css. Restyles the existing components with a frosted
+   glass language: pale blue and lavender atmosphere, translucent surfaces,
+   soft edges and the indigo gradient from the GK logo. Colour comes from the
+   tokens in the two theme files, so both themes share this one stylesheet.
+   ========================================================================== */
+
+:root {
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 30px;
+  --glass-blur-card: 14px;
+  --header-height: 4.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   Atmosphere
+   Fixed layers behind the page: soft colour blooms, then a faint grid.
+   -------------------------------------------------------------------------- */
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+body::before {
+  background:
+    radial-gradient(60rem 42rem at 100% -6%, var(--atmos-b), transparent 65%),
+    radial-gradient(44rem 30rem at -4% -4%, var(--atmos-a), transparent 70%),
+    radial-gradient(46rem 36rem at -6% 52%, var(--atmos-a), transparent 66%),
+    radial-gradient(54rem 30rem at 100% 108%, var(--atmos-d), transparent 66%),
+    radial-gradient(56rem 28rem at 0% 108%, var(--atmos-e), transparent 66%),
+    var(--page-wash);
+}
+
+body::after {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 72px 72px;
+  -webkit-mask-image: radial-gradient(ellipse 95% 72% at 50% 26%, #000 15%, transparent 100%);
+  mask-image: radial-gradient(ellipse 95% 72% at 50% 26%, #000 15%, transparent 100%);
+}
+
+.section--divided {
+  border-top: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Floating glass navigation
+   -------------------------------------------------------------------------- */
+
+.site-header {
+  top: 0;
+  padding: 0.75rem clamp(0.625rem, 4vw, 6rem) 0;
+  background: none;
+  border: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  pointer-events: none;
+}
+
+.site-header__inner {
+  pointer-events: auto;
+  max-width: 92rem;
+  min-height: 4rem;
+  padding: 0.5rem 0.625rem 0.5rem 0.875rem;
+  border: var(--border-width) solid var(--header-border);
+  border-radius: var(--radius-pill);
+  background-color: var(--header-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  box-shadow: var(--glass-shadow), var(--glass-highlight);
+  transition: box-shadow var(--duration-base) var(--ease-out),
+    background-color var(--duration-base) var(--ease-out);
+}
+
+.site-header.is-stuck .site-header__inner {
+  box-shadow: var(--glass-shadow-lift), var(--glass-highlight);
+}
+
+.brand {
+  gap: 0.7rem;
+  letter-spacing: 0;
+}
+
+.brand__logo {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 0.8rem;
+  box-shadow: 0 4px 14px var(--accent-glow);
+}
+
+.brand__text {
+  font-size: 1.2rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.02em;
+  color: var(--text-strong);
+}
+
+.brand__tld {
+  color: var(--accent);
+}
+
+.site-nav__link {
+  height: 2.5rem;
+  padding-inline: var(--space-5);
+  font-size: 0.95rem;
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  background: none;
+}
+
+.site-nav__link:hover {
+  color: var(--accent-strong);
+  background: none;
+}
+
+.site-nav__link[aria-current="page"] {
+  color: var(--text-strong);
+  font-weight: var(--weight-semibold);
+}
+
+.site-nav__link[aria-current="page"]::after {
+  bottom: 0;
+  width: 5px;
+  height: 5px;
+  background-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-wash);
+}
+
+.site-header__actions {
+  gap: var(--space-3);
+}
+
+.theme-toggle,
+.nav-toggle {
+  border-color: var(--glass-edge);
+  background-color: var(--glass-bg-strong);
+  box-shadow: var(--glass-highlight);
+}
+
+@media (min-width: 62rem) {
+  .site-header__inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    padding-inline: 1rem 0.75rem;
+  }
+
+  .site-header__actions {
+    justify-self: end;
+  }
+}
+
+.mobile-nav {
+  background: var(--page-wash), var(--bg);
+}
+
+/* --------------------------------------------------------------------------
+   Buttons and chips
+   -------------------------------------------------------------------------- */
+
+.btn {
+  font-weight: var(--weight-semibold);
+}
+
+.btn--primary {
+  --btn-fg: var(--btn-primary-fg);
+  border-color: transparent;
+  background-image: var(--grad-brand);
+  box-shadow: 0 10px 26px var(--btn-glow), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.btn--primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.07) saturate(1.05);
+  box-shadow: 0 16px 34px var(--btn-glow), inset 0 1px 0 rgba(255, 255, 255, 0.32);
+}
+
+.btn--primary:active {
+  transform: translateY(0) scale(0.975);
+}
+
+.btn--secondary {
+  --btn-bg: var(--glass-bg-strong);
+  --btn-border: var(--glass-edge);
+  backdrop-filter: blur(var(--glass-blur-card));
+  -webkit-backdrop-filter: blur(var(--glass-blur-card));
+  box-shadow: var(--glass-shadow), var(--glass-highlight);
+}
+
+.btn--secondary:hover {
+  transform: translateY(-2px);
+  background-color: var(--glass-bg-strong);
+  box-shadow: var(--glass-shadow-lift), var(--glass-highlight);
+}
+
+.chip {
+  border-color: var(--glass-edge);
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.chip--accent {
+  border-color: var(--accent-border);
+  background-color: var(--accent-wash);
+}
+
+/* --------------------------------------------------------------------------
+   Headings
+   -------------------------------------------------------------------------- */
+
+.section-head__title,
+.page-head__title,
+.article-head__title {
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.03em;
+}
+
+.eyebrow {
+  font-weight: var(--weight-semibold);
+  color: var(--accent-strong);
+}
+
+.eyebrow::before {
+  height: 2px;
+  border-radius: 2px;
+  background: var(--grad-brand);
+  opacity: 1;
+}
+
+.eyebrow--plain::before {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Glass surfaces
+   One recipe shared by every card-like component.
+   -------------------------------------------------------------------------- */
+
+.capability,
+.work-card,
+.service-card,
+.entry-card,
+.experience,
+.credential,
+.tech-badge,
+.aside-card,
+.contact-method,
+.module,
+.problem-solution__card,
+.post-nav__item,
+.share-button,
+.table-wrap,
+.callout,
+.empty-state,
+.filter-chip,
+.principle {
+  border-color: var(--glass-border);
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur-card)) saturate(150%);
+  -webkit-backdrop-filter: blur(var(--glass-blur-card)) saturate(150%);
+  box-shadow: var(--glass-shadow), var(--glass-highlight);
+}
+
+.capability:hover,
+.work-card:hover,
+.service-card:hover,
+.entry-card:hover,
+.experience:hover,
+.credential:hover,
+.tech-badge:hover,
+.contact-method:hover,
+.post-nav__item:hover,
+.principle:hover {
+  border-color: var(--accent-border);
+  box-shadow: var(--glass-shadow-lift), var(--glass-highlight);
+}
+
+.capability,
+.work-card,
+.service-card,
+.entry-card,
+.experience {
+  border-radius: var(--radius-xl);
+}
+
+.capability__icon {
+  border: 0;
+  border-radius: 1rem;
+  background: var(--grad-brand);
+  color: #fff;
+  box-shadow: 0 8px 20px var(--btn-glow);
+}
+
+.capability::before {
+  background: var(--grad-brand);
+}
+
+.filter-chip {
+  box-shadow: none;
+}
+
+.filter-chip[aria-pressed="true"] {
+  border-color: transparent;
+  background-image: var(--grad-brand);
+  color: #fff;
+  box-shadow: 0 8px 20px var(--btn-glow);
+}
+
+/* Principles stay as a ruled list with a gradient numeral rather than cards */
+.principle {
+  border-radius: var(--radius-lg);
+}
+
+.principle__number {
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--accent-strong);
+  font-weight: 800;
+}
+
+/* Media inside cards */
+.work-card__media,
+.service-card__media,
+.entry-card__media,
+.detail-hero-media {
+  border-radius: calc(var(--radius-xl) - 8px);
+}
+
+.about-intro__portrait img {
+  border-radius: 6rem 3.5rem 2rem 2rem;
+  border: 2px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-lift);
+}
+
+/* --------------------------------------------------------------------------
+   Forms
+   -------------------------------------------------------------------------- */
+
+.field__control {
+  border-color: var(--glass-edge);
+  border-radius: var(--radius-md);
+  background-color: var(--glass-bg-strong);
+  box-shadow: var(--glass-highlight);
+}
+
+.field__control:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-wash);
+}
+
+/* --------------------------------------------------------------------------
+   Article and code
+   -------------------------------------------------------------------------- */
+
+.code-block,
+.mermaid-block {
+  border-color: rgba(165, 160, 255, 0.22);
+  background-color: #0E1136;
+}
+
+.code-block__head {
+  border-bottom-color: rgba(165, 160, 255, 0.18);
+}
+
+.callout {
+  border-radius: var(--radius-lg);
+}
+
+.prose a {
+  color: var(--accent-strong);
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  margin-inline: clamp(0.5rem, 2vw, 1.5rem);
+  border: var(--border-width) solid var(--glass-border);
+  border-bottom: 0;
+  border-radius: 2.5rem 2.5rem 0 0;
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  box-shadow: var(--glass-shadow), var(--glass-highlight);
+}
+
+.site-footer__col-title {
+  color: var(--text-strong);
+}
+
+/* --------------------------------------------------------------------------
+   Browsers without backdrop-filter get a more opaque surface instead
+   -------------------------------------------------------------------------- */
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root,
+  [data-theme="light"] {
+    --glass-bg: rgba(255, 255, 255, 0.9);
+    --glass-bg-strong: rgba(255, 255, 255, 0.96);
+    --header-bg: rgba(255, 255, 255, 0.96);
+  }
+
+  [data-theme="dark"] {
+    --glass-bg: rgba(24, 28, 74, 0.94);
+    --glass-bg-strong: rgba(30, 34, 86, 0.97);
+    --header-bg: rgba(20, 24, 66, 0.97);
+  }
+}
+
+.site-footer__list .text-muted {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+/* ==========================================================================
+   Reference match
+   Brand lockup, nav details, hero typography, portrait frame and tech cards
+   tuned to the approved design.
+   ========================================================================== */
+
+:root {
+  --container-max: 92rem;
+}
+
+/* Brand: transparent mark in the light theme, the original tile in dark */
+.brand__logo--mark {
+  display: none;
+  width: auto;
+  height: 2.35rem;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+[data-theme="light"] .brand__logo--tile {
+  display: none;
+}
+
+[data-theme="light"] .brand__logo--mark {
+  display: block;
+}
+
+.site-header .brand {
+  position: relative;
+  gap: 0.85rem;
+  padding: 0.15rem 1.6rem 0.15rem 0.6rem;
+}
+
+.site-header .brand::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 1px;
+  height: 2.4rem;
+  transform: translateY(-50%);
+  background: var(--accent-border);
+}
+
+.brand__text {
+  font-size: 1.5rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: -0.025em;
+}
+
+.site-footer .brand__logo--mark,
+.mobile-nav .brand__logo--mark {
+  height: 1.9rem;
+}
+
+/* Active link: a short line with a dot at its centre */
+.site-nav__link[aria-current="page"]::after {
+  left: 1rem;
+  right: 1rem;
+  bottom: 0.1rem;
+  width: auto;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  box-shadow: none;
+  transform: none;
+}
+
+.site-nav__link[aria-current="page"]::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -0.03rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-strong);
+  transform: translateX(-50%);
+}
+
+.site-header__resume {
+  position: relative;
+  margin-right: 0.9rem;
+}
+
+.site-header__resume::after {
+  content: "";
+  position: absolute;
+  right: -0.95rem;
+  top: 50%;
+  width: 1px;
+  height: 1.9rem;
+  transform: translateY(-50%);
+  background: var(--accent-border);
+}
+
+[data-theme="light"] .theme-toggle {
+  background-color: rgba(122, 148, 246, 0.26);
+  border-color: rgba(122, 148, 246, 0.3);
+}
+
+@media (max-width: 61.99rem) {
+  .site-header .brand {
+    padding-right: 0.25rem;
+  }
+
+  .site-header .brand::after {
+    display: none;
+  }
+
+  .brand__text {
+    font-size: 1.3rem;
+  }
+
+  .brand__logo--mark {
+    height: 2rem;
+  }
+
+  .site-header__resume::after {
+    display: none;
+  }
+}

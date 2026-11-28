@@ -15,21 +15,42 @@ import { renderBlogsPreview } from './render-blogs.js';
 import { renderCoursesPreview } from './render-courses.js';
 import { refreshScrollReveal } from './scroll-animations.js';
 
+function techCard(tech) {
+  const classes = ['tech-float', tech.layout === 'stacked' ? 'tech-float--stacked' : ''].join(' ').trim();
+  return html`
+    <li class="${classes}" style="--tech-color:${tech.color}">
+      <span class="tech-float__icon icon-mask" role="img" aria-label="${tech.name}"
+        style="-webkit-mask-image:url('${tech.logo}');mask-image:url('${tech.logo}')"></span>
+      ${tech.showName === false ? '' : html`<span class="tech-float__name ${tech.name.includes(' ') ? 'tech-float__name--wrap' : ''}">${tech.name}</span>`}
+    </li>
+  `;
+}
+
+/** The last word of the tagline carries the gradient. */
+function taglineMarkup(tagline) {
+  const cut = tagline.trimEnd().lastIndexOf(' ');
+  if (cut < 0) return html`${tagline}`;
+  const lead = tagline.slice(0, cut + 1);
+  const last = tagline.slice(cut + 1);
+  return html`${lead}<span class="hero__tagline-accent">${last}</span>`;
+}
+
 function heroMarkup(hero, site) {
   const image = site.profileImage;
+  const tech = hero.floatingTech ?? [];
 
   return html`
-    <div class="hero__bloom accent-bloom" aria-hidden="true"></div>
-    <div class="grid-backdrop" aria-hidden="true"></div>
+    <div class="hero-backdrop"><div class="hero-backdrop__clouds"></div></div>
 
-    <div class="shell">
+    <div class="hero__layer">
       <div class="hero__inner">
         <div class="hero__content">
           <span class="hero__availability">${statusChip(hero.availabilityNote)}</span>
 
           <h1 class="hero__name">${hero.name}</h1>
           <p class="hero__role">${hero.role}</p>
-          <p class="hero__tagline">${hero.tagline}</p>
+          <p class="hero__tagline">${taglineMarkup(hero.tagline)}</p>
+          <span class="hero__rule" aria-hidden="true"></span>
           <p class="hero__supporting">${hero.supporting}</p>
 
           <ul class="hero__keywords">
@@ -39,45 +60,56 @@ function heroMarkup(hero, site) {
           <div class="hero__actions">
             <a class="btn btn--primary" href="${hero.primaryCta.href}">
               <span>${hero.primaryCta.label}</span>
-              <span class="btn__icon">${iconRaw('arrowRight', { size: 16 })}</span>
+              <span class="btn__icon">${iconRaw('arrowRight', { size: 20 })}</span>
             </a>
             <a class="btn btn--secondary" href="${hero.secondaryCta.href}">
               <span>${hero.secondaryCta.label}</span>
+              ${iconRaw('mail', { size: 20 })}
             </a>
           </div>
         </div>
 
         <figure class="hero__portrait">
-          <span class="hero__portrait-ring" aria-hidden="true"></span>
-          <div class="hero__portrait-frame">
-            <img
-              src="${image.src}"
-              srcset="${image.srcset}"
-              sizes="(min-width: 62rem) 26rem, min(23rem, 82vw)"
-              alt="${image.alt}"
-              width="941"
-              height="941"
-              fetchpriority="high"
-              decoding="async"
-            />
+          <div class="hero__portrait-stage">
+            <span class="hero__portrait-ring" aria-hidden="true"></span>
+            <div class="hero__portrait-frame">
+              <img
+                src="${image.src}"
+                srcset="${image.srcset}"
+                sizes="(min-width: 64rem) 34vw, min(24rem, 82vw)"
+                alt="${image.alt}"
+                width="941"
+                height="941"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </div>
           </div>
+          <ul class="hero__tech" aria-label="Technologies">
+            ${mapTo(tech, techCard)}
+          </ul>
           <figcaption class="hero__portrait-tag">
-            ${site.location}
+            ${iconRaw('mapPin', { size: 18 })}
+            <span>${site.location}</span>
           </figcaption>
         </figure>
       </div>
+    </div>
+  `;
+}
 
-      <div class="hero__stats">
-        ${mapTo(
-          hero.stats,
-          (stat) => html`
-            <div>
-              <p class="hero__stat-value">${stat.value}</p>
-              <p class="hero__stat-label">${stat.label}</p>
-            </div>
-          `
-        )}
-      </div>
+function statsMarkup(hero) {
+  return html`
+    <div class="hero__stats">
+      ${mapTo(
+        hero.stats,
+        (stat) => html`
+          <div class="hero__stat">
+            <p class="hero__stat-value">${stat.value}</p>
+            <p class="hero__stat-label">${stat.label}</p>
+          </div>
+        `
+      )}
     </div>
   `;
 }
@@ -139,6 +171,7 @@ export async function initHomePage() {
   const [home, about, site] = await Promise.all([getHome(), getAbout(), getSite()]);
 
   mount('#hero', heroMarkup(home.hero, site));
+  mount('#hero-stats', statsMarkup(home.hero));
 
   mount('#capabilities-head', sectionHead(home.capabilities, { split: true }));
   mount('#capabilities-grid', html`${mapTo(about.capabilities, capabilityCard)}`);
