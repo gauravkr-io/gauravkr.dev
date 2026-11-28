@@ -52,12 +52,12 @@
       {
         "year": "2024",
         "title": "Led a headless migration",
-        "description": "At Valtech, led backend development moving a global luxury retailer from ATG to SFCC Headless on Node.js, with checkout as the critical path."
+        "description": "At Valtech, worked on a headless SFCC programme for a global luxury retailer, covering production support, jobs, services and integrations across multiple systems."
       },
       {
         "year": "2025",
         "title": "Senior Engineer and Commerce Expert",
-        "description": "At Litmus7, Drove backend development and architecture for a global fashion retailer. Took full ownership of the core commerce solution, implemented secure payment gateways, and redesigned high-traffic PLP and PDP interfaces."
+        "description": "At Litmus7, drove backend development and architecture for a global fashion retailer. Took full ownership of the core commerce solution, implemented secure payment gateways including Checkout.com, Paymob and Apple Pay, and built SCAPI integrations and a BNPL cartridge."
       },
       {
         "year": "2026",

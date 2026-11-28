@@ -55,7 +55,7 @@
         "Payment, fraud and OMS integrations",
         "Performance and conversion measurement"
       ],
-      "proofMetric": { "value": "18%", "label": "lower cart abandonment after a PLP/PDP redesign" }
+      "proofMetric": null
     },
     {
       "slug": "backend-engineering",
@@ -211,7 +211,7 @@
         "Implemented fixes with before and after numbers",
         "Monitoring and alerting"
       ],
-      "proofMetric": { "value": "20%", "label": "higher checkout conversion after backend redesign" }
+      "proofMetric": null
     },
     {
       "slug": "integrations",

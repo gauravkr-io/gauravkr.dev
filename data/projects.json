@@ -1,38 +1,13 @@
 {
   "projectsMeta": {
     "eyebrow": "Selected Work",
-    "headline": "Real systems. Real engineering. Real impact.",
-    "intro": "Client names are withheld under the confidentiality terms of each engagement. The systems, the scope and the measured results are described exactly as they were."
+    "headline": "Real systems. Real engineering.",
+    "intro": "Client names are withheld under the confidentiality terms of each engagement. The systems and the scope are described exactly as they were."
   },
   "projects": [
     {
-      "slug": "headless-commerce-migration",
-      "title": "Headless Commerce Migration",
-      "client": "A global luxury fashion house",
-      "industry": "Luxury retail",
-      "year": "2024",
-      "employer": "Valtech",
-      "role": "Backend lead",
-      "visible": true,
-      "featured": true,
-      "order": 1,
-      "image": "/assets/images/projects/headless-commerce-migration.svg",
-      "context": "A legacy ATG platform was holding back release velocity and could not support the front-end experience the brand wanted.",
-      "problem": "Checkout was the highest-risk part of the migration. It carried payment integrations, fraud verification and order placement, and any regression would be measured directly in lost revenue.",
-      "solution": "Led backend development for the move to SFCC Headless on Node.js, redesigning checkout backend logic rather than porting it. Payment-instrument and order-placement logic were rebuilt against third-party providers, and fraud verification moved to asynchronous processing so a slow partner could not slow the user down.",
-      "contribution": [
-        "Owned the checkout backend design across the migration",
-        "Rebuilt payment-instrument and order-placement logic",
-        "Moved fraud and verification calls off the synchronous user path",
-        "Authored order export, OMS and settlement job scripts"
-      ],
-      "technologies": ["SFCC Headless", "Node.js", "OCAPI", "REST APIs", "Payments", "OMS", "Async Processing"],
-      "impact": { "value": "20%", "label": "higher checkout conversion" },
-      "secondaryImpact": "Checkout latency held steady despite added fraud verification."
-    },
-    {
       "slug": "commerce-backend-architecture",
-      "title": "Commerce Backend Architecture, PLP/PDP Redesign & Payment Integrations",
+      "title": "Payment Integrations & BNPL Cartridge",
       "client": "A multi-brand retail group",
       "industry": "Retail",
       "year": "2025",
@@ -40,45 +15,29 @@
       "role": "Senior Engineer, SFCC",
       "visible": true,
       "featured": true,
-      "order": 2,
+      "order": 1,
       "image": "/assets/images/projects/discovery-to-cart-redesign.svg",
-      "context": "The retailer needed dedicated ownership of its core commerce backend, along with a refresh of high-traffic PLP and PDP pages.",
-      "problem": "Backend architecture, payment integrations, and storefront page performance needed consistent ownership rather than being handled piecemeal.",
-      "solution": "Took ownership of backend development and architecture for the core commerce solution, implemented secure payment gateway integrations, and redesigned the PLP and PDP interfaces. Also contributed to a buy-now-pay-later proof of concept aimed at improving the checkout experience.",
+      "context": "The retailer needed dedicated ownership of its core commerce backend, along with more payment options at checkout, including wallets, regional gateways and buy-now-pay-later.",
+      "problem": "Each provider has its own flow, security requirements and failure modes, and they all had to sit cleanly inside one checkout and one backend architecture.",
+      "solution": "Took ownership of backend development and architecture for the core commerce solution. Implemented secure payment gateway integrations with Checkout.com, Paymob and Apple Pay, developed a buy-now-pay-later cartridge, and built SCAPI integrations where flows needed to be exposed to other channels.",
       "contribution": [
         "Owned backend development and architecture for the core commerce solution",
-        "Implemented secure payment gateway integrations",
-        "Redesigned high-traffic PLP and PDP interfaces",
-        "Contributed to a buy-now-pay-later proof of concept"
+        "Implemented Checkout.com, Paymob and Apple Pay integrations",
+        "Developed a buy-now-pay-later cartridge",
+        "Built SCAPI integrations and redesigned high-traffic PLP and PDP interfaces"
       ],
-      "technologies": ["SFCC", "SFRA", "OCAPI", "SCAPI", "Node.js", "JavaScript", "REST APIs"],
-      "impact": { "value": "30%", "label": "better buy-now-pay-later experience (part of POC)" },
-      "secondaryImpact": "Redesigned PLP/PDP interfaces for high-traffic storefront pages."
-    },
-    {
-      "slug": "cart-and-checkout-revamp",
-      "title": "Cart & Checkout Revamp",
-      "client": "A US specialty retailer",
-      "industry": "Specialty retail",
-      "year": "2022",
-      "employer": "Merkle (Dentsu)",
-      "role": "Developer",
-      "visible": true,
-      "featured": true,
-      "order": 3,
-      "image": "/assets/images/projects/cart-and-checkout-revamp.svg",
-      "context": "The cart had been extended repeatedly over several seasons and had become the slowest and least predictable part of the storefront.",
-      "problem": "Fulfilment complexity was the real driver. Multi-shipment, in-store pickup and same-day delivery all had to coexist in one cart without confusing the shopper or the order management system.",
-      "solution": "Re-architected the cart with custom plugins and tuned platform configuration, then designed and shipped multi-shipment, in-store pickup and same-day delivery as first-class capabilities. PayPal and Klarna were integrated end to end, and automated test suites were added to protect the flow through seasonal releases.",
-      "contribution": [
-        "Re-architected the cart with custom SFCC plugins",
-        "Shipped multi-shipment, in-store pickup and same-day delivery",
-        "Integrated PayPal and Klarna payment flows end to end",
-        "Built automated test suites to catch regressions before release"
+      "technologies": [
+        "SFCC",
+        "SFRA",
+        "SCAPI",
+        "OCAPI",
+        "Node.js",
+        "JavaScript",
+        "Payments",
+        "REST APIs"
       ],
-      "technologies": ["SFCC", "SFRA", "JavaScript", "PayPal", "Klarna", "Automated Testing"],
-      "impact": { "value": "28%", "label": "better cart-to-checkout conversion" },
-      "secondaryImpact": "Recognised internally with a delivery award for the revamp."
+      "impact": null,
+      "secondaryImpact": "Payment options extended without reworking the core checkout."
     },
     {
       "slug": "mobile-commerce-middleware",
@@ -90,7 +49,7 @@
       "role": "API architect",
       "visible": true,
       "featured": true,
-      "order": 4,
+      "order": 2,
       "image": "/assets/images/projects/mobile-commerce-middleware.svg",
       "context": "A native mobile app needed to read from and write to the commerce platform without being coupled to storefront release cycles.",
       "problem": "The app team and the commerce team were on different cadences. Without a stable API layer between them, every platform change risked breaking the app.",
@@ -101,9 +60,83 @@
         "Translated cross-functional requirements into scalable contracts",
         "Reduced rework by resolving integration trade-offs early"
       ],
-      "technologies": ["OCAPI", "SCAPI", "Node.js", "REST APIs", "Cloud Services", "API Versioning"],
+      "technologies": [
+        "OCAPI",
+        "SCAPI",
+        "Node.js",
+        "REST APIs",
+        "Cloud Services",
+        "API Versioning"
+      ],
       "impact": null,
       "secondaryImpact": "Mobile and web release cycles decoupled behind a versioned contract."
+    },
+    {
+      "slug": "headless-commerce-migration",
+      "title": "Headless Commerce Migration",
+      "client": "A global luxury fashion house",
+      "industry": "Luxury retail",
+      "year": "2024",
+      "employer": "Valtech",
+      "role": "Backend developer",
+      "visible": true,
+      "featured": true,
+      "order": 3,
+      "image": "/assets/images/projects/headless-commerce-migration.svg",
+      "context": "A legacy ATG platform was holding back release velocity and could not support the front-end experience the brand wanted.",
+      "problem": "Checkout was the highest-risk part of the migration. It carried payment integrations, fraud verification and order placement, and it needed careful support in production.",
+      "solution": "Worked on the backend of the move to SFCC Headless on Node.js. Built payment and order-placement logic against third-party providers, developed jobs and services, supported production and monitoring, and integrated data across multiple systems. Also worked on performance, order success and order recovery, and trained and guided peers.",
+      "contribution": [
+        "Supported production and monitored system health",
+        "Developed jobs and services for order exports, OMS and settlements",
+        "Worked in a headless architecture and integrated data across multiple systems",
+        "Improved performance, order success and order recovery",
+        "Trained and guided peers"
+      ],
+      "technologies": [
+        "SFCC Headless",
+        "Node.js",
+        "OCAPI",
+        "Jobs",
+        "Services",
+        "Payments",
+        "OMS",
+        "REST APIs"
+      ],
+      "impact": null,
+      "secondaryImpact": "Fraud verification handled asynchronously so checkout stayed responsive."
+    },
+    {
+      "slug": "cart-and-checkout-revamp",
+      "title": "Cart & Checkout Revamp",
+      "client": "A US specialty retailer",
+      "industry": "Specialty retail",
+      "year": "2022",
+      "employer": "Merkle (Dentsu)",
+      "role": "Developer",
+      "visible": true,
+      "featured": true,
+      "order": 4,
+      "image": "/assets/images/projects/cart-and-checkout-revamp.svg",
+      "context": "The cart had been extended repeatedly over several seasons and had become the slowest and least predictable part of the storefront.",
+      "problem": "Fulfilment complexity was the real driver. Multi-shipment, in-store pickup and same-day delivery all had to coexist in one cart without confusing the shopper or the order management system.",
+      "solution": "Re-architected the cart with custom plugins and tuned platform configuration, then designed and shipped multi-shipment, in-store pickup and same-day delivery as first-class capabilities. PayPal and Klarna were integrated end to end, and automated test suites were added to protect the flow through seasonal releases.",
+      "contribution": [
+        "Re-architected the cart with custom SFCC plugins",
+        "Shipped multi-shipment, in-store pickup and same-day delivery",
+        "Integrated PayPal and Klarna payment flows end to end",
+        "Built automated test suites to catch regressions before release"
+      ],
+      "technologies": [
+        "SFCC",
+        "SFRA",
+        "JavaScript",
+        "PayPal",
+        "Klarna",
+        "Automated Testing"
+      ],
+      "impact": null,
+      "secondaryImpact": null
     }
   ]
 }

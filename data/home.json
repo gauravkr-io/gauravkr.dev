@@ -10,7 +10,7 @@
       "secondaryCta": { "label": "Let's Connect", "href": "/pages/contact.html" },
       "stats": [
         { "value": "5+",  "label": "Years in e-commerce engineering" },
-        { "value": "20%", "label": "Checkout conversion lift delivered" },
+        { "value": "4", "label": "Payment and BNPL integrations delivered" },
         { "value": "6+",   "label": "Global retail brands supported" }
       ],
       "availabilityNote": "Available for SDE roles and selected consulting"
@@ -22,8 +22,8 @@
     },
     "selectedWork": {
       "eyebrow": "Selected Work",
-      "headline": "Real systems. Real engineering. Real impact.",
-      "intro": "Client names are withheld under confidentiality. The systems, the scope and the measured results are exactly as they were.",
+      "headline": "Real systems. Real engineering.",
+      "intro": "Client names are withheld under confidentiality. The systems and the scope are exactly as they were.",
       "cta": { "label": "Start a conversation", "href": "/pages/contact.html" }
     },
     "services": {
